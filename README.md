@@ -1,2 +1,2 @@
-# React Project
-React Project for Launchpad
+# Chronical Frames
+A manga reader.
