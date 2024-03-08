@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+html,
+body {
+  width: 100%;
+  display: flex;
+}
+
+#test {
+  height: 100%;
+}
