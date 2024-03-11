@@ -1,16 +1,28 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ICategory } from "../models/category";
+import { IChapter } from "../models/chapters";
+import { IComic } from "../models/comics";
+import { ITopTrending } from "../models/topTrending";
 
-export const mangaApi = createApi({
-  reducerPath: "mangaApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://api.comick.io/" }),
-  endpoints: (builder) => ({
-    getTopTrending: builder.query({
-      query: () => "top?accept_mature_content=false",
-    }),
-    getAllCatagories: builder.query({
-      query: () => `category?Limit=10`,
-    }),
-  }),
-});
+const baseUrl = "https://api.comick.io/";
 
-export const { useGetAllCatagoriesQuery, useGetTopTrendingQuery } = mangaApi;
+export async function getTopTrending(): Promise<ITopTrending> {
+  const res = await fetch(
+    `${baseUrl}top?type=trending&comic_types=manhwa&accept_mature_content=false`
+  );
+  return await res.json();
+}
+
+export async function getComicBySlug(slug: string): Promise<IComic> {
+  const res = await fetch(`${baseUrl}comic/${slug}/`);
+  return await res.json();
+}
+
+export async function getChapterByHid(hid: string): Promise<IChapter> {
+  const res = await fetch(`${baseUrl}chapter/${hid}/`);
+  return await res.json();
+}
+
+export async function getCategories(): Promise<ICategory> {
+  const res = await fetch(`${baseUrl}category/`);
+  return await res.json();
+}
