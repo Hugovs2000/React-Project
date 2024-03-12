@@ -34,7 +34,7 @@ function MainContent() {
       <div className=" bg-zinc-800 h-auto p-6 text-slate-50">
         <h1>Top New Titles</h1>
         <div>
-          {topData ? (
+          {topData && (
             <>
               <div className="flex flex-col gap-4 mt-4">
                 <select name="select-comic">
@@ -57,7 +57,7 @@ function MainContent() {
                 <h3 key={item.id}>{item.title}</h3>
               ))}
             </>
-          ) : null}
+          )}
         </div>
       </div>
     </>
