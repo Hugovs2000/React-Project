@@ -1,32 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  getCategories,
-  getChapterByHid,
-  getComicBySlug,
-  getTopTrending,
-} from "../../services/api-services";
+import { getTopTrending } from "../services/api-services";
 
 function TrendingComponent() {
-  const hid = "Z4IoDx6I";
-  const slug = "the-reborn-young-lord-is-an-assassin";
-
   const { data: topData } = useQuery({
     queryKey: [`getTopData`],
     queryFn: () => getTopTrending(),
   });
-  const { data: comicData } = useQuery({
-    queryKey: [`getComicData`],
-    queryFn: () => getComicBySlug(slug),
-  });
-  const { data: chapterData } = useQuery({
-    queryKey: [`getChapterData`],
-    queryFn: () => getChapterByHid(hid),
-  });
-  const { data: categoryData } = useQuery({
-    queryKey: [`getCategoryData`],
-    queryFn: () => getCategories(),
-  });
-
   const imgUrls: string[] =
     topData?.trending[7].slice(0, 10).map((item) => {
       return "https://meo3.comick.pictures/" + item.md_covers[0].b2key;

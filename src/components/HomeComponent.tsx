@@ -1,6 +1,6 @@
-import TrendingComponent from "./TrendingComponent";
+import TrendingComponent from "../components/TrendingComponent";
 
-function MainContent() {
+function HomeComponent() {
   // Hardcoded for testing. Will implement selection later.
   // const slug = "the-reborn-young-lord-is-an-assassin";
   // const hid = "Z4IoDx6I";
@@ -60,4 +60,4 @@ function MainContent() {
   );
 }
 
-export default MainContent;
+export default HomeComponent;
