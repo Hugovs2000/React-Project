@@ -5,9 +5,5 @@ export const Route = createFileRoute("/advancedSearch")({
 });
 
 function AdvancedSearch() {
-  return (
-    <>
-      <div>Advanced Search</div>
-    </>
-  );
+  return <div>Advanced Search</div>;
 }

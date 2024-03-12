@@ -5,9 +5,5 @@ export const Route = createFileRoute("/readManga")({
 });
 
 function ReadManga() {
-  return (
-    <>
-      <div>Read Manga</div>
-    </>
-  );
+  return <div>Read Manga</div>;
 }

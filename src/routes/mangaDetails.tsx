@@ -5,9 +5,5 @@ export const Route = createFileRoute("/mangaDetails")({
 });
 
 function MangaDetails() {
-  return (
-    <>
-      <div>Manga Details</div>
-    </>
-  );
+  return <div>Manga Details</div>;
 }
