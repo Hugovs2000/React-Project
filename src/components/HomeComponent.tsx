@@ -4,9 +4,9 @@ import {
   getChapterByHid,
   getComicBySlug,
   getTopTrending,
-} from "../../services/api-services";
+} from "../services/api-services";
 
-function MainContent() {
+function HomeComponent() {
   // Hardcoded for testing. Will implement selection later.
   const slug = "the-reborn-young-lord-is-an-assassin";
   const hid = "Z4IoDx6I";
@@ -45,17 +45,19 @@ function MainContent() {
               </div>
               <h1>Selected Comic:</h1>
               <div>{comicData?.comic.title}</div>
-              {chapterData?.chapter.md_images.slice(0, 10).map((item) => (
-                <img
-                  src={"https://meo3.comick.pictures/" + item.b2key}
-                  alt={item.b2key}
-                  key={item.b2key}
-                />
-              ))}
+              {chapterData?.chapter.md_images
+                .slice(0, 10)
+                .map((item) => (
+                  <img
+                    src={"https://meo3.comick.pictures/" + item.b2key}
+                    alt={item.b2key}
+                    key={item.b2key}
+                  />
+                ))}
               <h1>Categories:</h1>
-              {categoryData?.slice(0, 10).map((item) => (
-                <h3 key={item.id}>{item.title}</h3>
-              ))}
+              {categoryData
+                ?.slice(0, 10)
+                .map((item) => <h3 key={item.id}>{item.title}</h3>)}
             </>
           )}
         </div>
@@ -64,4 +66,4 @@ function MainContent() {
   );
 }
 
-export default MainContent;
+export default HomeComponent;
