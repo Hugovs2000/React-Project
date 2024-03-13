@@ -1,11 +1,12 @@
 import { ICategory } from "../models/category";
 import { IChapter } from "../models/chapters";
 import { IComic } from "../models/comics";
+import { INewUpdates } from "../models/newUpdates";
 import { ITopTrending } from "../models/topTrending";
 
 const baseUrl = "https://api.comick.io/";
 
-export async function getTopTrending(): Promise<ITopTrending> {
+export async function getTop(): Promise<ITopTrending> {
   const res = await fetch(
     `${baseUrl}top?type=trending&comic_types=manhwa&accept_mature_content=false`
   );
@@ -19,6 +20,13 @@ export async function getComicBySlug(slug: string): Promise<IComic> {
 
 export async function getChapterByHid(hid: string): Promise<IChapter> {
   const res = await fetch(`${baseUrl}chapter/${hid}/`);
+  return await res.json();
+}
+
+export async function getNewUpdates(): Promise<INewUpdates> {
+  const res = await fetch(
+    `${baseUrl}chapter/?page=1&order=new&type=manhwa&accept_erotic_content=false`
+  );
   return await res.json();
 }
 

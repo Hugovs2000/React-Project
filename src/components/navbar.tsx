@@ -2,11 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-function Navbar() {
+function Navbar({ className }: { className: string }) {
   return (
     <>
-      <div className="navbar bg-zinc-900">
-        <div className="flex-none">
+      <div className={`navbar bg-zinc-900 ` + className}>
+        <div className="flex-none btn btn-square btn-ghost text-slate-50">
           <RxHamburgerMenu size={25} />
         </div>
         <div className="flex-1 flex-wrap">
@@ -16,23 +16,30 @@ function Navbar() {
             </Link>
           </div>
           <div className="mx-4">
-            <Link to="/mangaDetails" className="btn btn-square btn-ghost">
+            <Link
+              to="/mangaDetails"
+              className="btn btn-square btn-ghost text-slate-50">
               Details
             </Link>
-            <Link to="/readManga" className="btn btn-square btn-ghost">
+            <Link
+              to="/readManga"
+              className="btn btn-square btn-ghost text-slate-50">
               Read
             </Link>
-            <Link to="/advancedSearch" className="btn btn-square btn-ghost">
+            <Link
+              to="/advancedSearch"
+              className="btn btn-square btn-ghost text-slate-50">
               Search
             </Link>
           </div>
         </div>
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
+          <button className="btn btn-square btn-ghost text-slate-50">
             <IoIosSearch size={25} />
           </button>
         </div>
       </div>
+      <hr />
     </>
   );
 }
