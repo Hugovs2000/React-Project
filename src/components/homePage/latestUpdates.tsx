@@ -6,41 +6,51 @@ function LatestUpdates({
 }: {
   latestUpdatesData: INewUpdates | undefined;
 }) {
+  if (!latestUpdatesData) return <>Not Found</>;
   const imgUrls: string[] =
-    latestUpdatesData?.slice(0, 10).map((item) => {
+    latestUpdatesData?.slice(0, 15).map((item) => {
       return (
         "https://meo3.comick.pictures/" + item.md_comics.md_covers[0].b2key
       );
     }) || [];
 
   return (
-    <>
-      <div className="overflow-x-hidden">
-        <h2 className="m-6 text-xl">Latest Updates</h2>
-        <div className="snap-mandatory snap-y overflow-y-scroll h-80">
-          {latestUpdatesData?.slice(0, 10).map((item, index: number) => (
-            <div
-              className="snap-center px-6 w-full h-auto flex mb-4"
-              key={item.hid}>
-              <img
-                src={imgUrls[index]}
-                alt={item.md_comics.md_covers[0].b2key}
-                key={item.md_comics.md_covers[0].b2key}
-                className="rounded-xl border-2 border-slate-50 z-10 mr-6 max-w-[100px] h-auto"
-              />
-              <div className="flex flex-col justify-center gap-2">
-                <span className="text-xl">{item.md_comics.title}</span>
-                <span className="text-sm">Newest Chapter: {item.chap}</span>
-                <span className="text-sm">
-                  Released at: {formatDateToTime(item.created_at)}
-                </span>
+    <div>
+      <div className="m-6 flex justify-between">
+        <h2 className=" text-xl text-slate-50">Latest Updates</h2>
+        <button className="text-blue-400">See more</button>
+      </div>
+      <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
+        {latestUpdatesData.slice(0, 15).map((item, index: number) => (
+          <div className="carousel-item snap-center" key={item.hid}>
+            <div className="indicator">
+              <span className="indicator-item translate-x-8 shadow-badge badge py-3 border-slate-50 bg-emerald-700 z-50 mx-2">
+                <span className="text-base text-slate-50">CH-{item.chap}</span>
+              </span>
+              <div className="grid place-items-center">
+                <div className="overflow-hidden h-full rounded-xl shadow-allAround flex flex-col items-center justify-start gap-4 relative">
+                  <img
+                    src={imgUrls[index]}
+                    alt={item.md_comics.title}
+                    key={item.md_comics.md_covers[0].b2key}
+                    className=" z-10 max-h-[250px] max-w-48 overflow-hidden"
+                  />
+                  <div className=" absolute z-20 flex flex-col items-center  bottom-0">
+                    <span className="text-xl font-bold z-10 text-center my-1 mx-3 line-clamp-2 hover:line-clamp-5">
+                      {item.md_comics.title}
+                    </span>
+                    <span className="text-sm m-1">
+                      {formatDateToTime(item.created_at)}
+                    </span>
+                  </div>
+                  <div className=" absolute z-10 w-full h-full bg-gradient-to-t from-black to-70%"></div>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-      <hr />
-    </>
+    </div>
   );
 }
 

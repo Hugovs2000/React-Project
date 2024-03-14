@@ -10,8 +10,8 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <div className="flex flex-col h-full">
-      <Navbar className="flex flex-shrink-0" />
-      <div className="flex-grow">
+      <Navbar className="fixed z-[999] navbar bg-zinc-900 flex flex-shrink-0" />
+      <div className="pt-16 flex-grow">
         <Outlet />
       </div>
       <Footer />

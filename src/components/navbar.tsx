@@ -5,7 +5,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 function Navbar({ className }: { className: string }) {
   return (
     <>
-      <div className={`navbar bg-zinc-900 ` + className}>
+      <div className={className}>
         <div className="flex-none btn btn-square btn-ghost text-slate-50">
           <RxHamburgerMenu size={25} />
         </div>
@@ -15,23 +15,6 @@ function Navbar({ className }: { className: string }) {
               Chronical <span className="text-orange-300">Frames</span>
             </Link>
           </div>
-          <div className="mx-4">
-            <Link
-              to="/mangaDetails"
-              className="btn btn-square btn-ghost text-slate-50">
-              Details
-            </Link>
-            <Link
-              to="/readManga"
-              className="btn btn-square btn-ghost text-slate-50">
-              Read
-            </Link>
-            <Link
-              to="/advancedSearch"
-              className="btn btn-square btn-ghost text-slate-50">
-              Search
-            </Link>
-          </div>
         </div>
         <div className="flex-none">
           <button className="btn btn-square btn-ghost text-slate-50">
@@ -39,7 +22,6 @@ function Navbar({ className }: { className: string }) {
           </button>
         </div>
       </div>
-      <hr />
     </>
   );
 }
