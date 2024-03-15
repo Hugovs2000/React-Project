@@ -3,7 +3,7 @@ import convertToUrl from "../../../services/convert-image-string";
 
 function TopTenCard({ item, index }: { item: RecentRank; index: number }) {
   return (
-    <div className="indicator min-w-fit md:max-w-full md:min-w-96 cursor-pointer">
+    <div className="indicator min-w-fit max-w-full md:max-w-full md:min-w-96 cursor-pointer">
       <span className="indicator-item md:-translate-y-10 md:translate-x-12 pr-6 text-slate-50 font-bold text-7xl md:text-8xl">
         {index + 1}
       </span>
@@ -19,7 +19,7 @@ function TopTenCard({ item, index }: { item: RecentRank; index: number }) {
           key={item.md_covers[0].b2key}
           className="rounded-xl border-2 max-w-48 border-slate-50 z-[1] ml-4 my-4"
         />
-        <div className="flex z-[1] p-4 items-center justify-center text-left">
+        <div className="flex z-[1] max-w-56 p-4 items-center justify-center text-left">
           <span className="text-xl font-bold">{item.title}</span>
         </div>
       </div>
