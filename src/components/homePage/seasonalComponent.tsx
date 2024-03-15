@@ -26,7 +26,7 @@ function SeasonalManga({
     <div>
       <div className="m-6 flex justify-between">
         <h2 className="text-xl text-slate-50">
-          {resultingSeasonString} Mangas
+          {resultingSeasonString} Manhwa
         </h2>
         <button className="text-blue-400">See more</button>
       </div>

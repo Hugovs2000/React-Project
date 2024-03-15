@@ -24,7 +24,7 @@ function LatestUpdates({
         {latestUpdatesData.slice(0, 15).map((item, index: number) => (
           <div className="carousel-item snap-center" key={item.hid}>
             <div className="indicator">
-              <span className="indicator-item translate-x-8 shadow-badge badge py-3 border-slate-50 bg-emerald-700 z-50 mx-2">
+              <span className="indicator-item translate-x-8 badge py-3 border-slate-50 bg-emerald-700 z-50 mx-2">
                 <span className="text-base text-slate-50">CH-{item.chap}</span>
               </span>
               <div className="grid place-items-center">

@@ -32,7 +32,7 @@ function TrendingComponent({ topData }: { topData: ITopTrending | undefined }) {
   return (
     <>
       <div>
-        <h2 className="px-6 pt-8 text-xl text-slate-50">This weeks Trending</h2>
+        <h2 className="px-6 pt-8 text-xl text-slate-50">Trending This Week</h2>
         <div className="snap-mandatory snap-x flex px-4 py-8 gap-12 overflow-x-scroll overflow-y-hidden">
           {topData.trending[7].slice(0, 10).map((item, index: number) => (
             <div
