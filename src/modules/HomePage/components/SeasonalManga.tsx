@@ -3,7 +3,7 @@ import convertToUrl from "../../../services/convert-image-string";
 
 function SeasonalManga({ item }: { item: SeasonalComic }) {
   return (
-    <div className="carousel-item snap-center min-w-32 flex flex-col items-center justify-start gap-4">
+    <div className="carousel-item snap-center min-w-32 flex flex-col items-center justify-start gap-4 cursor-pointer">
       <img
         src={convertToUrl(item.md_covers[0].b2key)}
         alt={item.title}

@@ -3,7 +3,7 @@ import convertToUrl from "../../../services/convert-image-string";
 
 function TopTenCard({ item, index }: { item: RecentRank; index: number }) {
   return (
-    <div className="indicator min-w-fit md:max-w-full md:min-w-96">
+    <div className="indicator min-w-fit md:max-w-full md:min-w-96 cursor-pointer">
       <span className="indicator-item md:-translate-y-10 md:translate-x-12 pr-6 text-slate-50 font-bold text-7xl md:text-8xl">
         {index + 1}
       </span>

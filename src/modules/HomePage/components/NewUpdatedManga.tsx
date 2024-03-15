@@ -4,7 +4,7 @@ import convertToUrl from "../../../services/convert-image-string";
 
 function NewUpdatedManga({ item }: { item: NewUpdates }) {
   return (
-    <div className="carousel-item snap-center">
+    <div className="carousel-item snap-center cursor-pointer">
       <div className="indicator">
         <span className="indicator-item translate-x-8 badge py-3 border-slate-50 bg-emerald-700 z-20 mx-2">
           <span className="text-base text-slate-50">CH-{item.chap}</span>
