@@ -16,7 +16,7 @@ function LatestUpdates({
 
   return (
     <div>
-      <div className="m-6 flex justify-between">
+      <div className="m-6 mb-2 flex justify-between">
         <h2 className=" text-xl text-slate-50">Latest Updates</h2>
         <button className="text-blue-400">See more</button>
       </div>

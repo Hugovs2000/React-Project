@@ -24,7 +24,7 @@ function SeasonalManga({
 
   return (
     <div>
-      <div className="m-6 flex justify-between">
+      <div className="m-6 mt-8 flex justify-between">
         <h2 className="text-xl text-slate-50">
           {resultingSeasonString} Manhwa
         </h2>

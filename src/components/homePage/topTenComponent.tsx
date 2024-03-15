@@ -10,7 +10,7 @@ function TopTen({ topTenData }: { topTenData: ITopTrending | undefined }) {
   return (
     <>
       <div>
-        <h2 className="mx-6 mt-6 text-xl text-slate-50">Top 10</h2>
+        <h2 className="mx-6 mt-8 text-xl text-slate-50">Top 10</h2>
         <div className="snap-mandatory snap-x flex px-8 py-8 gap-12 overflow-x-scroll overflow-y-hidden">
           {topTenData.recentRank.slice(0, 10).map((item, index: number) => (
             <div
