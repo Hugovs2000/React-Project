@@ -7,7 +7,7 @@ export default {
         robot: ["Roboto"],
       },
       boxShadow: {
-        allAround: "0px 0px 10px 3px rgba(255, 255, 255, 0.8)",
+        around: "0px 0px 10px 3px rgba(255, 255, 255, 0.8)",
       },
     },
   },
