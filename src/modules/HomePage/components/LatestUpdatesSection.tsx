@@ -1,5 +1,5 @@
 import { INewUpdates } from "../../../models/newUpdates";
-import UpdatedManga from "./UpdatedManga";
+import NewUpdatedManga from "./NewUpdatedManga";
 
 function LatestUpdatesSection({
   latestUpdatesData,
@@ -20,7 +20,7 @@ function LatestUpdatesSection({
       </div>
       <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
         {filteredComics.map((item) => (
-          <UpdatedManga item={item} key={item.hid} />
+          <NewUpdatedManga item={item} key={item.hid} />
         ))}
       </div>
     </div>

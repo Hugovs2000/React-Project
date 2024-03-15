@@ -2,7 +2,7 @@ import { formatDistance } from "date-fns";
 import { NewUpdates } from "../../../models/newUpdates";
 import convertToUrl from "../../../services/convert-image-string";
 
-function UpdatedManga({ item }: { item: NewUpdates }) {
+function NewUpdatedManga({ item }: { item: NewUpdates }) {
   return (
     <div className="carousel-item snap-center">
       <div className="indicator">
@@ -34,4 +34,4 @@ function UpdatedManga({ item }: { item: NewUpdates }) {
   );
 }
 
-export default UpdatedManga;
+export default NewUpdatedManga;
