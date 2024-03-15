@@ -1,7 +1,7 @@
 import { ITopTrending } from "../../../models/topTrending";
-import ListSeasonalMangas from "./ListSeasonalMangas";
+import SeasonalManga from "./SeasonalManga";
 
-function SeasonalManga({ seasonalData }: { seasonalData?: ITopTrending }) {
+function SeasonalSection({ seasonalData }: { seasonalData?: ITopTrending }) {
   if (
     !(
       seasonalData?.comicsByCurrentSeason?.season ||
@@ -28,11 +28,11 @@ function SeasonalManga({ seasonalData }: { seasonalData?: ITopTrending }) {
       </div>
       <div className="carousel carousel-center max-w-full p-4 space-x-4 rounded-box">
         {filteredComics.map((item) => (
-          <ListSeasonalMangas item={item} key={item.hid} />
+          <SeasonalManga item={item} key={item.hid} />
         ))}
       </div>
     </div>
   );
 }
 
-export default SeasonalManga;
+export default SeasonalSection;

@@ -1,15 +1,15 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { IComic } from "../../../models/comics";
-import { N7 } from "../../../models/topTrending";
+import { SevenDays } from "../../../models/topTrending";
 import convertToUrl from "../../../services/convert-image-string";
-import ListGenres from "./ListGenres";
+import Genre from "./Genre";
 
-function ListTrendingCard({
+function TrendingCard({
   item,
   index,
   comicQueries,
 }: {
-  item: N7;
+  item: SevenDays;
   index: number;
   comicQueries: UseQueryResult<IComic, Error>[];
 }) {
@@ -44,11 +44,11 @@ function ListTrendingCard({
       </div>
       <div className="z-[1] my-4 mx-2 flex flex-wrap gap-2 justify-center">
         {genres?.map((genre) => (
-          <ListGenres genre={genre} key={genre.md_genres.name} />
+          <Genre genre={genre} key={genre.md_genres.name} />
         ))}
       </div>
     </div>
   );
 }
 
-export default ListTrendingCard;
+export default TrendingCard;

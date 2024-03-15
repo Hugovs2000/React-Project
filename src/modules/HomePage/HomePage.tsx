@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getNewUpdates, getTop } from "../../services/api-services";
-import LatestUpdates from "./components/LatestUpdates";
-import SeasonalManga from "./components/SeasonalComponent";
-import TopTen from "./components/TopTenComponent";
-import TrendingComponent from "./components/TrendingComponent";
+import LatestUpdatesSection from "./components/LatestUpdatesSection";
+import SeasonalSection from "./components/SeasonalSection";
+import TopTenSection from "./components/TopTenSection";
+import TrendingSection from "./components/TrendingSection";
 
 function HomePage() {
   const { data: topData } = useQuery({
@@ -17,10 +17,10 @@ function HomePage() {
 
   return (
     <div className=" bg-zinc-800 h-auto text-slate-50">
-      <TrendingComponent topData={topData} />
-      <LatestUpdates latestUpdatesData={latestUpdatesData} />
-      <TopTen topTenData={topData} />
-      <SeasonalManga seasonalData={topData} />
+      <TrendingSection topData={topData} />
+      <LatestUpdatesSection latestUpdatesData={latestUpdatesData} />
+      <TopTenSection topTenData={topData} />
+      <SeasonalSection seasonalData={topData} />
     </div>
   );
 }

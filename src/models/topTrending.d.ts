@@ -43,12 +43,12 @@ export interface MdCover2 {
 }
 
 export interface Trending {
-  "7": N7[];
-  "30": N30[];
-  "90": N90[];
+  "7": SevenDays[];
+  "30": ThirtyDays[];
+  "90": NinetyDays[];
 }
 
-export interface N7 {
+export interface SevenDays {
   id: number;
   title: string;
   slug: string;
@@ -64,7 +64,7 @@ export interface MdCover3 {
   b2key: string;
 }
 
-export interface N30 {
+export interface ThirtyDays {
   id: number;
   title: string;
   slug: string;
@@ -80,7 +80,7 @@ export interface MdCover4 {
   b2key: string;
 }
 
-export interface N90 {
+export interface NinetyDays {
   id: number;
   title: string;
   slug: string;
@@ -183,12 +183,12 @@ export interface MdCover9 {
 }
 
 export interface TopFollowNewComics {
-  "7": N72[];
-  "30": N302[];
-  "90": N902[];
+  "7": SevenDays2[];
+  "30": ThirtyDays2[];
+  "90": NinetyDays2[];
 }
 
-export interface N72 {
+export interface SevenDays2 {
   title: string;
   slug: string;
   content_rating: string;
@@ -203,7 +203,7 @@ export interface MdCover10 {
   b2key: string;
 }
 
-export interface N302 {
+export interface ThirtyDays2 {
   title: string;
   slug: string;
   content_rating: string;
@@ -218,7 +218,7 @@ export interface MdCover11 {
   b2key: string;
 }
 
-export interface N902 {
+export interface NinetyDays2 {
   title: string;
   slug: string;
   content_rating: string;
@@ -234,12 +234,12 @@ export interface MdCover12 {
 }
 
 export interface TopFollowComics {
-  "7": N73[];
-  "30": N303[];
-  "90": N903[];
+  "7": SevenDays3[];
+  "30": ThirtyDays3[];
+  "90": NinetyDays3[];
 }
 
-export interface N73 {
+export interface SevenDays3 {
   title: string;
   slug: string;
   content_rating: string;
@@ -256,7 +256,7 @@ export interface MdCover13 {
   b2key: string;
 }
 
-export interface N303 {
+export interface ThirtyDays3 {
   title: string;
   slug: string;
   content_rating: string;
@@ -273,7 +273,7 @@ export interface MdCover14 {
   b2key: string;
 }
 
-export interface N903 {
+export interface NinetyDays3 {
   title: string;
   slug: string;
   content_rating: string;
@@ -293,10 +293,10 @@ export interface MdCover15 {
 export interface ComicsByCurrentSeason {
   year: string;
   season: string;
-  data: Daum[];
+  data: SeasonalComic[];
 }
 
-export interface Daum {
+export interface SeasonalComic {
   title: string;
   slug: string;
   content_rating: string;
@@ -307,14 +307,14 @@ export interface Daum {
   demographic?: number;
   last_chapter?: number;
   desc: string;
-  mies?: Mies;
+  mies?: MoreInfo;
   status: number;
   created_at: string;
   hid: string;
   md_covers: MdCover16[];
 }
 
-export interface Mies {
+export interface MoreInfo {
   id: number;
   type?: string;
   title: string;

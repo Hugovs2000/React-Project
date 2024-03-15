@@ -1,7 +1,7 @@
-import { Daum } from "../../../models/topTrending";
+import { SeasonalComic } from "../../../models/topTrending";
 import convertToUrl from "../../../services/convert-image-string";
 
-function ListSeasonalMangas({ item }: { item: Daum }) {
+function SeasonalManga({ item }: { item: SeasonalComic }) {
   return (
     <div className="carousel-item snap-center min-w-32 flex flex-col items-center justify-start gap-4">
       <img
@@ -18,4 +18,4 @@ function ListSeasonalMangas({ item }: { item: Daum }) {
   );
 }
 
-export default ListSeasonalMangas;
+export default SeasonalManga;

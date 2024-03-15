@@ -1,7 +1,7 @@
 import { ITopTrending } from "../../../models/topTrending";
-import ListTopTen from "./ListTopTen";
+import TopTenCard from "./TopTenCard";
 
-function TopTen({ topTenData }: { topTenData?: ITopTrending }) {
+function TopTenSection({ topTenData }: { topTenData?: ITopTrending }) {
   if (!topTenData?.recentRank?.[0]) return <>Not Found</>;
 
   const filteredComics = topTenData.recentRank
@@ -14,7 +14,7 @@ function TopTen({ topTenData }: { topTenData?: ITopTrending }) {
         <h2 className="mx-6 mt-8 text-xl text-slate-50">Top 10</h2>
         <div className="snap-mandatory snap-x flex px-8 py-8 gap-12 overflow-x-scroll overflow-y-hidden">
           {filteredComics.map((item, index) => (
-            <ListTopTen item={item} index={index} key={item.slug} />
+            <TopTenCard item={item} index={index} key={item.slug} />
           ))}
         </div>
       </div>
@@ -22,4 +22,4 @@ function TopTen({ topTenData }: { topTenData?: ITopTrending }) {
   );
 }
 
-export default TopTen;
+export default TopTenSection;

@@ -1,7 +1,7 @@
 import { RecentRank } from "../../../models/topTrending";
 import convertToUrl from "../../../services/convert-image-string";
 
-function ListTopTen({ item, index }: { item: RecentRank; index: number }) {
+function TopTenCard({ item, index }: { item: RecentRank; index: number }) {
   return (
     <div className="indicator min-w-fit md:max-w-full md:min-w-96">
       <span className="indicator-item md:-translate-y-10 md:translate-x-12 pr-6 text-slate-50 font-bold text-7xl md:text-8xl">
@@ -27,4 +27,4 @@ function ListTopTen({ item, index }: { item: RecentRank; index: number }) {
   );
 }
 
-export default ListTopTen;
+export default TopTenCard;

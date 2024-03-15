@@ -1,8 +1,8 @@
+import { formatDistance } from "date-fns";
 import { NewUpdates } from "../../../models/newUpdates";
 import convertToUrl from "../../../services/convert-image-string";
-import formatDateToTime from "../../../services/format-date";
 
-function ListLatestUpdates({ item }: { item: NewUpdates }) {
+function UpdatedManga({ item }: { item: NewUpdates }) {
   return (
     <div className="carousel-item snap-center">
       <div className="indicator">
@@ -21,7 +21,9 @@ function ListLatestUpdates({ item }: { item: NewUpdates }) {
                 {item.md_comics.title}
               </span>
               <span className="text-sm m-1">
-                {formatDateToTime(item.created_at)}
+                {formatDistance(new Date(item.created_at), Date.now(), {
+                  addSuffix: true,
+                })}
               </span>
             </div>
             <div className=" absolute z-10 w-full h-full bg-gradient-to-t from-black to-70%"></div>
@@ -32,4 +34,4 @@ function ListLatestUpdates({ item }: { item: NewUpdates }) {
   );
 }
 
-export default ListLatestUpdates;
+export default UpdatedManga;

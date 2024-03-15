@@ -1,9 +1,9 @@
 import { useQueries } from "@tanstack/react-query";
 import { ITopTrending } from "../../../models/topTrending";
 import { getComicBySlug } from "../../../services/api-services";
-import ListTrendingCard from "./ListTrendingCards";
+import TrendingCard from "./TrendingCard";
 
-function TrendingComponent({ topData }: { topData?: ITopTrending }) {
+function TrendingSection({ topData }: { topData?: ITopTrending }) {
   const filteredComics = topData?.trending[7]
     .filter((item) => !!item?.md_covers?.[0]?.b2key)
     .slice(0, 10);
@@ -32,7 +32,7 @@ function TrendingComponent({ topData }: { topData?: ITopTrending }) {
       <h2 className="px-6 pt-8 text-xl text-slate-50">Trending This Week</h2>
       <div className="snap-mandatory snap-x flex px-4 py-8 gap-12 overflow-x-scroll overflow-y-hidden">
         {filteredComics?.map((item, index: number) => (
-          <ListTrendingCard
+          <TrendingCard
             item={item}
             index={index}
             comicQueries={comicQueries}
@@ -44,4 +44,4 @@ function TrendingComponent({ topData }: { topData?: ITopTrending }) {
   );
 }
 
-export default TrendingComponent;
+export default TrendingSection;
