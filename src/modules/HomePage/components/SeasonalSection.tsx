@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ITopTrending } from "../../../models/topTrending";
 import SeasonalManga from "./SeasonalManga";
 
@@ -28,7 +29,14 @@ function SeasonalSection({ seasonalData }: { seasonalData?: ITopTrending }) {
       </div>
       <div className="carousel carousel-center max-w-full p-4 space-x-4 rounded-box">
         {filteredComics.map((item) => (
-          <SeasonalManga item={item} key={item.hid} />
+          <Link
+            to="/details/$manga"
+            params={{
+              manga: item.slug,
+            }}
+            key={item.slug}>
+            <SeasonalManga item={item} />
+          </Link>
         ))}
       </div>
     </div>

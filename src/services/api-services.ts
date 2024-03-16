@@ -1,5 +1,6 @@
 import { ICategory } from "../models/category";
-import { IChapter } from "../models/chapters";
+import { IChapter } from "../models/chapter";
+import { IComicChapters } from "../models/comicChapters";
 import { IComic } from "../models/comics";
 import { INewUpdates } from "../models/newUpdates";
 import { ITopTrending } from "../models/topTrending";
@@ -32,5 +33,10 @@ export async function getNewUpdates(): Promise<INewUpdates> {
 
 export async function getCategories(): Promise<ICategory> {
   const res = await fetch(`${baseUrl}category/`);
+  return await res.json();
+}
+
+export async function getComicChapters(hid: string): Promise<IComicChapters> {
+  const res = await fetch(`${baseUrl}comic/${hid}/chapters`);
   return await res.json();
 }

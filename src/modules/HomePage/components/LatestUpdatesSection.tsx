@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { INewUpdates } from "../../../models/newUpdates";
 import NewUpdatedManga from "./NewUpdatedManga";
 
@@ -20,7 +21,15 @@ function LatestUpdatesSection({
       </div>
       <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
         {filteredComics.map((item) => (
-          <NewUpdatedManga item={item} key={item.hid} />
+          <Link
+            to="/details/$manga"
+            params={{
+              manga: item.md_comics.slug,
+            }}
+            key={item.md_comics.slug}
+            className="min-h-full">
+            <NewUpdatedManga item={item} key={item.hid} />
+          </Link>
         ))}
       </div>
     </div>

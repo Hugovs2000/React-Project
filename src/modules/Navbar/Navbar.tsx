@@ -12,7 +12,7 @@ function Navbar({ className }: { className: string }) {
         <div className="flex-1 flex-wrap">
           <div>
             <Link to="/" className="btn btn-ghost text-2xl text-slate-50">
-              Chronical <span className="text-orange-300">Frames</span>
+              Chronical <span className="text-emerald-600">Frames</span>
             </Link>
           </div>
         </div>

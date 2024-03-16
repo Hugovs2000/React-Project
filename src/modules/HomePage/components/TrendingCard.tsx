@@ -2,7 +2,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { IComic } from "../../../models/comics";
 import { SevenDays } from "../../../models/topTrending";
 import convertToUrl from "../../../services/convert-image-string";
-import Genre from "./Genre";
+import Genre from "../../../shared/Genre";
 
 function TrendingCard({
   item,
@@ -44,7 +44,7 @@ function TrendingCard({
       </div>
       <div className="z-[1] my-4 mx-2 flex flex-wrap gap-2 justify-center">
         {genres?.map((genre) => (
-          <Genre genre={genre} key={genre.md_genres.name} />
+          <Genre genre={genre} className="text-xs" key={genre.md_genres.name} />
         ))}
       </div>
     </div>

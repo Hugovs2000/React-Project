@@ -1,4 +1,5 @@
 import { useQueries } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 import { ITopTrending } from "../../../models/topTrending";
 import { getComicBySlug } from "../../../services/api-services";
 import TrendingCard from "./TrendingCard";
@@ -32,12 +33,19 @@ function TrendingSection({ topData }: { topData?: ITopTrending }) {
       <h2 className="px-6 pt-8 text-xl text-slate-50">Trending This Week</h2>
       <div className="snap-mandatory snap-x flex px-4 py-8 gap-12 overflow-x-scroll overflow-y-hidden">
         {filteredComics?.map((item, index: number) => (
-          <TrendingCard
-            item={item}
-            index={index}
-            comicQueries={comicQueries}
+          <Link
+            to="/details/$manga"
+            params={{
+              manga: item.slug,
+            }}
             key={item.slug}
-          />
+            className="min-w-fit md:min-w-96">
+            <TrendingCard
+              item={item}
+              index={index}
+              comicQueries={comicQueries}
+            />
+          </Link>
         ))}
       </div>
     </div>
