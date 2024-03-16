@@ -4,7 +4,7 @@ import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import { GiRead } from "react-icons/gi";
 import { Comic } from "../../../models/comics";
 import { getComicChapters } from "../../../services/api-services";
-import ChaptersSkeleton from "./ChaptersSkeleton";
+import ChaptersSkeleton from "./Skeletons/ChaptersSkeleton";
 
 export default function MangaChaptersSection({ comic }: { comic: Comic }) {
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({

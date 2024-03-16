@@ -4,8 +4,8 @@ import { Route } from "../../routes/details.$manga";
 import { getComicBySlug } from "../../services/api-services";
 import MangaChaptersSection from "./components/MangaChaptersSection";
 import MangaDescription from "./components/MangaDescription";
-import MangaDetailsSkeleton from "./components/MangaDetailsSkeleton";
 import MangaHeader from "./components/MangaHeader";
+import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";
 
 function MangaDetailsPage() {
   const { manga } = Route.useParams();
