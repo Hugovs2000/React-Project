@@ -12,7 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as ReadIndexImport } from './routes/read.index'
 import { Route as DetailsIndexImport } from './routes/details.index'
+import { Route as ReadChapterImport } from './routes/read.$chapter'
 import { Route as DetailsMangaImport } from './routes/details.$manga'
 
 // Create/Update Routes
@@ -22,8 +24,18 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ReadIndexRoute = ReadIndexImport.update({
+  path: '/read/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DetailsIndexRoute = DetailsIndexImport.update({
   path: '/details/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReadChapterRoute = ReadChapterImport.update({
+  path: '/read/$chapter',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,8 +56,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DetailsMangaImport
       parentRoute: typeof rootRoute
     }
+    '/read/$chapter': {
+      preLoaderRoute: typeof ReadChapterImport
+      parentRoute: typeof rootRoute
+    }
     '/details/': {
       preLoaderRoute: typeof DetailsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/read/': {
+      preLoaderRoute: typeof ReadIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -56,7 +76,9 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   DetailsMangaRoute,
+  ReadChapterRoute,
   DetailsIndexRoute,
+  ReadIndexRoute,
 ])
 
 /* prettier-ignore-end */

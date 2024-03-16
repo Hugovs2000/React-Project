@@ -46,7 +46,7 @@ function MangaDetailsPage() {
     <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
       <MangaDescription topData={topData} />
-      <MangaChaptersSection comic={topData.comic} />
+      <MangaChaptersSection topData={topData} />
     </div>
   );
 }

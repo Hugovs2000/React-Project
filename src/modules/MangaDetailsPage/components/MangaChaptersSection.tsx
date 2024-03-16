@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import { GiRead } from "react-icons/gi";
-import { Comic } from "../../../models/comics";
+import { IComic } from "../../../models/comics";
 import { getComicChapters } from "../../../services/api-services";
 import ChaptersSkeleton from "./Skeletons/ChaptersSkeleton";
 
-export default function MangaChaptersSection({ comic }: { comic: Comic }) {
+export default function MangaChaptersSection({ topData }: { topData: IComic }) {
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
-    queryKey: [`getComicChapters`, comic.slug],
-    queryFn: () => getComicChapters(comic.hid),
+    queryKey: [`getComicChapters`, topData.comic.slug],
+    queryFn: () => getComicChapters(topData.comic.hid),
   });
 
   if (loadingChapters) {
@@ -39,9 +39,14 @@ export default function MangaChaptersSection({ comic }: { comic: Comic }) {
 
   return (
     <>
-      <button className="self-start bg-emerald-700 rounded-md p-2 m-4 gap-1 flex flex-nowrap items-center justify-around">
+      <Link
+        to="/read/$chapter"
+        params={{
+          chapter: topData.firstChap.hid,
+        }}
+        className="self-start bg-emerald-700 rounded-md p-2 m-4 gap-1 flex flex-nowrap items-center justify-around">
         Start Reading <GiRead />
-      </button>
+      </Link>
       <div className="carousel carousel-center max-w-full m-4 space-x-6">
         {chapters.map((item) => (
           <div
