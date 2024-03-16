@@ -2,18 +2,34 @@ import { useQuery } from "@tanstack/react-query";
 import { getNewUpdates, getTop } from "../../services/api-services";
 import LatestUpdatesSection from "./components/LatestUpdatesSection";
 import SeasonalSection from "./components/SeasonalSection";
+import LatestUpdatesSkeleton from "./components/Skeletons/LatestUpdatesSkeleton";
+import SeasonalSkeleton from "./components/Skeletons/SeasonalSkeleton";
+import TopTenSkeleton from "./components/Skeletons/TopTenSkeleton";
+import TrendingSkeleton from "./components/Skeletons/TrendingSkeleton";
 import TopTenSection from "./components/TopTenSection";
 import TrendingSection from "./components/TrendingSection";
 
 function HomePage() {
-  const { data: topData } = useQuery({
+  const { data: topData, isLoading: loadingTopData } = useQuery({
     queryKey: [`getTopTrendingData`],
     queryFn: () => getTop(),
   });
-  const { data: latestUpdatesData } = useQuery({
-    queryKey: [`getLatestUpdates`],
-    queryFn: () => getNewUpdates(),
-  });
+  const { data: latestUpdatesData, isLoading: loadingLatestsUpdates } =
+    useQuery({
+      queryKey: [`getLatestUpdates`],
+      queryFn: () => getNewUpdates(),
+    });
+
+  if (loadingTopData || loadingLatestsUpdates) {
+    return (
+      <div className=" bg-zinc-800 h-auto text-slate-50">
+        <TrendingSkeleton />
+        <LatestUpdatesSkeleton />
+        <TopTenSkeleton />
+        <SeasonalSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className=" bg-zinc-800 h-auto text-slate-50">

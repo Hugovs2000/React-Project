@@ -1,6 +1,7 @@
 import { useQueries } from "@tanstack/react-query";
 import { ITopTrending } from "../../../models/topTrending";
 import { getComicBySlug } from "../../../services/api-services";
+import TrendingSkeleton from "./Skeletons/TrendingSkeleton";
 import TrendingCard from "./TrendingCard";
 
 function TrendingSection({ topData }: { topData?: ITopTrending }) {
@@ -17,6 +18,10 @@ function TrendingSection({ topData }: { topData?: ITopTrending }) {
         };
       }) ?? [],
   });
+
+  if (comicQueries.some((comic) => comic.isLoading)) {
+    return <TrendingSkeleton />;
+  }
 
   if (
     !(
