@@ -3,7 +3,7 @@ import { Chapter as Chap } from "../../../models/comicChapters";
 
 export default function Chapter({ chap }: { chap: Chap }) {
   return (
-    <div className="gap-4 flex w-full md:w-4/5 justify-around items-center rounded-lg bg-zinc-700 p-2">
+    <>
       <div className="flex flex-col items-center">
         <AiFillLike />
         {chap.up_count}
@@ -13,6 +13,6 @@ export default function Chapter({ chap }: { chap: Chap }) {
         <AiFillDislike />
         {chap.down_count}
       </div>
-    </div>
+    </>
   );
 }

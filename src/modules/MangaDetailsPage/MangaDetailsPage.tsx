@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { Route } from "../../routes/details.$manga";
-import { getComicBySlug } from "../../services/api-services";
+import { getComicBySlug, getComicChapters } from "../../services/api-services";
 import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
 import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";
@@ -14,7 +14,13 @@ function MangaDetailsPage() {
     queryFn: () => getComicBySlug(manga),
   });
 
-  if (loadingComic) {
+  const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
+    queryKey: [`getComicChapters`, topData?.comic.hid],
+    queryFn: () => getComicChapters(topData!.comic.hid, 1),
+    enabled: !!topData,
+  });
+
+  if (loadingComic || loadingChapters) {
     return <MangaDetailsSkeleton />;
   }
 
@@ -29,6 +35,10 @@ function MangaDetailsPage() {
       topData?.comic?.md_covers?.[0]?.b2key ||
       topData?.comic?.desc ||
       topData?.comic?.user_follow_count
+    ) ||
+    !(
+      comicChaptersData?.chapters?.[0]?.chap ||
+      comicChaptersData?.chapters?.[0]?.group_name?.[0]
     )
   ) {
     return (
@@ -44,7 +54,10 @@ function MangaDetailsPage() {
   return (
     <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
-      <BottomNavigationSection topData={topData} />
+      <BottomNavigationSection
+        comicChaptersData={comicChaptersData}
+        topData={topData}
+      />
       <div className="min-h-16 bottom-0 w-full"></div>
     </div>
   );

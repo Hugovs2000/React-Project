@@ -28,7 +28,12 @@ function MangaHeader({ topData }: { topData: IComic }) {
         <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>
         <div className=" absolute w-full h-full bg-gradient-to-t from-black/95 to-60%"></div>
         <div className="flex flex-col justify-center items-center z-[1] w-full">
-          <Link to="">
+          <Link
+            to="/read/$manga/$chapter"
+            params={{
+              manga: topData.comic.slug,
+              chapter: topData.firstChap.hid,
+            }}>
             <img
               src={convertToUrl(topData.comic.md_covers[0].b2key)}
               alt="Cover"
