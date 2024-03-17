@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
-import { GiRead } from "react-icons/gi";
 import { Comic } from "../../../models/comics";
 import { getComicChapters } from "../../../services/api-services";
+import Chapter from "./Chapter";
 import ChaptersSkeleton from "./Skeletons/ChaptersSkeleton";
 
-export default function MangaChaptersSection({ comic }: { comic: Comic }) {
+export default function MangaChapters({ comic }: { comic: Comic }) {
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
     queryKey: [`getComicChapters`, comic.slug],
     queryFn: () => getComicChapters(comic.hid),
@@ -39,26 +38,9 @@ export default function MangaChaptersSection({ comic }: { comic: Comic }) {
 
   return (
     <>
-      <button className="self-start bg-emerald-700 rounded-md p-2 m-4 gap-1 flex flex-nowrap items-center justify-around">
-        Start Reading <GiRead />
-      </button>
-      <div className="carousel carousel-center max-w-full m-4 space-x-6">
-        {chapters.map((item) => (
-          <div
-            className="carousel-item gap-4 flex flex-col justify-center items-between rounded-lg bg-zinc-700 p-2"
-            key={item.hid}>
-            <div className="m-1">Chapter {item.chap}</div>
-            <div className="m-1 flex items-center justify-around">
-              <div className="flex flex-col items-center">
-                <AiFillLike />
-                {item.up_count}
-              </div>
-              <div className="flex flex-col items-center">
-                <AiFillDislike />
-                {item.down_count}
-              </div>
-            </div>
-          </div>
+      <div className="w-full flex flex-col items-start md:items-center mb-4 px-4 space-y-6">
+        {chapters.map((chap) => (
+          <Chapter chap={chap} key={chap.hid} />
         ))}
       </div>
     </>

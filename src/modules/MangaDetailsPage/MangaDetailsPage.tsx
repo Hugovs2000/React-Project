@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { Route } from "../../routes/details.$manga";
 import { getComicBySlug } from "../../services/api-services";
-import MangaChaptersSection from "./components/MangaChaptersSection";
-import MangaDescription from "./components/MangaDescription";
+import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
 import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";
 
@@ -43,10 +42,10 @@ function MangaDetailsPage() {
   }
 
   return (
-    <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col">
+    <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
-      <MangaDescription topData={topData} />
-      <MangaChaptersSection comic={topData.comic} />
+      <BottomNavigationSection topData={topData} />
+      <div className="min-h-16 bottom-0 w-full"></div>
     </div>
   );
 }

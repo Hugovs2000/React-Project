@@ -31,7 +31,7 @@ function TrendingSection({ topData }: { topData?: ITopTrending }) {
       comicQueries?.[0]?.data?.authors?.[0]
     )
   )
-    return <div>Not Found</div>;
+    return <></>;
 
   return (
     <div className="mb-8">

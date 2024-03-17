@@ -3,7 +3,13 @@ import { ITopTrending } from "../../../models/topTrending";
 import TopTenCard from "./TopTenCard";
 
 function TopTenSection({ topTenData }: { topTenData?: ITopTrending }) {
-  if (!topTenData?.recentRank?.[0]) return <>Not Found</>;
+  if (
+    !(
+      topTenData?.recentRank?.[0]?.md_covers?.[0]?.b2key ||
+      topTenData?.recentRank?.[0]?.slug
+    )
+  )
+    return <></>;
 
   const filteredComics = topTenData.recentRank
     .filter((item) => !!item?.md_covers?.[0]?.b2key)
