@@ -7,9 +7,10 @@ function SeasonalSection({ seasonalData }: { seasonalData?: ITopTrending }) {
     !(
       seasonalData?.comicsByCurrentSeason?.season ||
       seasonalData?.comicsByCurrentSeason?.data[0]
-    )
+    ) ||
+    seasonalData?.comicsByCurrentSeason?.data?.length === 0
   )
-    return <>Not Found</>;
+    return <></>;
 
   const resultingSeasonString = `${seasonalData.comicsByCurrentSeason.season.charAt(0).toUpperCase() + seasonalData.comicsByCurrentSeason.season.slice(1)}`;
 

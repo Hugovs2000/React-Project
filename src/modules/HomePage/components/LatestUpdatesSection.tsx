@@ -7,7 +7,14 @@ function LatestUpdatesSection({
 }: {
   latestUpdatesData?: INewUpdates;
 }) {
-  if (!latestUpdatesData) return <>Not Found</>;
+  if (
+    !(
+      latestUpdatesData?.[0]?.md_comics?.md_covers?.[0]?.b2key ||
+      latestUpdatesData?.[0]?.md_comics?.slug ||
+      latestUpdatesData?.[0]?.md_comics?.hid
+    )
+  )
+    return <></>;
 
   const filteredComics = latestUpdatesData
     .filter((item) => !!item.md_comics?.md_covers?.[0]?.b2key)

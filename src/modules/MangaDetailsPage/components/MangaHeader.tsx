@@ -1,6 +1,7 @@
+import { Link } from "@tanstack/react-router";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { IComic } from "../../../models/comics";
 import convertToUrl from "../../../services/convert-image-string";
-import Genre from "../../../shared/Genre";
 
 function MangaHeader({ topData }: { topData: IComic }) {
   return (
@@ -10,23 +11,30 @@ function MangaHeader({ topData }: { topData: IComic }) {
         style={{
           backgroundImage: `url(${convertToUrl(topData.comic.md_covers[0].b2key)})`,
         }}>
-        <div className="z-[1] p-1 w-full flex justify-around bg-emerald-700 rounded-b-md">
-          <div className="w-1/2 text-center">
+        <div className="z-[1] p-2 w-full flex justify-center items-center bg-emerald-700 rounded-b-md relative">
+          <div className="absolute left-0 mx-4 h-fit">
+            <Link to="/" className="h-full">
+              <RiArrowGoBackLine className="scale-125" />
+            </Link>
+          </div>
+          <div className="w-1/3 mr-2 text-center">
             {topData.comic.last_chapter} chapters
           </div>
-          |
-          <div className="w-1/2 text-center">
+
+          <div className="w-1/3 ml-2 text-center">
             {topData.comic.user_follow_count} followers
           </div>
         </div>
         <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>
-        <div className=" absolute z-[1] w-full h-full bg-gradient-to-t from-black/95 to-60%"></div>
+        <div className=" absolute w-full h-full bg-gradient-to-t from-black/95 to-60%"></div>
         <div className="flex flex-col justify-center items-center z-[1] w-full">
-          <img
-            src={convertToUrl(topData.comic.md_covers[0].b2key)}
-            alt="Cover"
-            className="rounded-xl border-2 border-slate-50 max-h-52 md:max-h-96 m-8 mb-2 w-fit"
-          />
+          <Link to="">
+            <img
+              src={convertToUrl(topData.comic.md_covers[0].b2key)}
+              alt="Cover"
+              className="rounded-xl border-2 border-slate-50 max-h-52 md:max-h-96 m-8 mb-2 w-fit"
+            />
+          </Link>
           <div className="text-xs">
             By:{" "}
             {!topData.authors?.[0]?.name
@@ -39,17 +47,7 @@ function MangaHeader({ topData }: { topData: IComic }) {
           </div>
         </div>
       </div>
-      <div>
-        <div className="flex justify-center gap-2 md:gap-4 m-4 mt-6 flex-wrap">
-          {topData.comic.md_comic_md_genres.map((genre) => (
-            <Genre
-              genre={genre}
-              className="p-1 md:p-2 text-sm"
-              key={genre.md_genres.name}
-            />
-          ))}
-        </div>
-      </div>
+      <div></div>
     </>
   );
 }
