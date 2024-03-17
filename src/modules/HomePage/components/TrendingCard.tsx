@@ -13,7 +13,10 @@ function TrendingCard({
   index: number;
   comicQueries: UseQueryResult<IComic, Error>[];
 }) {
-  const genres = comicQueries[index].data?.comic.md_comic_md_genres.slice(0, 5);
+  const genres = comicQueries?.[index]?.data?.comic?.md_comic_md_genres?.slice(
+    0,
+    5
+  );
 
   return (
     <div
