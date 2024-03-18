@@ -1,18 +1,20 @@
 import { Comic, MdCover } from "../models/Comic";
 
 export interface ChapterDetails {
-  chapter: Chapter;
-  next: Chapter;
-  prev: Chapter;
-  matureContent: boolean;
-  chapters: Chapter[];
-  dupGroupChapters: Chapter[];
-  chapterLangList: Chapter[];
-  canonical: string;
-  seoTitle: string;
-  seoDescription: string;
-  chapTitle: string;
-  checkVol2Chap1: boolean;
+  chapter?: Chapter;
+  next?: Chapter;
+  prev?: Chapter;
+  matureContent?: boolean;
+  chapters?: Chapter[];
+  dupGroupChapters?: Chapter[];
+  chapterLangList?: Chapter[];
+  canonical?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  chapTitle?: string;
+  checkVol2Chap1?: boolean;
+  total?: number;
+  limit?: number;
 }
 
 export interface Chapter {
@@ -38,6 +40,7 @@ export interface Chapter {
   md_images?: MdCover[];
   md_chapters_groups?: MdChaptersGroup[];
   href?: string;
+  identities?: string;
 }
 
 export interface MdChaptersGroup {

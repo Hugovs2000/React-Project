@@ -1,7 +1,9 @@
 function Footer() {
   return (
     <>
-      <footer className="footer items-center p-4 bg-zinc-900 text-slate-50">
+      <footer
+        id="footer"
+        className="footer items-center p-4 bg-zinc-900 text-slate-50">
         <aside className="items-center grid-flow-col">
           <svg
             width="36"

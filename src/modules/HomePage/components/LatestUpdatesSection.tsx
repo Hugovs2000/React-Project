@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Comic } from "../../../models/Comic";
 import NewUpdatedManga from "./NewUpdatedManga";
 
@@ -6,7 +7,14 @@ function LatestUpdatesSection({
 }: {
   latestUpdatesData: Comic[];
 }) {
-  if (!latestUpdatesData) return <>Not Found</>;
+  if (
+    !(
+      latestUpdatesData?.[0]?.md_comics?.md_covers?.[0]?.b2key ||
+      latestUpdatesData?.[0]?.md_comics?.slug ||
+      latestUpdatesData?.[0]?.md_comics?.hid
+    )
+  )
+    return <></>;
 
   const filteredComics = latestUpdatesData
     .filter((item) => !!item.md_comics?.md_covers?.[0]?.b2key)
@@ -19,9 +27,20 @@ function LatestUpdatesSection({
         <button className="text-blue-400">See more</button>
       </div>
       <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
-        {filteredComics.map((item) => (
-          <NewUpdatedManga item={item} key={item.hid} />
-        ))}
+        {filteredComics?.map(
+          (item) =>
+            item.md_comics?.slug && (
+              <Link
+                to="/details/$manga"
+                params={{
+                  manga: item.md_comics?.slug,
+                }}
+                key={item.md_comics?.slug}
+                className="min-h-full">
+                <NewUpdatedManga item={item} key={item.hid} />
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

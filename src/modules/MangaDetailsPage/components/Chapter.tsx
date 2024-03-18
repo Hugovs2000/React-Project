@@ -1,0 +1,18 @@
+import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import { Chapter as Chap } from "../../../models/ChapterDetails";
+
+export default function Chapter({ chap }: { chap: Chap }) {
+  return (
+    <div className="gap-4 flex w-full md:w-4/5 justify-around items-center rounded-lg bg-zinc-700 p-2">
+      <div className="flex flex-col items-center">
+        <AiFillLike />
+        {chap.up_count}
+      </div>
+      <div className="m-1">Chapter {chap.chap}</div>
+      <div className="flex flex-col items-center">
+        <AiFillDislike />
+        {chap.down_count}
+      </div>
+    </div>
+  );
+}

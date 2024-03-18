@@ -32,3 +32,8 @@ export async function getCategories(): Promise<Comic[]> {
   const res = await fetch(`${baseUrl}category/`);
   return await res.json();
 }
+
+export async function getComicChapters(hid: string): Promise<ChapterDetails> {
+  const res = await fetch(`${baseUrl}comic/${hid}/chapters`);
+  return await res.json();
+}

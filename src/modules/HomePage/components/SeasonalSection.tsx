@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { TopComics } from "../../../models/TopComics";
 import SeasonalManga from "./SeasonalManga";
 
@@ -6,9 +7,10 @@ function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
     !(
       seasonalData?.comicsByCurrentSeason?.season ||
       seasonalData?.comicsByCurrentSeason?.data?.[0]
-    )
+    ) ||
+    seasonalData?.comicsByCurrentSeason?.data?.length === 0
   )
-    return <>Not Found</>;
+    return <></>;
 
   const resultingSeasonString = `${seasonalData.comicsByCurrentSeason.season?.charAt(0).toUpperCase() + seasonalData.comicsByCurrentSeason.season!.slice(1)}`;
 
@@ -27,9 +29,19 @@ function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
         <button className="text-blue-400">See more</button>
       </div>
       <div className="carousel carousel-center max-w-full p-4 space-x-4 rounded-box">
-        {filteredComics?.map((item) => (
-          <SeasonalManga item={item} key={item.hid} />
-        ))}
+        {filteredComics?.map(
+          (item) =>
+            item.slug && (
+              <Link
+                to="/details/$manga"
+                params={{
+                  manga: item.slug,
+                }}
+                key={item.slug}>
+                <SeasonalManga item={item} />
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

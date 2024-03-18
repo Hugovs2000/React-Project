@@ -11,30 +11,24 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ReadMangaImport } from './routes/readManga'
-import { Route as MangaDetailsImport } from './routes/mangaDetails'
-import { Route as AdvancedSearchImport } from './routes/advancedSearch'
 import { Route as IndexImport } from './routes/index'
+import { Route as DetailsIndexImport } from './routes/details.index'
+import { Route as DetailsMangaImport } from './routes/details.$manga'
 
 // Create/Update Routes
 
-const ReadMangaRoute = ReadMangaImport.update({
-  path: '/readManga',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MangaDetailsRoute = MangaDetailsImport.update({
-  path: '/mangaDetails',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AdvancedSearchRoute = AdvancedSearchImport.update({
-  path: '/advancedSearch',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DetailsIndexRoute = DetailsIndexImport.update({
+  path: '/details/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DetailsMangaRoute = DetailsMangaImport.update({
+  path: '/details/$manga',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,16 +40,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/advancedSearch': {
-      preLoaderRoute: typeof AdvancedSearchImport
+    '/details/$manga': {
+      preLoaderRoute: typeof DetailsMangaImport
       parentRoute: typeof rootRoute
     }
-    '/mangaDetails': {
-      preLoaderRoute: typeof MangaDetailsImport
-      parentRoute: typeof rootRoute
-    }
-    '/readManga': {
-      preLoaderRoute: typeof ReadMangaImport
+    '/details/': {
+      preLoaderRoute: typeof DetailsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -65,9 +55,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  AdvancedSearchRoute,
-  MangaDetailsRoute,
-  ReadMangaRoute,
+  DetailsMangaRoute,
+  DetailsIndexRoute,
 ])
 
 /* prettier-ignore-end */
