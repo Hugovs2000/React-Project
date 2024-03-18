@@ -17,12 +17,6 @@ export default function BottomNavigationSection({
 }) {
   const [active, setActive] = useState("details");
 
-  const footer = document.getElementById("footer");
-
-  if (footer) {
-    footer.className = "hidden";
-  }
-
   return (
     <div className="flex flex-col w-full">
       <BottomNavbar active={active} setActive={setActive} />

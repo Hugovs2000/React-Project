@@ -17,7 +17,7 @@ export default function ReadMangaPage() {
 
   if (loadingChapter) {
     return (
-      <div className="  h-full bg-gradient-to-r from-gray-700 to-gray-600 flex flex-col"></div>
+      <div className="h-full bg-gradient-to-r from-gray-700 to-gray-600 flex flex-col"></div>
     );
   }
 
@@ -48,6 +48,12 @@ export default function ReadMangaPage() {
         </Link>
       </div>
     );
+  }
+
+  const footer = document.getElementById("footer");
+
+  if (footer) {
+    footer.className = "hidden";
   }
 
   return (
@@ -101,7 +107,7 @@ export default function ReadMangaPage() {
           className="md:max-w-md"
         />
       ))}
-      <div className="min-h-10"></div>
+      <div className="min-h-9 md:min-h-10min-h-10"></div>
     </div>
   );
 }
