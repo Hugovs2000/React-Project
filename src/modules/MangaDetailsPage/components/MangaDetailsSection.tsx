@@ -1,3 +1,4 @@
+import Markdown from "react-markdown";
 import { Comic } from "../../../models/Comic";
 import Genre from "../../../shared/Genre";
 
@@ -16,8 +17,10 @@ export default function MangaDetailsSection({ topData }: { topData: Comic }) {
       </div>
       <div>
         <h2 className="mx-4 mb-0 font-bold">Description</h2>
-        <div className="text-pretty m-4 mt-2 overflow-scroll whitespace-break-spaces">
-          {topData?.comic?.desc}
+        <div
+          id="manhwa-desc"
+          className="text-pretty m-4 mt-2 overflow-scroll whitespace-break-spaces">
+          <Markdown>{topData?.comic?.desc}</Markdown>
         </div>
       </div>
     </>
