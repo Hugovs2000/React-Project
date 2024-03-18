@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { RiArrowGoBackLine } from "react-icons/ri";
+import { getChapterByHid } from "../../api/api-services";
 import { Route } from "../../routes/read.$manga.$chapter";
-import { getChapterByHid } from "../../services/api-services";
-import checkImage from "../../services/check-image-exists";
-import convertToUrl from "../../services/convert-image-string";
+import checkImage from "../../utils/check-image-exists";
+import convertToUrl from "../../utils/convert-image-string";
 
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
@@ -37,7 +37,7 @@ export default function ReadMangaPage() {
     );
   }
 
-  const request = checkImage(chapterData.chapter.md_images[0].b2key);
+  const request = checkImage(chapterData.chapter?.md_images?.[0]?.b2key!);
 
   if (request?.status === 404) {
     return (
@@ -70,7 +70,7 @@ export default function ReadMangaPage() {
           </Link>
         </div>
         <div className="ml-2 text-ellipsis text-nowrap overflow-hidden max-w-40 md:max-w-96">
-          {chapterData.chapter.md_comics.title}
+          {chapterData.chapter.md_comics?.title}
         </div>
         <div className=" text-center ">Chapter {chapterData.chapter.chap}</div>
       </div>
@@ -81,7 +81,7 @@ export default function ReadMangaPage() {
             to="/read/$manga/$chapter"
             params={{
               manga: manga,
-              chapter: chapterData.prev.hid,
+              chapter: chapterData.prev.hid!,
             }}
             className="min-w-24 flex justify-end items-center gap-2">
             <GrPrevious /> Prev
@@ -92,14 +92,14 @@ export default function ReadMangaPage() {
             to="/read/$manga/$chapter"
             params={{
               manga: manga,
-              chapter: chapterData.next.hid,
+              chapter: chapterData.next.hid!,
             }}
             className="min-w-24 flex justify-start items-center gap-2">
             Next <GrNext />
           </Link>
         )}
       </div>
-      {chapterData?.chapter.md_images.map((item) => (
+      {chapterData?.chapter.md_images?.map((item) => (
         <img
           src={convertToUrl(item.b2key)}
           alt=""

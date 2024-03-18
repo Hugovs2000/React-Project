@@ -1,8 +1,8 @@
 import { formatDistance } from "date-fns";
-import { NewUpdates } from "../../../models/newUpdates";
-import convertToUrl from "../../../services/convert-image-string";
+import { Comic } from "../../../models/Comic";
+import convertToUrl from "../../../utils/convert-image-string";
 
-function NewUpdatedManga({ item }: { item: NewUpdates }) {
+function NewUpdatedManga({ item }: { item: Comic }) {
   return (
     <div className="carousel-item snap-center cursor-pointer h-full">
       <div className="indicator">
@@ -12,16 +12,16 @@ function NewUpdatedManga({ item }: { item: NewUpdates }) {
         <div className="grid place-items-center">
           <div className="overflow-hidden h-full rounded-xl shadow-around flex flex-col items-center justify-start gap-4 relative">
             <img
-              src={convertToUrl(item.md_comics.md_covers[0].b2key)}
-              alt={item.md_comics.title}
+              src={convertToUrl(item.md_comics?.md_covers?.[0].b2key!)}
+              alt={item.md_comics!.title}
               className=" z-10 max-h-64 max-w-48 overflow-hidden"
             />
             <div className=" absolute z-20 flex flex-col items-center  bottom-0">
               <span className="text-xl font-bold z-10 text-center my-1 mx-3 line-clamp-2 hover:line-clamp-5">
-                {item.md_comics.title}
+                {item.md_comics!.title}
               </span>
               <span className="text-sm m-1">
-                {formatDistance(new Date(item.created_at), Date.now(), {
+                {formatDistance(new Date(item.created_at!), Date.now(), {
                   addSuffix: true,
                 })}
               </span>

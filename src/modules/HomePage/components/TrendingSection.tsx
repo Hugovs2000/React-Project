@@ -1,11 +1,11 @@
 import { useQueries } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { ITopTrending } from "../../../models/topTrending";
-import { getComicBySlug } from "../../../services/api-services";
+import { getComicBySlug } from "../../../api/api-services";
+import { TopComics } from "../../../models/TopComics";
 import TrendingSkeleton from "./Skeletons/TrendingSkeleton";
 import TrendingCard from "./TrendingCard";
 
-function TrendingSection({ topData }: { topData?: ITopTrending }) {
+function TrendingSection({ topData }: { topData: TopComics }) {
   const filteredComics = topData?.trending[7]
     .filter((item) => !!item?.md_covers?.[0]?.b2key)
     .slice(0, 10);
@@ -15,7 +15,7 @@ function TrendingSection({ topData }: { topData?: ITopTrending }) {
       filteredComics?.map((comic) => {
         return {
           queryKey: ["comic", comic.slug],
-          queryFn: () => getComicBySlug(comic.slug),
+          queryFn: () => getComicBySlug(comic.slug!),
         };
       }) ?? [],
   });
@@ -41,7 +41,7 @@ function TrendingSection({ topData }: { topData?: ITopTrending }) {
           <Link
             to="/details/$manga"
             params={{
-              manga: item.slug,
+              manga: item.slug!,
             }}
             key={item.slug}
             className="min-w-fit md:min-w-96">

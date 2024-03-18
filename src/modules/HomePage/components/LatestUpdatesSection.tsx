@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { INewUpdates } from "../../../models/newUpdates";
+import { Comic } from "../../../models/Comic";
 import NewUpdatedManga from "./NewUpdatedManga";
 
 function LatestUpdatesSection({
   latestUpdatesData,
 }: {
-  latestUpdatesData?: INewUpdates;
+  latestUpdatesData: Comic[];
 }) {
   if (
     !(
@@ -27,14 +27,14 @@ function LatestUpdatesSection({
         <button className="text-blue-400">See more</button>
       </div>
       <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
-        {filteredComics.map((item) => (
+        {filteredComics?.map((item) => (
           <Link
             to="/read/$manga/$chapter"
             params={{
-              manga: item.md_comics.slug,
-              chapter: item.hid,
+              manga: item.md_comics?.slug!,
+              chapter: item.hid!,
             }}
-            key={item.md_comics.slug}
+            key={item.md_comics?.slug}
             className="min-h-full">
             <NewUpdatedManga item={item} key={item.hid} />
           </Link>

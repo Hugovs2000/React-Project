@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { GiRead } from "react-icons/gi";
-import { IComicChapters } from "../../../models/comicChapters";
-import { IComic } from "../../../models/comics";
+import { ChapterDetails } from "../../../models/ChapterDetails";
+import { Comic } from "../../../models/Comic";
 import BottomNavbar from "./BottomNavbar";
 import MangaChapters from "./MangaChapters";
 import MangaDetailsSection from "./MangaDetailsSection";
@@ -12,8 +12,8 @@ export default function BottomNavigationSection({
   topData,
   comicChaptersData,
 }: {
-  topData: IComic;
-  comicChaptersData: IComicChapters;
+  topData: Comic;
+  comicChaptersData: ChapterDetails;
 }) {
   const [active, setActive] = useState("details");
 
@@ -24,8 +24,8 @@ export default function BottomNavigationSection({
         <Link
           to="/read/$manga/$chapter"
           params={{
-            manga: topData.comic.slug,
-            chapter: topData.firstChap.hid,
+            manga: topData.comic?.slug!,
+            chapter: topData.firstChap?.hid!,
           }}
           className="w-fit">
           <div className="self-start bg-emerald-700 rounded-md p-2 mx-4 my-8 gap-1 flex flex-nowrap items-center justify-around">
@@ -39,11 +39,11 @@ export default function BottomNavigationSection({
       {active === "details" && <MangaDetailsSection topData={topData} />}
       {active === "chapters" && (
         <MangaChapters
-          comic={topData.comic}
+          comic={topData.comic!}
           comicChaptersData={comicChaptersData}
         />
       )}
-      {active === "recommended" && <RecommendedMangas comic={topData.comic} />}
+      {active === "recommended" && <RecommendedMangas comic={topData.comic!} />}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
-import { Chapter as Chap } from "../../../models/comicChapters";
+import { Chapter as Chap } from "../../../models/ChapterDetails";
 
 export default function Chapter({ chap }: { chap: Chap }) {
   return (

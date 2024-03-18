@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { getComicBySlug, getComicChapters } from "../../api/api-services";
 import { Route } from "../../routes/details.$manga";
-import { getComicBySlug, getComicChapters } from "../../services/api-services";
 import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
 import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";
@@ -15,8 +15,8 @@ function MangaDetailsPage() {
   });
 
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
-    queryKey: [`getComicChapters`, topData?.comic.hid],
-    queryFn: () => getComicChapters(topData!.comic.hid, 1),
+    queryKey: [`getComicChapters`, topData?.comic?.hid],
+    queryFn: () => getComicChapters(topData!.comic?.hid!, 1),
     enabled: !!topData,
   });
 
@@ -61,7 +61,7 @@ function MangaDetailsPage() {
     <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
       <BottomNavigationSection
-        comicChaptersData={comicChaptersData}
+        comicChaptersData={comicChaptersData!}
         topData={topData}
       />
       <div className="min-h-16 bottom-0 w-full"></div>
