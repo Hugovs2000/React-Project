@@ -32,7 +32,9 @@ export default function BottomNavigationSection({
             Start Reading <GiRead />
           </div>
         </Link>
-        <button className="m-4 text-blue-400">See more</button>
+        {active === "chapters" && (
+          <button className="m-4 text-blue-400">See more</button>
+        )}
       </div>
       {active === "details" && <MangaDetailsSection topData={topData} />}
       {active === "chapters" && (
