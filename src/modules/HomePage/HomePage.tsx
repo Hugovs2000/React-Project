@@ -42,12 +42,6 @@ function HomePage() {
     );
   }
 
-  const footerExists = document.getElementById("footer");
-  if (footerExists?.className === "hidden") {
-    footerExists.className =
-      "footer items-center p-4 bg-zinc-900 text-slate-50";
-  }
-
   return (
     <div className="m-8">
       Apologies, we are experiencing some issues. Please try again at another
