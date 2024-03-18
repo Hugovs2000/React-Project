@@ -68,8 +68,8 @@ export default function ReadMangaPage() {
         </div>
         <div className=" text-center ">Chapter {chapterData.chapter.chap}</div>
       </div>
-      <div className="min-h-9"></div>
-      <div className="z-[1] h-10 fixed bottom-0 p-2 w-full flex justify-around items-center bg-emerald-700 rounded-t-md">
+      <div className="min-h-9 md:min-h-10"></div>
+      <div className="z-[1] h-10 fixed bottom-0 p-2 w-full flex justify-around md:justify-center md:gap-20 items-center bg-emerald-700 rounded-t-md">
         {chapterData.prev && (
           <Link
             to="/read/$manga/$chapter"
@@ -77,8 +77,8 @@ export default function ReadMangaPage() {
               manga: manga,
               chapter: chapterData.prev.hid,
             }}
-            className="h-full flex justify-center items-center gap-2">
-            <GrPrevious /> Previous
+            className="min-w-24 flex justify-end items-center gap-2">
+            <GrPrevious /> Prev
           </Link>
         )}
         {chapterData.next && (
@@ -88,7 +88,7 @@ export default function ReadMangaPage() {
               manga: manga,
               chapter: chapterData.next.hid,
             }}
-            className="h-full flex justify-center items-center gap-2">
+            className="min-w-24 flex justify-start items-center gap-2">
             Next <GrNext />
           </Link>
         )}
@@ -101,6 +101,7 @@ export default function ReadMangaPage() {
           className="md:max-w-md"
         />
       ))}
+      <div className="min-h-10"></div>
     </div>
   );
 }
