@@ -13,14 +13,14 @@ export default function RecommendedCard({
       <img
         src={convertToUrl(cover.b2key)}
         alt={recom.relates.title}
-        className=" w-auto max-w-36 h-52 object-cover object-top overflow-hidden"
+        className="w-auto max-w-36 h-52 object-cover object-top overflow-hidden"
       />
-      <div className=" absolute z-10 flex flex-col items-center  bottom-0">
+      <div className="absolute z-10 flex flex-col items-center  bottom-0">
         <span className="text-xl font-bold z-10 text-center my-1 mx-3 line-clamp-2 hover:line-clamp-5">
           {recom.relates.title}
         </span>
       </div>
-      <div className=" absolute z-[5] w-full h-full bg-gradient-to-t from-black to-70%"></div>
+      <div className="absolute z-[5] w-full h-full bg-gradient-to-t from-black to-70%"></div>
     </div>
   );
 }

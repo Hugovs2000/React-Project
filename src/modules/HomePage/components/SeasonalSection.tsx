@@ -29,16 +29,19 @@ function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
         <button className="text-blue-400">See more</button>
       </div>
       <div className="carousel carousel-center max-w-full p-4 space-x-4 rounded-box">
-        {filteredComics?.map((item) => (
-          <Link
-            to="/details/$manga"
-            params={{
-              manga: item.slug!,
-            }}
-            key={item.slug}>
-            <SeasonalManga item={item} />
-          </Link>
-        ))}
+        {filteredComics?.map(
+          (item) =>
+            item.slug && (
+              <Link
+                to="/details/$manga"
+                params={{
+                  manga: item.slug,
+                }}
+                key={item.slug}>
+                <SeasonalManga item={item} />
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

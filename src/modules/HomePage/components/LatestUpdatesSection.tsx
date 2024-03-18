@@ -27,17 +27,20 @@ function LatestUpdatesSection({
         <button className="text-blue-400">See more</button>
       </div>
       <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
-        {filteredComics?.map((item) => (
-          <Link
-            to="/details/$manga"
-            params={{
-              manga: item.md_comics?.slug!,
-            }}
-            key={item.md_comics?.slug}
-            className="min-h-full">
-            <NewUpdatedManga item={item} key={item.hid} />
-          </Link>
-        ))}
+        {filteredComics?.map(
+          (item) =>
+            item.md_comics?.slug && (
+              <Link
+                to="/details/$manga"
+                params={{
+                  manga: item.md_comics?.slug,
+                }}
+                key={item.md_comics?.slug}
+                className="min-h-full">
+                <NewUpdatedManga item={item} key={item.hid} />
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

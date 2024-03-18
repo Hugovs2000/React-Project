@@ -8,7 +8,7 @@ import ChaptersSkeleton from "./Skeletons/ChaptersSkeleton";
 export default function RecommendedMangas({ comic }: { comic: Comic }) {
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
     queryKey: [`getComicChapters`, comic.slug],
-    queryFn: () => getComicChapters(comic.hid!),
+    queryFn: () => getComicChapters(comic.hid!), //This has been checked but TypeScript has a known issue https://github.com/microsoft/TypeScript/issues/45097
   });
 
   if (loadingChapters) {

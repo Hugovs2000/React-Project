@@ -31,21 +31,21 @@ function HomePage() {
     );
   }
 
-  if (!(topData || latestUpdatesData)) {
+  if (topData && latestUpdatesData) {
     return (
-      <div className="m-8">
-        Apologies, we are experiencing some issues. Please try again at another
-        time
+      <div className=" bg-zinc-800 h-auto text-slate-50">
+        <TrendingSection topData={topData} />
+        <LatestUpdatesSection latestUpdatesData={latestUpdatesData} />
+        <TopTenSection topTenData={topData} />
+        <SeasonalSection seasonalData={topData} />
       </div>
     );
   }
 
   return (
-    <div className=" bg-zinc-800 h-auto text-slate-50">
-      <TrendingSection topData={topData!} />
-      <LatestUpdatesSection latestUpdatesData={latestUpdatesData!} />
-      <TopTenSection topTenData={topData!} />
-      <SeasonalSection seasonalData={topData!} />
+    <div className="m-8">
+      Apologies, we are experiencing some issues. Please try again at another
+      time
     </div>
   );
 }
