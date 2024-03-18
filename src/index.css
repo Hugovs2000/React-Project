@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  #manhwa-desc a {
+    @apply text-emerald-400;
+  }
+}
