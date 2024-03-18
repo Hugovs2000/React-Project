@@ -1,4 +1,4 @@
-export interface IComic {
+export interface Comic {
   id?: number;
   slug?: string;
   title?: string;
@@ -9,11 +9,11 @@ export interface IComic {
   md_covers?: MdCover[];
   created_at?: string;
   identities?: Identities;
-  md_comics?: IComic;
+  md_comics?: Comic;
   uploaded_at?: string;
   year?: string;
   season?: string;
-  data?: IComic[];
+  data?: Comic[];
   user_follow_count?: number;
   follow_rank?: number;
   desc?: string;
@@ -26,7 +26,7 @@ export interface IComic {
   translation_completed?: boolean;
   final_chapter?: string;
   firstChap?: FirstChap;
-  comic?: IComic;
+  comic?: Comic;
   artists?: Artist[];
   authors?: Author[];
   langList?: string[];

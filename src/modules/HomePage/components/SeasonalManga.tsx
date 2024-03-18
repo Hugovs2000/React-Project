@@ -1,7 +1,7 @@
-import { IComic } from "../../../models/Comic";
+import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
-function SeasonalManga({ item }: { item: IComic }) {
+function SeasonalManga({ item }: { item: Comic }) {
   return (
     <div className="carousel-item snap-center min-w-32 flex flex-col items-center justify-start gap-4 cursor-pointer">
       <img

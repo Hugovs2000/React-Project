@@ -1,10 +1,10 @@
 import { useQueries } from "@tanstack/react-query";
 import { getComicBySlug } from "../../../api/api-services";
-import { ITopComics } from "../../../models/TopComics";
+import { TopComics } from "../../../models/TopComics";
 import TrendingSkeleton from "./Skeletons/TrendingSkeleton";
 import TrendingCard from "./TrendingCard";
 
-function TrendingSection({ topData }: { topData?: ITopComics }) {
+function TrendingSection({ topData }: { topData: TopComics }) {
   const filteredComics = topData?.trending[7]
     .filter((item) => !!item?.md_covers?.[0]?.b2key)
     .slice(0, 10);

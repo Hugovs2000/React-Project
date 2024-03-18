@@ -1,8 +1,8 @@
 import { formatDistance } from "date-fns";
-import { IComic } from "../../../models/Comic";
+import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
-function NewUpdatedManga({ item }: { item: IComic }) {
+function NewUpdatedManga({ item }: { item: Comic }) {
   return (
     <div className="carousel-item snap-center cursor-pointer">
       <div className="indicator">

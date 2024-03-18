@@ -1,6 +1,6 @@
-import { IComic, MdCover } from "../models/Comic";
+import { Comic, MdCover } from "../models/Comic";
 
-export interface IChapterDetails {
+export interface ChapterDetails {
   chapter: Chapter;
   next: Chapter;
   prev: Chapter;
@@ -34,7 +34,7 @@ export interface Chapter {
   adsense?: boolean;
   lang?: string;
   is_the_last_chapter?: boolean;
-  md_comics?: IComic;
+  md_comics?: Comic;
   md_images?: MdCover[];
   md_chapters_groups?: MdChaptersGroup[];
   href?: string;

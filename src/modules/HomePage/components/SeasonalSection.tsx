@@ -1,7 +1,7 @@
-import { ITopComics } from "../../../models/TopComics";
+import { TopComics } from "../../../models/TopComics";
 import SeasonalManga from "./SeasonalManga";
 
-function SeasonalSection({ seasonalData }: { seasonalData?: ITopComics }) {
+function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
   if (
     !(
       seasonalData?.comicsByCurrentSeason?.season ||

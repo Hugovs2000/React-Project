@@ -1,5 +1,5 @@
 import { UseQueryResult } from "@tanstack/react-query";
-import { IComic } from "../../../models/Comic";
+import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 import Genre from "./Genre";
 
@@ -8,9 +8,9 @@ function TrendingCard({
   index,
   comicQueries,
 }: {
-  item: IComic;
+  item: Comic;
   index: number;
-  comicQueries: UseQueryResult<IComic, Error>[];
+  comicQueries: UseQueryResult<Comic, Error>[];
 }) {
   const genres = comicQueries?.[index]?.data?.comic?.md_comic_md_genres?.slice(
     0,

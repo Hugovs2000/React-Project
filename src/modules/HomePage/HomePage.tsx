@@ -37,10 +37,10 @@ function HomePage() {
 
   return (
     <div className=" bg-zinc-800 h-auto text-slate-50">
-      <TrendingSection topData={topData} />
-      <LatestUpdatesSection latestUpdatesData={latestUpdatesData} />
-      <TopTenSection topTenData={topData} />
-      <SeasonalSection seasonalData={topData} />
+      <TrendingSection topData={topData!} />
+      <LatestUpdatesSection latestUpdatesData={latestUpdatesData!} />
+      <TopTenSection topTenData={topData!} />
+      <SeasonalSection seasonalData={topData!} />
     </div>
   );
 }

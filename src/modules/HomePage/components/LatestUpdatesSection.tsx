@@ -1,10 +1,10 @@
-import { IComic } from "../../../models/Comic";
+import { Comic } from "../../../models/Comic";
 import NewUpdatedManga from "./NewUpdatedManga";
 
 function LatestUpdatesSection({
   latestUpdatesData,
 }: {
-  latestUpdatesData?: IComic[];
+  latestUpdatesData: Comic[];
 }) {
   if (!latestUpdatesData) return <>Not Found</>;
 

@@ -1,20 +1,20 @@
-import { IComic } from "../models/Comic";
+import { Comic } from "../models/Comic";
 
-export interface ITopComics {
-  rank: IComic[];
-  recentRank: IComic[];
-  trending: INumberDays;
-  follows: IComic[];
-  news: IComic[];
-  extendedNews: IComic[];
-  completions: IComic[];
-  topFollowNewComics: INumberDays;
-  topFollowComics: INumberDays;
-  comicsByCurrentSeason: IComic;
+export interface TopComics {
+  rank: Comic[];
+  recentRank: Comic[];
+  trending: NumberDays;
+  follows: Comic[];
+  news: Comic[];
+  extendedNews: Comic[];
+  completions: Comic[];
+  topFollowNewComics: NumberDays;
+  topFollowComics: NumberDays;
+  comicsByCurrentSeason: Comic;
 }
 
-export interface INumberDays {
-  "7": IComic[];
-  "30": IComic[];
-  "90": IComic[];
+export interface NumberDays {
+  "7": Comic[];
+  "30": Comic[];
+  "90": Comic[];
 }
