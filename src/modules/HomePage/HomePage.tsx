@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getNewUpdates, getTop } from "../../services/api-services";
+import { getNewUpdates, getTop } from "../../api/api-services";
 import LatestUpdatesSection from "./components/LatestUpdatesSection";
 import SeasonalSection from "./components/SeasonalSection";
 import LatestUpdatesSkeleton from "./components/Skeletons/LatestUpdatesSkeleton";
@@ -29,6 +29,10 @@ function HomePage() {
         <SeasonalSkeleton />
       </div>
     );
+  }
+
+  if (!(topData || latestUpdatesData)) {
+    return <></>;
   }
 
   return (

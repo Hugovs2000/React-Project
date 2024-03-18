@@ -1,4 +1,4 @@
-import { MdComicMdGenre } from "../../../models/comics";
+import { MdComicMdGenre } from "../../../models/Comic";
 
 function Genre({ genre }: { genre?: MdComicMdGenre }) {
   return (

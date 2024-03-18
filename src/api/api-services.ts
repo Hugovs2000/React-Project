@@ -1,12 +1,10 @@
-import { ICategory } from "../models/category";
-import { IChapter } from "../models/chapters";
-import { IComic } from "../models/comics";
-import { INewUpdates } from "../models/newUpdates";
-import { ITopTrending } from "../models/topTrending";
+import { IChapterDetails } from "../models/ChapterDetails";
+import { IComic } from "../models/Comic";
+import { ITopComics } from "../models/TopComics";
 
 const baseUrl = "https://api.comick.io/";
 
-export async function getTop(): Promise<ITopTrending> {
+export async function getTop(): Promise<ITopComics> {
   const res = await fetch(
     `${baseUrl}top?type=trending&comic_types=manhwa&accept_mature_content=false`
   );
@@ -18,19 +16,19 @@ export async function getComicBySlug(slug: string): Promise<IComic> {
   return await res.json();
 }
 
-export async function getChapterByHid(hid: string): Promise<IChapter> {
+export async function getChapterByHid(hid: string): Promise<IChapterDetails> {
   const res = await fetch(`${baseUrl}chapter/${hid}/`);
   return await res.json();
 }
 
-export async function getNewUpdates(): Promise<INewUpdates> {
+export async function getNewUpdates(): Promise<IComic[]> {
   const res = await fetch(
     `${baseUrl}chapter/?page=1&order=new&type=manhwa&accept_erotic_content=false`
   );
   return await res.json();
 }
 
-export async function getCategories(): Promise<ICategory> {
+export async function getCategories(): Promise<IComic[]> {
   const res = await fetch(`${baseUrl}category/`);
   return await res.json();
 }

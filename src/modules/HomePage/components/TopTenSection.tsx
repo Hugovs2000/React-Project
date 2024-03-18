@@ -1,7 +1,7 @@
-import { ITopTrending } from "../../../models/topTrending";
+import { ITopComics } from "../../../models/TopComics";
 import TopTenCard from "./TopTenCard";
 
-function TopTenSection({ topTenData }: { topTenData?: ITopTrending }) {
+function TopTenSection({ topTenData }: { topTenData?: ITopComics }) {
   if (!topTenData?.recentRank?.[0]) return <>Not Found</>;
 
   const filteredComics = topTenData.recentRank
