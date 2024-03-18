@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GiRead } from "react-icons/gi";
-import { IComic } from "../../../models/comics";
+import { Comic } from "../../../models/Comic";
 import BottomNavbar from "./BottomNavbar";
 import MangaChapters from "./MangaChapters";
 import MangaDetailsSection from "./MangaDetailsSection";
@@ -9,7 +9,7 @@ import RecommendedMangas from "./RecommendedMangas";
 export default function BottomNavigationSection({
   topData,
 }: {
-  topData: IComic;
+  topData: Comic;
 }) {
   const [active, setActive] = useState("details");
 
@@ -26,8 +26,8 @@ export default function BottomNavigationSection({
         Start Reading <GiRead />
       </button>
       {active === "details" && <MangaDetailsSection topData={topData} />}
-      {active === "chapters" && <MangaChapters comic={topData.comic} />}
-      {active === "recommended" && <RecommendedMangas comic={topData.comic} />}
+      {active === "chapters" && <MangaChapters comic={topData.comic!} />}
+      {active === "recommended" && <RecommendedMangas comic={topData.comic!} />}
     </div>
   );
 }

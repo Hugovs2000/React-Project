@@ -1,5 +1,5 @@
-import { MdCover, Recommendation } from "../../../models/comics";
-import convertToUrl from "../../../services/convert-image-string";
+import { MdCover, Recommendation } from "../../../models/Comic";
+import convertToUrl from "../../../utils/convert-image-string";
 
 export default function RecommendedCard({
   recom,

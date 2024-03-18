@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getNewUpdates, getTop } from "../../services/api-services";
+import { getNewUpdates, getTop } from "../../api/api-services";
 import LatestUpdatesSection from "./components/LatestUpdatesSection";
 import SeasonalSection from "./components/SeasonalSection";
 import LatestUpdatesSkeleton from "./components/Skeletons/LatestUpdatesSkeleton";
@@ -31,12 +31,21 @@ function HomePage() {
     );
   }
 
+  if (!(topData || latestUpdatesData)) {
+    return (
+      <div className="m-8">
+        Apologies, we are experiencing some issues. Please try again at another
+        time
+      </div>
+    );
+  }
+
   return (
     <div className=" bg-zinc-800 h-auto text-slate-50">
-      <TrendingSection topData={topData} />
-      <LatestUpdatesSection latestUpdatesData={latestUpdatesData} />
-      <TopTenSection topTenData={topData} />
-      <SeasonalSection seasonalData={topData} />
+      <TrendingSection topData={topData!} />
+      <LatestUpdatesSection latestUpdatesData={latestUpdatesData!} />
+      <TopTenSection topTenData={topData!} />
+      <SeasonalSection seasonalData={topData!} />
     </div>
   );
 }

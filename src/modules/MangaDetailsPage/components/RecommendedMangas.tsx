@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { Comic } from "../../../models/comics";
-import { getComicChapters } from "../../../services/api-services";
+import { getComicChapters } from "../../../api/api-services";
+import { Comic } from "../../../models/Comic";
 import RecommendedCard from "./RecommendedCard";
 import ChaptersSkeleton from "./Skeletons/ChaptersSkeleton";
 
 export default function RecommendedMangas({ comic }: { comic: Comic }) {
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
     queryKey: [`getComicChapters`, comic.slug],
-    queryFn: () => getComicChapters(comic.hid),
+    queryFn: () => getComicChapters(comic.hid!),
   });
 
   if (loadingChapters) {
@@ -34,7 +34,7 @@ export default function RecommendedMangas({ comic }: { comic: Comic }) {
   return (
     <>
       <div className="w-full flex flex-wrap justify-around mb-4 px-8 gap-8">
-        {comic.recommendations.map((recom) =>
+        {comic.recommendations?.map((recom) =>
           recom.relates.md_covers.map((cover) => (
             <Link
               to="/details/$manga"

@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { Comic } from "../../../models/comics";
-import { getComicChapters } from "../../../services/api-services";
+import { getComicChapters } from "../../../api/api-services";
+import { Comic } from "../../../models/Comic";
 import Chapter from "./Chapter";
 import ChaptersSkeleton from "./Skeletons/ChaptersSkeleton";
 
 export default function MangaChapters({ comic }: { comic: Comic }) {
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
     queryKey: [`getComicChapters`, comic.slug],
-    queryFn: () => getComicChapters(comic.hid),
+    queryFn: () => getComicChapters(comic.hid!),
   });
 
   if (loadingChapters) {
@@ -33,7 +33,7 @@ export default function MangaChapters({ comic }: { comic: Comic }) {
 
   const chapters = comicChaptersData.chapters?.filter(
     (item) =>
-      item.group_name?.[0] === comicChaptersData.chapters[0].group_name?.[0]
+      item.group_name?.[0] === comicChaptersData.chapters?.[0]?.group_name?.[0]
   );
 
   return (
