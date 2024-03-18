@@ -8,7 +8,7 @@ function Genre({
   className: string;
 }) {
   return (
-    <span className={`bg-emerald-700 p-1 rounded-md ` + className}>
+    <span className={`bg-emerald-700 p-1 rounded-md ${className}`}>
       {genre?.md_genres.name}
     </span>
   );

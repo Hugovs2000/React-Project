@@ -21,29 +21,35 @@ export default function BottomNavigationSection({
     <div className="flex flex-col w-full">
       <BottomNavbar active={active} setActive={setActive} />
       <div className="w-full flex justify-between">
-        <Link
-          to="/read/$manga/$chapter"
-          params={{
-            manga: topData.comic?.slug!,
-            chapter: topData.firstChap?.hid!,
-          }}
-          className="w-fit">
-          <div className="self-start bg-emerald-700 rounded-md p-2 mx-4 my-8 gap-1 flex flex-nowrap items-center justify-around">
-            Start Reading <GiRead />
-          </div>
-        </Link>
+        {topData.comic?.slug && topData.firstChap?.hid && (
+          <Link
+            to="/read/$manga/$chapter"
+            params={{
+              manga: topData.comic.slug,
+              chapter: topData.firstChap.hid,
+            }}
+            className="w-fit">
+            <div className="self-start bg-emerald-700 rounded-md p-2 mx-4 my-8 gap-1 flex flex-nowrap items-center justify-around">
+              Start Reading <GiRead />
+            </div>
+          </Link>
+        )}
         {active === "chapters" && (
           <button className="m-4 text-blue-400">See more</button>
         )}
       </div>
-      {active === "details" && <MangaDetailsSection topData={topData} />}
-      {active === "chapters" && (
+      {active === "details" && topData && (
+        <MangaDetailsSection topData={topData} />
+      )}
+      {active === "chapters" && topData.comic && (
         <MangaChapters
-          comic={topData.comic!}
+          comic={topData.comic}
           comicChaptersData={comicChaptersData}
         />
       )}
-      {active === "recommended" && <RecommendedMangas comic={topData.comic!} />}
+      {active === "recommended" && topData.comic && (
+        <RecommendedMangas comic={topData.comic} />
+      )}
     </div>
   );
 }
