@@ -1,5 +1,6 @@
 import { ChapterDetails } from "../models/ChapterDetails";
 import { Comic } from "../models/Comic";
+import { Genre } from "../models/Genre";
 import { TopComics } from "../models/TopComics";
 
 const baseUrl = "https://api.comick.io/";
@@ -38,5 +39,20 @@ export async function getComicChapters(
   page: number
 ): Promise<ChapterDetails> {
   const res = await fetch(`${baseUrl}comic/${hid}/chapters?page=${page}`);
+  return await res.json();
+}
+
+export async function getGenres(): Promise<Genre[]> {
+  const res = await fetch(`${baseUrl}genre/`);
+  return await res.json();
+}
+
+export async function getSearchQuery(
+  genres: string[],
+  query: string
+): Promise<Comic[]> {
+  const res = await fetch(
+    `${baseUrl}v1.0/search/?genres=${genres}&type=comic&page=1&limit=15&showall=false&q=${query}&t=false`
+  );
   return await res.json();
 }

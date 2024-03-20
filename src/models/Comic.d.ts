@@ -62,6 +62,9 @@ export interface Comic {
   up_count?: number;
   lang?: string;
   down_count?: number;
+  rating?: string;
+  view_count?: number;
+  highlight?: string;
 }
 
 export interface FirstChap {

@@ -1,8 +1,13 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { IoIosSearch } from "react-icons/io";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 function Navbar({ className }: { className: string }) {
+  const activeRouter = useRouterState();
+
+  const isSearchHidden = activeRouter.location.pathname.includes("search");
+
   return (
     <>
       <div className={className}>
@@ -16,11 +21,19 @@ function Navbar({ className }: { className: string }) {
             </Link>
           </div>
         </div>
-        <div className="flex-none">
-          <button className="btn btn-square btn-ghost text-slate-50">
-            <IoIosSearch size={25} />
-          </button>
-        </div>
+        {!isSearchHidden ? (
+          <div id="search" className="flex-none">
+            <Link
+              to="/search"
+              className="btn btn-square btn-ghost text-slate-50">
+              <IoIosSearch size={25} />
+            </Link>
+          </div>
+        ) : (
+          <Link to="/" className="m-4 text-slate-50">
+            <RiArrowGoBackLine className="scale-125" />
+          </Link>
+        )}
       </div>
     </>
   );
