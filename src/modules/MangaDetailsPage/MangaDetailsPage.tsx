@@ -14,9 +14,11 @@ function MangaDetailsPage() {
     queryFn: () => getComicBySlug(manga),
   });
 
+  const pages = 1;
+
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
     queryKey: [`getComicChapters`, topData?.comic?.hid],
-    queryFn: () => getComicChapters(topData!.comic?.hid!, 1),
+    queryFn: () => getComicChapters(topData?.comic?.hid ?? "", pages),
     enabled: !!topData,
   });
 
@@ -61,7 +63,7 @@ function MangaDetailsPage() {
     <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
       <BottomNavigationSection
-        comicChaptersData={comicChaptersData!}
+        comicChaptersData={comicChaptersData}
         topData={topData}
       />
       <div className="min-h-16 bottom-0 w-full"></div>

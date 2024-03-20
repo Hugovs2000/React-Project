@@ -15,7 +15,7 @@ function TrendingSection({ topData }: { topData: TopComics }) {
       filteredComics.map((comic) => {
         return {
           queryKey: ["comic", comic.slug],
-          queryFn: () => getComicBySlug(comic.slug!), //This has been checked but TypeScript has a known issue https://github.com/microsoft/TypeScript/issues/45097
+          queryFn: () => getComicBySlug(comic?.slug ?? ""),
         };
       }) ?? [],
   });

@@ -36,7 +36,7 @@ export default function ReadMangaPage() {
     );
   }
 
-  const request = checkImage(chapterData.chapter?.md_images?.[0]?.b2key!);
+  const request = checkImage(chapterData.chapter?.md_images?.[0]?.b2key ?? "");
 
   if (request?.status === 404) {
     return (

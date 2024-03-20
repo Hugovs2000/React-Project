@@ -20,18 +20,22 @@ export default function MangaChapters({
   return (
     <>
       <div className="w-full flex flex-col items-start md:items-center mb-4 px-4 space-y-6">
-        {twentyChapters?.map((chap) => (
-          <Link
-            to="/read/$manga/$chapter"
-            params={{
-              manga: comic.slug!,
-              chapter: chap.hid!,
-            }}
-            className="gap-4 flex w-full md:w-4/5 justify-around items-center rounded-lg bg-zinc-700 py-2"
-            key={chap.hid}>
-            <Chapter chap={chap} />
-          </Link>
-        ))}
+        {twentyChapters?.map(
+          (chap) =>
+            comic.slug &&
+            chap.hid && (
+              <Link
+                to="/read/$manga/$chapter"
+                params={{
+                  manga: comic.slug,
+                  chapter: chap.hid,
+                }}
+                className="gap-4 flex w-full md:w-4/5 justify-around items-center rounded-lg bg-zinc-700 py-2"
+                key={chap.hid}>
+                <Chapter chap={chap} />
+              </Link>
+            )
+        )}
       </div>
     </>
   );

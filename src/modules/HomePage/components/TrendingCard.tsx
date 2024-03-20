@@ -26,7 +26,7 @@ function TrendingCard({
         }}
         key={item.slug}>
         <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>
-        <div className="z-[1] flex h-full">
+        <div className="z-10 flex h-full">
           <img
             src={convertToUrl(item.md_covers?.[0].b2key)}
             alt={item.title}
@@ -47,7 +47,7 @@ function TrendingCard({
             </span>
           </div>
         </div>
-        <div className="z-[1] my-4 mx-2 flex flex-wrap gap-2 justify-center">
+        <div className="z-10 my-4 mx-2 flex flex-wrap gap-2 justify-center">
           {genres?.map((genre) => (
             <Genre
               genre={genre}

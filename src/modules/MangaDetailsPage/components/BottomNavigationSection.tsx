@@ -21,7 +21,7 @@ export default function BottomNavigationSection({
     <div className="flex flex-col w-full">
       <BottomNavbar active={active} setActive={setActive} />
       <div className="w-full flex justify-between">
-        {topData.comic?.slug && topData.firstChap?.hid && (
+        {topData?.comic?.slug && topData?.firstChap?.hid && (
           <Link
             to="/read/$manga/$chapter"
             params={{
@@ -41,13 +41,13 @@ export default function BottomNavigationSection({
       {active === "details" && topData && (
         <MangaDetailsSection topData={topData} />
       )}
-      {active === "chapters" && topData.comic && (
+      {active === "chapters" && topData?.comic && (
         <MangaChapters
           comic={topData.comic}
           comicChaptersData={comicChaptersData}
         />
       )}
-      {active === "recommended" && topData.comic && (
+      {active === "recommended" && topData?.comic && (
         <RecommendedMangas comic={topData.comic} />
       )}
     </div>
