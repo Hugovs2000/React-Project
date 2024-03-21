@@ -5,13 +5,13 @@ export default function SearchCard({ comic }: { comic: Comic }) {
   return (
     comic.md_covers?.[0].b2key && (
       <div
-        className="relative rounded-xl flex flex-col w-80 md:max-w-96 min-h-fit bg-cover items-start cursor-pointer shadow-around"
+        className="my-4 relative rounded-xl flex flex-col w-80 md:w-full md:max-w-full min-h-fit bg-cover items-start cursor-pointer shadow-around"
         style={{
           backgroundImage: `url(${convertToUrl(comic.md_covers?.[0].b2key)})`,
         }}
         key={comic.slug}>
         <div className="backdrop-blur-sm rounded-xl min-h-full min-w-full absolute bg-black/60"></div>
-        <div className="z-10 flex justify-start items-center w-fit">
+        <div className="z-10 flex justify-start items-center w-fit md:w-full">
           <img
             src={convertToUrl(comic.md_covers?.[0].b2key)}
             alt={comic.title}
