@@ -1,9 +1,9 @@
-function Footer() {
+function Footer({ padding }: { padding: string }) {
   return (
     <>
       <footer
         id="footer"
-        className="footer items-center p-4 bg-zinc-900 text-slate-50">
+        className={`footer items-center ${padding} bg-zinc-900 text-slate-50`}>
         <aside className="items-center grid-flow-col">
           <svg
             width="36"

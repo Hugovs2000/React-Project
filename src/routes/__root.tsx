@@ -30,7 +30,7 @@ function RootComponent() {
             <ScrollRestoration />
             <Outlet />
           </div>
-          {!isFooterHidden && <Footer />}
+          {!isFooterHidden && <Footer padding="p-4" />}
         </div>
         <div className="drawer-side z-50">
           <label
@@ -46,6 +46,10 @@ function RootComponent() {
             <Link to="/">
               <li>Home</li>
             </Link>
+
+            <div className="absolute bottom-0">
+              {!isFooterHidden && <Footer padding="px-0 py-4 pr-4" />}
+            </div>
           </ul>
         </div>
       </div>
