@@ -31,7 +31,7 @@ function SearchPage() {
     );
 
   return (
-    <div className="flex flex-col items-center text-slate-50">
+    <div className="flex flex-col items-center text-slate-50 min-h-full">
       {genresData && (
         <SearchForm
           setSearchResult={setSearchResult}
