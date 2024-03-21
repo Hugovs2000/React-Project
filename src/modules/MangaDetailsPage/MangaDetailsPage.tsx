@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { getComicBySlug } from "../../api/api-services";
+import { getComicBySlug, getComicChapters } from "../../api/api-services";
 import { Route } from "../../routes/details.$manga";
 import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
@@ -14,7 +14,15 @@ function MangaDetailsPage() {
     queryFn: () => getComicBySlug(manga),
   });
 
-  if (loadingComic) {
+  const pages = 1;
+
+  const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
+    queryKey: [`getComicChapters`, topData?.comic?.hid],
+    queryFn: () => getComicChapters(topData?.comic?.hid ?? "", pages),
+    enabled: !!topData,
+  });
+
+  if (loadingComic || loadingChapters) {
     return <MangaDetailsSkeleton />;
   }
 
@@ -29,6 +37,10 @@ function MangaDetailsPage() {
       topData?.comic?.md_covers?.[0]?.b2key ||
       topData?.comic?.desc ||
       topData?.comic?.user_follow_count
+    ) ||
+    !(
+      comicChaptersData?.chapters?.[0]?.chap ||
+      comicChaptersData?.chapters?.[0]?.group_name?.[0]
     )
   ) {
     return (
@@ -41,10 +53,19 @@ function MangaDetailsPage() {
     );
   }
 
+  const footer = document.getElementById("footer");
+
+  if (footer) {
+    footer.className = "hidden";
+  }
+
   return (
     <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
-      <BottomNavigationSection topData={topData} />
+      <BottomNavigationSection
+        comicChaptersData={comicChaptersData}
+        topData={topData}
+      />
       <div className="min-h-16 bottom-0 w-full"></div>
     </div>
   );

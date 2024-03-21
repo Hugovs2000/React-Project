@@ -9,7 +9,7 @@ export default function RecommendedCard({
   cover: MdCover;
 }) {
   return (
-    <div className="overflow-hidden h-full rounded-xl shadow-around flex flex-col items-center justify-start gap-4 relative">
+    <div className="overflow-hidden min-w-28 h-full rounded-xl shadow-around flex flex-col items-center justify-start gap-4 relative">
       <img
         src={convertToUrl(cover.b2key)}
         alt={recom.relates.title}

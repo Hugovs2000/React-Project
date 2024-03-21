@@ -12,7 +12,9 @@ function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
   )
     return <></>;
 
-  const resultingSeasonString = `${seasonalData.comicsByCurrentSeason.season?.charAt(0).toUpperCase() + seasonalData.comicsByCurrentSeason.season!.slice(1)}`;
+  const resultingSeasonString = seasonalData.comicsByCurrentSeason.season
+    ? `${seasonalData.comicsByCurrentSeason.season.charAt(0).toUpperCase() + seasonalData.comicsByCurrentSeason.season.slice(1)}`
+    : "Seasonal";
 
   const filteredComics = seasonalData.comicsByCurrentSeason.data
     ?.filter(

@@ -11,7 +11,7 @@ function MangaHeader({ topData }: { topData: Comic }) {
         style={{
           backgroundImage: `url(${convertToUrl(topData.comic?.md_covers?.[0]?.b2key)})`,
         }}>
-        <div className="z-[1] p-2 w-full flex justify-center items-center bg-emerald-700 rounded-b-md relative">
+        <div className="z-10 p-2 w-full flex justify-center items-center bg-emerald-700 rounded-b-md relative">
           <div className="absolute left-0 mx-4 h-fit">
             <Link to="/" className="h-full">
               <RiArrowGoBackLine className="scale-125" />
@@ -26,14 +26,21 @@ function MangaHeader({ topData }: { topData: Comic }) {
         </div>
         <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>
         <div className="absolute w-full h-full bg-gradient-to-t from-black/95 to-60%"></div>
-        <div className="flex flex-col justify-center items-center z-[1] w-full">
-          <Link to="">
-            <img
-              src={convertToUrl(topData.comic?.md_covers?.[0]?.b2key)}
-              alt="Cover"
-              className="rounded-xl border-2 border-slate-50 max-h-52 md:max-h-96 m-8 mb-2 w-fit"
-            />
-          </Link>
+        <div className="flex flex-col justify-center items-center z-10 w-full">
+          {topData.comic?.slug && topData.firstChap?.hid && (
+            <Link
+              to="/read/$manga/$chapter"
+              params={{
+                manga: topData.comic?.slug,
+                chapter: topData.firstChap?.hid,
+              }}>
+              <img
+                src={convertToUrl(topData.comic?.md_covers?.[0]?.b2key)}
+                alt="Cover"
+                className="rounded-xl border-2 border-slate-50 max-h-52 md:max-h-96 m-8 mb-2 w-fit"
+              />
+            </Link>
+          )}
           <div className="text-xs">
             By:{" "}
             {!topData.authors?.[0]?.name

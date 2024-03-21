@@ -18,9 +18,9 @@ function TopTenCard({ item, index }: { item: Comic; index: number }) {
             src={convertToUrl(item.md_covers?.[0].b2key)}
             alt={item.title}
             key={item.md_covers?.[0].b2key}
-            className="rounded-xl border-2 max-w-48 border-slate-50 z-[1] ml-4 my-4"
+            className="rounded-xl border-2 max-w-48 border-slate-50 z-10 ml-4 my-4"
           />
-          <div className="flex z-[1] max-w-56 p-4 items-center justify-center text-left">
+          <div className="flex z-10 max-w-56 p-4 items-center justify-center text-left">
             <span className="text-xl font-bold">{item.title}</span>
           </div>
         </div>

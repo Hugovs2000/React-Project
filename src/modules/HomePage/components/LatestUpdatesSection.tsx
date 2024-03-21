@@ -29,11 +29,13 @@ function LatestUpdatesSection({
       <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
         {filteredComics?.map(
           (item) =>
-            item.md_comics?.slug && (
+            item.md_comics?.slug &&
+            item.hid && (
               <Link
-                to="/details/$manga"
+                to="/read/$manga/$chapter"
                 params={{
                   manga: item.md_comics?.slug,
+                  chapter: item.hid,
                 }}
                 key={item.md_comics?.slug}
                 className="min-h-full">
