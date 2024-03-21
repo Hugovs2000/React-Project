@@ -8,7 +8,7 @@ export default function QueryResults({
   searchResult: Comic[];
 }) {
   return (
-    <div className="w-full md:w-1/2 z-0">
+    <div className="w-full md:w-2/3 z-0">
       <h2 className="mx-8 mt-4 md:mt-8 text-lg">Top Results</h2>
       <div className="h-96 mt-2 md:mt-6 carousel carousel-vertical w-full gap-4 px-6">
         {searchResult

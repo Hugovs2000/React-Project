@@ -49,11 +49,12 @@ export async function getGenres(): Promise<Genre[]> {
 
 export async function getSearchQuery(
   genres: string[],
+  status: number,
   sortBy: string,
   query: string
 ): Promise<Comic[]> {
   const res = await fetch(
-    `${baseUrl}v1.0/search/?genres=${genres}&type=comic&page=1&limit=15&sort=${sortBy}&showall=false&q=${query}&t=false`
+    `${baseUrl}v1.0/search/?genres=${genres}&type=comic&page=1&limit=15&status=${status}&sort=${sortBy}&showall=false&q=${query}&t=false`
   );
   return await res.json();
 }
