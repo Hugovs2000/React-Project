@@ -3,7 +3,7 @@ import { Comic } from "../../../models/Comic";
 import Genre from "../../../shared/Genre";
 import convertToUrl from "../../../utils/convert-image-string";
 
-function TrendingCard({
+export default function TrendingCard({
   item,
   index,
   comicQueries,
@@ -60,5 +60,3 @@ function TrendingCard({
     )
   );
 }
-
-export default TrendingCard;

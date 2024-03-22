@@ -6,7 +6,7 @@ import { Comic } from "../../models/Comic";
 import QueryResults from "./components/QueryResults";
 import SearchForm from "./components/SearchForm";
 
-function SearchPage() {
+export default function SearchPage() {
   const [searchResult, setSearchResult] = useState<Comic[]>();
   const [selectedGenres, setSelectedGenres] = useState<string[]>([""]);
   const [selectedSort, setSelectedSort] = useState<string>("");
@@ -46,5 +46,3 @@ function SearchPage() {
     </div>
   );
 }
-
-export default SearchPage;

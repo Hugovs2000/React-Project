@@ -5,7 +5,7 @@ import { TopComics } from "../../../models/TopComics";
 import TrendingSkeleton from "./Skeletons/TrendingSkeleton";
 import TrendingCard from "./TrendingCard";
 
-function TrendingSection({ topData }: { topData: TopComics }) {
+export default function TrendingSection({ topData }: { topData: TopComics }) {
   const filteredComics = topData?.trending[7]
     .filter((item) => !!item.md_covers?.[0]?.b2key && !!item.slug)
     .slice(0, 10);
@@ -56,5 +56,3 @@ function TrendingSection({ topData }: { topData: TopComics }) {
     </div>
   );
 }
-
-export default TrendingSection;

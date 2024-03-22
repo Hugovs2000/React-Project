@@ -1,7 +1,13 @@
 import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
-function TopTenCard({ item, index }: { item: Comic; index: number }) {
+export default function TopTenCard({
+  item,
+  index,
+}: {
+  item: Comic;
+  index: number;
+}) {
   return (
     <div className="indicator min-w-fit max-w-full md:max-w-full md:min-w-96 cursor-pointer">
       <span className="indicator-item md:-translate-y-10 md:translate-x-12 pr-6 text-slate-50 font-bold text-7xl md:text-8xl">
@@ -28,5 +34,3 @@ function TopTenCard({ item, index }: { item: Comic; index: number }) {
     </div>
   );
 }
-
-export default TopTenCard;

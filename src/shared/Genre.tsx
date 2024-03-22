@@ -1,6 +1,6 @@
 import { MdComicMdGenre } from "../models/Comic";
 
-function Genre({
+export default function Genre({
   genre,
   className,
 }: {
@@ -13,5 +13,3 @@ function Genre({
     </span>
   );
 }
-
-export default Genre;

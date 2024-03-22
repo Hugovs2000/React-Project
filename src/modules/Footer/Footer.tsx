@@ -1,4 +1,4 @@
-function Footer({ padding }: { padding: string }) {
+export default function Footer({ padding }: { padding: string }) {
   return (
     <>
       <footer
@@ -53,5 +53,3 @@ function Footer({ padding }: { padding: string }) {
     </>
   );
 }
-
-export default Footer;

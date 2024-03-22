@@ -3,7 +3,7 @@ import { IoIosSearch } from "react-icons/io";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-function Navbar({ className }: { className: string }) {
+export default function Navbar({ className }: { className: string }) {
   const activeRouter = useRouterState();
 
   const isSearchHidden = activeRouter.location.pathname.includes("search");
@@ -40,5 +40,3 @@ function Navbar({ className }: { className: string }) {
     </>
   );
 }
-
-export default Navbar;

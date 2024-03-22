@@ -2,7 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { TopComics } from "../../../models/TopComics";
 import SeasonalManga from "./SeasonalManga";
 
-function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
+export default function SeasonalSection({
+  seasonalData,
+}: {
+  seasonalData: TopComics;
+}) {
   if (
     !(
       seasonalData?.comicsByCurrentSeason?.season ||
@@ -48,5 +52,3 @@ function SeasonalSection({ seasonalData }: { seasonalData: TopComics }) {
     </div>
   );
 }
-
-export default SeasonalSection;

@@ -3,7 +3,7 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
-function MangaHeader({ topData }: { topData: Comic }) {
+export default function MangaHeader({ topData }: { topData: Comic }) {
   return (
     topData.comic?.md_covers?.[0]?.b2key && (
       <div
@@ -56,5 +56,3 @@ function MangaHeader({ topData }: { topData: Comic }) {
     )
   );
 }
-
-export default MangaHeader;

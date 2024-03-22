@@ -6,7 +6,7 @@ import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
 import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";
 
-function MangaDetailsPage() {
+export default function MangaDetailsPage() {
   const { manga } = Route.useParams();
 
   const { data: topData, isLoading: loadingComic } = useQuery({
@@ -63,5 +63,3 @@ function MangaDetailsPage() {
     </div>
   );
 }
-
-export default MangaDetailsPage;

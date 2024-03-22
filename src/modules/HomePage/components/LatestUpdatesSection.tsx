@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Comic } from "../../../models/Comic";
 import NewUpdatedManga from "./NewUpdatedManga";
 
-function LatestUpdatesSection({
+export default function LatestUpdatesSection({
   latestUpdatesData,
 }: {
   latestUpdatesData: Comic[];
@@ -47,5 +47,3 @@ function LatestUpdatesSection({
     </div>
   );
 }
-
-export default LatestUpdatesSection;
