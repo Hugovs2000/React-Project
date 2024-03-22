@@ -52,13 +52,6 @@ function MangaDetailsPage() {
       </div>
     );
   }
-
-  const footer = document.getElementById("footer");
-
-  if (footer) {
-    footer.className = "hidden";
-  }
-
   return (
     <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
