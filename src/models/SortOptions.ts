@@ -7,8 +7,7 @@ export default function SortOptions() {
     { value: "created_at", label: "Created at" },
     { value: "uploaded", label: "Uploaded at" },
     { value: "rating", label: "Rating" },
-    { value: "follow", label: "Follow count" },
-    { value: "user_follow_count", label: "User follow count" },
+    { value: "user_follow_count", label: "Follow count" },
   ];
 
   return sortOptions;

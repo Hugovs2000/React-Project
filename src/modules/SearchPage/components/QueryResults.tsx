@@ -13,19 +13,22 @@ export default function QueryResults({
       <div className="h-96 mt-2 md:mt-6 carousel carousel-vertical w-full gap-4 px-6">
         {searchResult
           .filter((comic) => comic.content_rating === "safe")
-          .map((comic) => (
-            <Link
-              to="/details/$manga"
-              params={{
-                manga: comic.slug!,
-              }}
-              key={comic.slug}
-              className="w-full">
-              <div className="carousel-item h-full w-full justify-center flex">
-                <SearchCard comic={comic} />
-              </div>
-            </Link>
-          ))}
+          .map(
+            (comic) =>
+              comic?.slug && (
+                <Link
+                  to="/details/$manga"
+                  params={{
+                    manga: comic.slug,
+                  }}
+                  key={comic.slug}
+                  className="w-full">
+                  <div className="carousel-item h-full w-full justify-center flex">
+                    <SearchCard comic={comic} />
+                  </div>
+                </Link>
+              )
+          )}
       </div>
     </div>
   );
