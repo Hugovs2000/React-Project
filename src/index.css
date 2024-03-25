@@ -20,10 +20,6 @@
   #sort-by span {
     @apply text-slate-50;
   }
-
-  #ham-list li {
-    @apply bg-emerald-700 px-4 py-2 rounded-md flex justify-center;
-  }
 }
 
 /* Needed to style multi select dropdwon on Search Page */

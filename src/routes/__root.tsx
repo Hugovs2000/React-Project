@@ -1,11 +1,11 @@
 import {
   createRootRoute,
-  Link,
   Outlet,
   ScrollRestoration,
   useRouterState,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import Drawer from "../modules/Drawer/Drawer";
 import Footer from "../modules/Footer/Footer";
 import Navbar from "../modules/Navbar/Navbar";
 
@@ -32,27 +32,8 @@ function RootComponent() {
           </div>
           {!isFooterHidden && <Footer padding="p-4" />}
         </div>
-        <div className="drawer-side z-50">
-          <label
-            htmlFor="my-drawer"
-            aria-label="close sidebar"
-            className="drawer-overlay"></label>
-          <ul
-            id="ham-list"
-            className="p-4 w-80 min-h-full text-slate-50 bg-zinc-900">
-            <div className="m-4 mt-0">
-              Chronical <span className="text-emerald-600">Frames</span>
-            </div>
-            <Link to="/">
-              <li>Home</li>
-            </Link>
-            <div className="absolute bottom-0">
-              <Footer padding="px-0 py-4 pr-4" />
-            </div>
-          </ul>
-        </div>
+        <Drawer />
       </div>
-
       <TanStackRouterDevtools />
     </div>
   );
