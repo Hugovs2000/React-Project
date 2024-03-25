@@ -32,7 +32,13 @@ export default function SeasonalSection({
         <h2 className="text-xl text-slate-50">
           {resultingSeasonString} Manhwa
         </h2>
-        <button className="text-blue-400">See more</button>
+        <Link
+          to="/see-more/$section"
+          params={{
+            section: "seasonal",
+          }}>
+          <div className="text-blue-400">See more</div>
+        </Link>
       </div>
       <div className="carousel carousel-center max-w-full p-4 space-x-4 rounded-box">
         {filteredComics?.map(

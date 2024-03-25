@@ -12,7 +12,7 @@ export default function DrawerTrendingSection({
 
   return (
     <>
-      <h2 className="font-bold">{resultingSeasonString} Manwha</h2>
+      <h2 className="font-bold">{resultingSeasonString} Manhwa</h2>
       {seasonalData.data
         ?.filter(
           (item) =>
