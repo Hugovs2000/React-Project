@@ -6,4 +6,37 @@
   #manhwa-desc a {
     @apply text-emerald-400;
   }
+
+  #multi-select div {
+    @apply bg-zinc-700 text-slate-50 border-none rounded-xl;
+  }
+  #multi-select span {
+    @apply text-slate-50;
+  }
+
+  #sort-by div {
+    @apply bg-zinc-700 text-slate-50 border-none rounded-xl;
+  }
+  #sort-by span {
+    @apply text-slate-50;
+  }
+}
+
+/* Needed to style multi select dropdwon on Search Page */
+:where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: rgba(4, 120, 87, 0.45);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: rgb(4, 120, 87);
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
+  .ant-select-item-option-state {
+  color: whitesmoke;
+}
+:where(.css-dev-only-do-not-override-djtmh8).ant-select-multiple
+  .ant-select-selector {
+  height: 40px;
 }

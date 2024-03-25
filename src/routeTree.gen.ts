@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SearchImport } from './routes/search'
 import { Route as IndexImport } from './routes/index'
 import { Route as ReadIndexImport } from './routes/read.index'
 import { Route as DetailsIndexImport } from './routes/details.index'
@@ -19,6 +20,11 @@ import { Route as ReadMangaIndexImport } from './routes/read.$manga.index'
 import { Route as ReadMangaChapterImport } from './routes/read.$manga.$chapter'
 
 // Create/Update Routes
+
+const SearchRoute = SearchImport.update({
+  path: '/search',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -58,6 +64,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/search': {
+      preLoaderRoute: typeof SearchImport
+      parentRoute: typeof rootRoute
+    }
     '/details/$manga': {
       preLoaderRoute: typeof DetailsMangaImport
       parentRoute: typeof rootRoute
@@ -85,6 +95,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  SearchRoute,
   DetailsMangaRoute,
   DetailsIndexRoute,
   ReadIndexRoute,
