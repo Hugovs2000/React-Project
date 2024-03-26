@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getNewUpdates, getTop } from "../../api/api-services";
 import { Route } from "../../routes/see-more.$section";
-import NewUpdatedManga from "../HomePage/components/NewUpdatedManga";
-import SeasonalManga from "../HomePage/components/SeasonalManga";
+import SeeMoreCard from "./components/SeeMoreCard";
 
 export default function SeeMorePage() {
   const { section } = Route.useParams();
@@ -28,9 +27,9 @@ export default function SeeMorePage() {
 
   if (section === "latest-updates") {
     return (
-      <div className="text-slate-50 m-8">
-        <h2 className="text-xl text-slate-50 mb-8">Latest Updates</h2>
-        <div className="flex flex-wrap gap-x-10 gap-y-8 max-h-full max-w-full">
+      <div className="text-slate-50 m-4">
+        <h2 className="text-xl text-slate-50 mb-4">Latest Updates</h2>
+        <div className="flex flex-wrap gap-6 md:gap-10 justify-center">
           {latestUpdatesData
             ?.filter((item) => !!item.md_comics?.md_covers?.[0]?.b2key)
             .map((item) => (
@@ -41,8 +40,11 @@ export default function SeeMorePage() {
                   chapter: item.hid!,
                 }}
                 key={item.md_comics?.slug}
-                className="min-h-full">
-                <NewUpdatedManga item={item} key={item.hid} />
+                className="h-50 w-24 flex flex-col justify-start items-center">
+                <SeeMoreCard
+                  b2key={item.md_comics?.md_covers?.[0].b2key!}
+                  title={item.md_comics?.title!}
+                />
               </Link>
             ))}
         </div>
@@ -52,11 +54,11 @@ export default function SeeMorePage() {
 
   if (section === "seasonal") {
     return (
-      <div className="text-slate-50 m-8">
-        <h2 className="text-xl text-slate-50 mb-8">
+      <div className="text-slate-50 m-4">
+        <h2 className="text-xl text-slate-50 mb-4">
           {resultingSeasonString} Manhwa
         </h2>
-        <div className="flex flex-wrap gap-x-10 gap-y-8 max-h-full max-w-full">
+        <div className="flex flex-wrap gap-6 md:gap-10 justify-center">
           {topData?.comicsByCurrentSeason.data
             ?.filter(
               (item) =>
@@ -68,14 +70,19 @@ export default function SeeMorePage() {
                 params={{
                   manga: item.slug!,
                 }}
-                key={item.slug}>
-                <SeasonalManga item={item} />
+                key={item.slug}
+                className="h-50 w-24 flex flex-col justify-start items-center">
+                <SeeMoreCard
+                  b2key={item?.md_covers?.[0].b2key!}
+                  title={item.title!}
+                />
               </Link>
             ))}
         </div>
       </div>
     );
   }
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="m-4">Page Not Found. Return Home</div>
