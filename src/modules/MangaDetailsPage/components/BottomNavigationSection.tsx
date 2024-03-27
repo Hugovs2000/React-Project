@@ -34,9 +34,6 @@ export default function BottomNavigationSection({
             </div>
           </Link>
         )}
-        {active === "chapters" && (
-          <button className="m-4 text-blue-400">See more</button>
-        )}
       </div>
       {active === "details" && topData && (
         <MangaDetailsSection topData={topData} />

@@ -3,9 +3,11 @@ import convertToUrl from "../../../utils/convert-image-string";
 export default function SeeMoreCard({
   b2key,
   title,
+  chapNum,
 }: {
   b2key: string;
   title: string;
+  chapNum?: string;
 }) {
   return (
     b2key && (
@@ -16,7 +18,13 @@ export default function SeeMoreCard({
             backgroundImage: `url(${convertToUrl(b2key)})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-          }}></div>
+          }}>
+          {chapNum && (
+            <div className="w-fit h-fit px-2 bg-emerald-600 rounded-md ">
+              {chapNum}
+            </div>
+          )}
+        </div>
         <div className="mt-2 flex text-center items-center flex-wrap max-w-32">
           <span className="text-base line-clamp-2">{title}</span>
         </div>

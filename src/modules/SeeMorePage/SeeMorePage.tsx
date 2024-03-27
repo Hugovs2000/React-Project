@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { getNewUpdates, getTop } from "../../api/api-services";
 import { Route } from "../../routes/see-more.$section";
 import SeeMoreCard from "./components/SeeMoreCard";
+import SeeMoreSkeleton from "./components/Skeletons/SeeMoreSkeleton";
 
 export default function SeeMorePage() {
   const { section } = Route.useParams();
@@ -22,7 +23,7 @@ export default function SeeMorePage() {
     : "Seasonal";
 
   if (loadingLatestsUpdates || loadingTopData) {
-    return <>...Loading</>;
+    return <SeeMoreSkeleton />;
   }
 
   if (section === "latest-updates") {
@@ -44,6 +45,7 @@ export default function SeeMorePage() {
                 <SeeMoreCard
                   b2key={item.md_comics?.md_covers?.[0].b2key!}
                   title={item.md_comics?.title!}
+                  chapNum={item.chap}
                 />
               </Link>
             ))}
