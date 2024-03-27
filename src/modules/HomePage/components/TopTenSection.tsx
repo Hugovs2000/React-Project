@@ -2,7 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { TopComics } from "../../../models/TopComics";
 import TopTenCard from "./TopTenCard";
 
-function TopTenSection({ topTenData }: { topTenData: TopComics }) {
+export default function TopTenSection({
+  topTenData,
+}: {
+  topTenData: TopComics;
+}) {
   if (
     !(
       topTenData?.recentRank?.[0]?.md_covers?.[0]?.b2key ||
@@ -39,5 +43,3 @@ function TopTenSection({ topTenData }: { topTenData: TopComics }) {
     </>
   );
 }
-
-export default TopTenSection;

@@ -9,7 +9,7 @@ import TrendingSkeleton from "./components/Skeletons/TrendingSkeleton";
 import TopTenSection from "./components/TopTenSection";
 import TrendingSection from "./components/TrendingSection";
 
-function HomePage() {
+export default function HomePage() {
   const { data: topData, isLoading: loadingTopData } = useQuery({
     queryKey: [`getTopTrendingData`],
     queryFn: () => getTop(),
@@ -49,5 +49,3 @@ function HomePage() {
     </div>
   );
 }
-
-export default HomePage;

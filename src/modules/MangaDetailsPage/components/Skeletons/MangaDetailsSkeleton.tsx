@@ -1,4 +1,4 @@
-function MangaDetailsSkeleton() {
+export default function MangaDetailsSkeleton() {
   return (
     <div className="bg-zinc-800 h-full flex flex-col">
       <div className="skeleton bg-zinc-900 flex flex-col h-3/5 items-center rounded-none shadow-gray-400/30 shadow-lg"></div>
@@ -18,5 +18,3 @@ function MangaDetailsSkeleton() {
     </div>
   );
 }
-
-export default MangaDetailsSkeleton;

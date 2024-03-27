@@ -5,6 +5,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import Drawer from "../modules/Drawer/Drawer";
 import Footer from "../modules/Footer/Footer";
 import Navbar from "../modules/Navbar/Navbar";
 
@@ -21,12 +22,18 @@ function RootComponent() {
 
   return (
     <div id="root" className="flex flex-col h-full">
-      <Navbar className="fixed z-50 navbar bg-zinc-900 flex flex-shrink-0" />
-      <div className="pt-16 flex-grow">
-        <ScrollRestoration />
-        <Outlet />
+      <div className="drawer h-full">
+        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col min-h-full">
+          <Navbar className="fixed z-50 navbar bg-zinc-900 flex flex-shrink-0" />
+          <div className="pt-16 flex-grow">
+            <ScrollRestoration />
+            <Outlet />
+          </div>
+          {!isFooterHidden && <Footer padding="p-4" />}
+        </div>
+        <Drawer />
       </div>
-      {!isFooterHidden && <Footer />}
       <TanStackRouterDevtools />
     </div>
   );

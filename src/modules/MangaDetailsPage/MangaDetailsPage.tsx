@@ -6,7 +6,7 @@ import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
 import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";
 
-function MangaDetailsPage() {
+export default function MangaDetailsPage() {
   const { manga } = Route.useParams();
 
   const { data: topData, isLoading: loadingComic } = useQuery({
@@ -52,13 +52,6 @@ function MangaDetailsPage() {
       </div>
     );
   }
-
-  const footer = document.getElementById("footer");
-
-  if (footer) {
-    footer.className = "hidden";
-  }
-
   return (
     <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
       <MangaHeader topData={topData} />
@@ -70,5 +63,3 @@ function MangaDetailsPage() {
     </div>
   );
 }
-
-export default MangaDetailsPage;
