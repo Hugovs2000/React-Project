@@ -1,6 +1,6 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createLazyFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/details/")({
+export const Route = createLazyFileRoute("/details/")({
   component: GoBackHomeComponent,
   notFoundComponent: () => {
     return <p>Manga not found!</p>;

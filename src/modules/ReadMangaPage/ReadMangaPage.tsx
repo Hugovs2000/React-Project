@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { getChapterByHid } from "../../api/api-services";
-import { Route } from "../../routes/read.$manga.$chapter";
+import { useMangaStore } from "../../main";
+import { Route } from "../../routes/read.$manga.$chapter.lazy";
 import checkImage from "../../utils/check-image-exists";
 import convertToUrl from "../../utils/convert-image-string";
 import BottomNavChaptersBar from "./components/BottomNavChaptersBar";
@@ -10,11 +12,16 @@ import TopInfoBar from "./components/TopInfoBar";
 
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
+  const setCurrentlyReading = useMangaStore((state) => state.setLastRead);
 
   const { data: chapterData, isLoading: loadingChapter } = useQuery({
     queryKey: [`getChapter`, chapter],
     queryFn: () => getChapterByHid(chapter),
   });
+
+  useEffect(() => {
+    setCurrentlyReading(manga, chapter);
+  }, [chapter]);
 
   if (loadingChapter) {
     return <ReadPageSkeleton manga={manga} />;

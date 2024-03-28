@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 import { getNewUpdates, getTop } from "../../api/api-services";
+import { useMangaStore } from "../../main";
 import LatestUpdatesSection from "./components/LatestUpdatesSection";
 import SeasonalSection from "./components/SeasonalSection";
 import LatestUpdatesSkeleton from "./components/Skeletons/LatestUpdatesSkeleton";
@@ -10,6 +12,8 @@ import TopTenSection from "./components/TopTenSection";
 import TrendingSection from "./components/TrendingSection";
 
 export default function HomePage() {
+  const lastReadPage = useMangaStore((state) => state.currentlyReading);
+
   const { data: topData, isLoading: loadingTopData } = useQuery({
     queryKey: [`getTopTrendingData`],
     queryFn: () => getTop(),
@@ -38,6 +42,15 @@ export default function HomePage() {
         <LatestUpdatesSection latestUpdatesData={latestUpdatesData} />
         <TopTenSection topTenData={topData} />
         <SeasonalSection seasonalData={topData} />
+        <Link
+          to="/read/$manga/$chapter"
+          params={{
+            manga: lastReadPage[0],
+            chapter: lastReadPage[1],
+          }}
+          className="">
+          <div className="">Continue</div>
+        </Link>
       </div>
     );
   }
