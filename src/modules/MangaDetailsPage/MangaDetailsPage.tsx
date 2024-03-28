@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getComicBySlug, getComicChapters } from "../../api/api-services";
-import { Route } from "../../routes/details.$manga";
+import { Route } from "../../routes/details.$manga.lazy";
 import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
 import MangaDetailsSkeleton from "./components/Skeletons/MangaDetailsSkeleton";

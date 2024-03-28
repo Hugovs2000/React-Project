@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getNewUpdates, getTop } from "../../api/api-services";
-import { Route } from "../../routes/see-more.$section";
+import { Route } from "../../routes/see-more.$section.lazy";
 import SeeMoreLatest from "./components/SeeMoreLatest";
 import SeeMoreSeasonal from "./components/SeeMoreSeasonal";
 import SeeMoreSkeleton from "./components/Skeletons/SeeMoreSkeleton";

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getChapterByHid } from "../../api/api-services";
-import { Route } from "../../routes/read.$manga.$chapter";
+import { Route } from "../../routes/read.$manga.$chapter.lazy";
 import checkImage from "../../utils/check-image-exists";
 import convertToUrl from "../../utils/convert-image-string";
 import BottomNavChaptersBar from "./components/BottomNavChaptersBar";
