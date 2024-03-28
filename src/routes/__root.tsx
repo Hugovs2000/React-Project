@@ -4,7 +4,6 @@ import {
   ScrollRestoration,
   useRouterState,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import Drawer from "../modules/Drawer/Drawer";
 import Footer from "../modules/Footer/Footer";
 import Navbar from "../modules/Navbar/Navbar";
@@ -34,7 +33,6 @@ function RootComponent() {
         </div>
         <Drawer />
       </div>
-      <TanStackRouterDevtools />
     </div>
   );
 }

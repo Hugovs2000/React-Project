@@ -1,24 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Link, RouterProvider, createRouter } from "@tanstack/react-router";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { routeTree } from "./routeTree.gen";
+import NotFoundComponent from "./shared/NotFoundComponents";
 
 const router = createRouter({
   routeTree,
-  defaultPreload: "intent",
-  defaultNotFoundComponent: () => {
-    return (
-      <div className="flex flex-col justify-center items-center">
-        <div className="m-4">Page Not Found!</div>
-        <Link to="/" className="underline text-blue-600">
-          Go Home
-        </Link>
-      </div>
-    );
-  },
+  defaultNotFoundComponent: NotFoundComponent,
 });
 
 declare module "@tanstack/react-router" {
@@ -37,7 +27,6 @@ if (!rootElement.innerHTML) {
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </React.StrictMode>
   );
