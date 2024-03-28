@@ -1,10 +1,9 @@
 import { Link, createLazyFileRoute } from "@tanstack/react-router";
+import NotFoundComponent from "../shared/NotFoundComponents";
 
 export const Route = createLazyFileRoute("/read/$manga/")({
   component: GoBackHomeComponent,
-  notFoundComponent: () => {
-    return <p>Chapter not found!</p>;
-  },
+  notFoundComponent: NotFoundComponent,
 });
 
 function GoBackHomeComponent() {
