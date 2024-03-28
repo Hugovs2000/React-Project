@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getNewUpdates, getTop } from "../../api/api-services";
 import { Route } from "../../routes/see-more.$section";
-import SeeMoreCard from "./components/SeeMoreCard";
+import SeeMoreLatest from "./components/SeeMoreLatest";
+import SeeMoreSeasonal from "./components/SeeMoreSeasonal";
 import SeeMoreSkeleton from "./components/Skeletons/SeeMoreSkeleton";
 
 export default function SeeMorePage() {
@@ -26,62 +27,16 @@ export default function SeeMorePage() {
     return <SeeMoreSkeleton />;
   }
 
-  if (section === "latest-updates") {
-    return (
-      <div className="text-slate-50 m-4">
-        <h2 className="text-xl text-slate-50 mb-4">Latest Updates</h2>
-        <div className="flex flex-wrap gap-6 md:gap-10 justify-center">
-          {latestUpdatesData
-            ?.filter((item) => !!item.md_comics?.md_covers?.[0]?.b2key)
-            .map((item) => (
-              <Link
-                to="/read/$manga/$chapter"
-                params={{
-                  manga: item.md_comics?.slug!,
-                  chapter: item.hid!,
-                }}
-                key={item.md_comics?.slug}
-                className="h-50 w-24 flex flex-col justify-start items-center">
-                <SeeMoreCard
-                  b2key={item.md_comics?.md_covers?.[0].b2key!}
-                  title={item.md_comics?.title!}
-                  chapNum={item.chap}
-                />
-              </Link>
-            ))}
-        </div>
-      </div>
-    );
+  if (section === "latest-updates" && latestUpdatesData) {
+    return <SeeMoreLatest latestUpdatesData={latestUpdatesData} />;
   }
 
-  if (section === "seasonal") {
+  if (section === "seasonal" && topData) {
     return (
-      <div className="text-slate-50 m-4">
-        <h2 className="text-xl text-slate-50 mb-4">
-          {resultingSeasonString} Manhwa
-        </h2>
-        <div className="flex flex-wrap gap-6 md:gap-10 justify-center">
-          {topData?.comicsByCurrentSeason.data
-            ?.filter(
-              (item) =>
-                item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key
-            )
-            .map((item) => (
-              <Link
-                to="/details/$manga"
-                params={{
-                  manga: item.slug!,
-                }}
-                key={item.slug}
-                className="h-50 w-24 flex flex-col justify-start items-center">
-                <SeeMoreCard
-                  b2key={item?.md_covers?.[0].b2key!}
-                  title={item.title!}
-                />
-              </Link>
-            ))}
-        </div>
-      </div>
+      <SeeMoreSeasonal
+        resultingSeasonString={resultingSeasonString}
+        topData={topData}
+      />
     );
   }
 
