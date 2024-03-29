@@ -14,7 +14,7 @@ export default function NewUpdatedManga({ item }: { item: Comic }) {
             <img
               src={convertToUrl(item.md_comics?.md_covers?.[0].b2key)}
               alt={item.md_comics.title}
-              className=" z-10 max-h-64 max-w-48 overflow-hidden"
+              className="z-10 h-64 max-w-48 overflow-hidden"
             />
             <div className="absolute bottom-0 z-20 flex flex-col items-center">
               <span className="z-10 mx-3 my-1 line-clamp-2 text-center text-xl font-bold hover:line-clamp-5">

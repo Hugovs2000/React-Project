@@ -27,7 +27,7 @@ export default function TrendingCard({
         key={item.slug}
       >
         <div className="absolute min-h-full min-w-full bg-black/60 backdrop-blur-sm md:min-w-full md:max-w-4xl"></div>
-        <div className="z-10 flex h-full">
+        <div className="z-10 flex h-full w-full">
           <img
             src={convertToUrl(item.md_covers[0].b2key)}
             alt={item.title}
