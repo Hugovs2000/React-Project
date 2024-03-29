@@ -6,10 +6,10 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { IoCaretForward } from "react-icons/io5";
-import { useMangaStore } from "../main";
 import Drawer from "../modules/Drawer/Drawer";
 import Footer from "../modules/Footer/Footer";
 import Navbar from "../modules/Navbar/Navbar";
+import { useMangaStore } from "../state/state-service";
 
 export const Route = createRootRoute({
   component: RootComponent,

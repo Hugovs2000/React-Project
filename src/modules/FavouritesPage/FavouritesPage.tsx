@@ -1,7 +1,7 @@
 import { useQueries } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getComicBySlug } from "../../api/api-services";
-import { useMangaStore } from "../../main";
+import { useMangaStore } from "../../state/state-service";
 import SeeMoreCard from "../SeeMorePage/components/SeeMoreCard";
 import SeeMoreSkeleton from "../SeeMorePage/components/Skeletons/SeeMoreSkeleton";
 

@@ -1,8 +1,8 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
-import { useMangaStore } from "../../../main";
 import { Comic } from "../../../models/Comic";
+import { useMangaStore } from "../../../state/state-service";
 import convertToUrl from "../../../utils/convert-image-string";
 
 export default function MangaHeader({ topData }: { topData: Comic }) {
