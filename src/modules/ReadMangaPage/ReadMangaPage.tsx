@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getChapterByHid } from "../../api/api-services";
 import { Route } from "../../routes/read.$manga.$chapter.lazy";
 import checkImage from "../../utils/check-image-exists";
@@ -54,7 +55,7 @@ export default function ReadMangaPage() {
       <TopInfoBar manga={manga} chapterData={chapterData} />
       <div className="min-h-9 md:min-h-10"></div>
       {chapterData?.chapter.md_images?.map((item) => (
-        <img
+        <LazyLoadImage
           src={convertToUrl(item.b2key)}
           alt=""
           key={item.name}
