@@ -44,22 +44,22 @@ export default function MangaDetailsPage() {
     )
   ) {
     return (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="m-4">Manga Not Found. Return Home</div>
-        <Link to="/" className="underline text-blue-600">
+        <Link to="/" className="text-blue-600 underline">
           Home
         </Link>
       </div>
     );
   }
   return (
-    <div className=" bg-zinc-800 h-fit text-slate-50 flex flex-col">
+    <div className="flex h-fit flex-col bg-zinc-800 text-slate-50">
       <MangaHeader topData={topData} />
       <BottomNavigationSection
         comicChaptersData={comicChaptersData}
         topData={topData}
       />
-      <div className="min-h-16 bottom-0 w-full"></div>
+      <div className="bottom-0 min-h-16 w-full"></div>
     </div>
   );
 }

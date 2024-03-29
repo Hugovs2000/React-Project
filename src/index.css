@@ -8,14 +8,14 @@
   }
 
   #multi-select div {
-    @apply bg-zinc-700 text-slate-50 border-none rounded-xl;
+    @apply rounded-xl border-none bg-zinc-700 text-slate-50;
   }
   #multi-select span {
     @apply text-slate-50;
   }
 
   #sort-by div {
-    @apply bg-zinc-700 text-slate-50 border-none rounded-xl;
+    @apply rounded-xl border-none bg-zinc-700 text-slate-50;
   }
   #sort-by span {
     @apply text-slate-50;

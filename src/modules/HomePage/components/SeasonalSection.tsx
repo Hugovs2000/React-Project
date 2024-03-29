@@ -22,7 +22,7 @@ export default function SeasonalSection({
 
   const filteredComics = seasonalData.comicsByCurrentSeason.data
     ?.filter(
-      (item) => item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key
+      (item) => item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key,
     )
     .slice(0, 12);
 
@@ -36,11 +36,12 @@ export default function SeasonalSection({
           to="/see-more/$section"
           params={{
             section: "seasonal",
-          }}>
+          }}
+        >
           <div className="text-blue-400">See more</div>
         </Link>
       </div>
-      <div className="carousel carousel-center max-w-full p-4 space-x-4 rounded-box">
+      <div className="carousel carousel-center max-w-full space-x-4 rounded-box p-4">
         {filteredComics?.map(
           (item) =>
             item.slug && (
@@ -49,10 +50,11 @@ export default function SeasonalSection({
                 params={{
                   manga: item.slug,
                 }}
-                key={item.slug}>
+                key={item.slug}
+              >
                 <SeasonalManga item={item} />
               </Link>
-            )
+            ),
         )}
       </div>
     </div>

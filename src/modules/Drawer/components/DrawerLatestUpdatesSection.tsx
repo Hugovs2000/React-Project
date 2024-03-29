@@ -8,7 +8,7 @@ export default function DrawerLatestUpdatesSection({
 }) {
   return (
     <>
-      <h2 className="font-bold text-emerald-600 mt-4 text-lg">
+      <h2 className="mt-4 text-lg font-bold text-emerald-600">
         Latest Updates
       </h2>
       <ul className="mb-2">
@@ -21,12 +21,13 @@ export default function DrawerLatestUpdatesSection({
                 params={{
                   manga: comic.md_comics.slug,
                 }}
-                key={comic.md_comics.slug}>
-                <li className="text-slate-50 ml-4 my-1 text-nowrap max-w-full text-ellipsis overflow-hidden text-sm">
+                key={comic.md_comics.slug}
+              >
+                <li className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50">
                   {comic.md_comics.title}
                 </li>
               </Link>
-            )
+            ),
         )}
       </ul>
     </>

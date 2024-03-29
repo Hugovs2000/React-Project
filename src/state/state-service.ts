@@ -12,12 +12,12 @@ export const useMangaStore = create<MangaState>()(
       removeFromFavourites: (slug) =>
         set((state) => ({
           favourites: state.favourites.filter(
-            (favouriteHid) => slug != favouriteHid
+            (favouriteHid) => slug != favouriteHid,
           ),
         })),
       setLastRead: (mangaSlug, mangaHid) =>
         set(() => ({ currentlyReading: [mangaSlug, mangaHid] })),
     }),
-    { name: "MangaState", storage: createJSONStorage(() => localStorage) }
-  )
+    { name: "MangaState", storage: createJSONStorage(() => localStorage) },
+  ),
 );

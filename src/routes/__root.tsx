@@ -24,12 +24,12 @@ function RootComponent() {
     activeRouter.location.pathname.includes("read");
 
   return (
-    <div id="root" className="flex flex-col h-full">
+    <div id="root" className="flex h-full flex-col">
       <div className="drawer h-full">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col min-h-full">
-          <Navbar className="fixed z-50 navbar bg-zinc-900 flex flex-shrink-0" />
-          <div className="pt-16 flex-grow relative">
+        <div className="drawer-content flex min-h-full flex-col">
+          <Navbar className="navbar fixed z-50 flex flex-shrink-0 bg-zinc-900" />
+          <div className="relative flex-grow pt-16">
             <ScrollRestoration />
             <Outlet />
             {!isHidden &&
@@ -41,8 +41,9 @@ function RootComponent() {
                     manga: lastReadPage[0],
                     chapter: lastReadPage[1],
                   }}
-                  className="p-2 px-3 md:p-4 bg-emerald-700 text-slate-50 m-4 toast toast-end top-[72px] md:top-16 bottom-auto z-50 rounded-lg font-bold">
-                  <span className="flex gap-2 justify-center items-center">
+                  className="toast toast-end bottom-auto top-[72px] z-50 m-4 rounded-lg bg-emerald-700 p-2 px-3 font-bold text-slate-50 md:top-16 md:p-4"
+                >
+                  <span className="flex items-center justify-center gap-2">
                     Continue
                     <IoCaretForward />
                   </span>

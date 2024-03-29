@@ -8,9 +8,9 @@ export default function SeeMoreLatest({
   latestUpdatesData: Comic[];
 }) {
   return (
-    <div className="text-slate-50 m-8">
-      <h2 className="text-xl text-slate-50 my-8">Latest Updates</h2>
-      <div className="flex flex-wrap gap-6 md:gap-10 justify-center md:justify-start">
+    <div className="m-8 text-slate-50">
+      <h2 className="my-8 text-xl text-slate-50">Latest Updates</h2>
+      <div className="flex flex-wrap justify-center gap-6 md:justify-start md:gap-10">
         {latestUpdatesData
           ?.filter((item) => !!item.md_comics?.md_covers?.[0]?.b2key)
           .map(
@@ -26,14 +26,15 @@ export default function SeeMoreLatest({
                     chapter: item.hid,
                   }}
                   key={item.md_comics?.slug}
-                  className="h-50 w-24 flex flex-col justify-start items-center">
+                  className="h-50 flex w-24 flex-col items-center justify-start"
+                >
                   <SeeMoreCard
                     b2key={item.md_comics.md_covers[0].b2key}
                     title={item.md_comics.title}
                     chapNum={item.chap}
                   />
                 </Link>
-              )
+              ),
           )}
       </div>
     </div>

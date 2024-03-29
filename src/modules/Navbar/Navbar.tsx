@@ -13,7 +13,7 @@ export default function Navbar({ className }: { className: string }) {
   return (
     <>
       <div className={className}>
-        <div className="flex-none btn btn-square btn-ghost text-slate-50">
+        <div className="btn btn-square btn-ghost flex-none text-slate-50">
           <label htmlFor="my-drawer" className="drawer-button">
             <RxHamburgerMenu size={25} />
           </label>
@@ -29,7 +29,8 @@ export default function Navbar({ className }: { className: string }) {
           <div id="search" className="flex-none">
             <Link
               to="/search"
-              className="btn btn-square btn-ghost text-slate-50">
+              className="btn btn-square btn-ghost text-slate-50"
+            >
               <IoIosSearch size={25} />
             </Link>
           </div>

@@ -18,9 +18,9 @@ export default function BottomNavigationSection({
   const [active, setActive] = useState("details");
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex w-full flex-col">
       <BottomNavbar active={active} setActive={setActive} />
-      <div className="w-full flex justify-between">
+      <div className="flex w-full justify-between">
         {topData?.comic?.slug && topData?.firstChap?.hid && (
           <Link
             to="/read/$manga/$chapter"
@@ -28,8 +28,9 @@ export default function BottomNavigationSection({
               manga: topData.comic.slug,
               chapter: topData.firstChap.hid,
             }}
-            className="w-fit">
-            <div className="self-start bg-emerald-700 rounded-md p-2 mx-4 my-8 gap-1 flex flex-nowrap items-center justify-around">
+            className="w-fit"
+          >
+            <div className="mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
               Start Reading <GiRead />
             </div>
           </Link>

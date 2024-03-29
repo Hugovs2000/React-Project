@@ -8,13 +8,14 @@ export default function BottomNavbar({
   const activeClass =
     "active z-50 bg-zinc-800 border-emerald-600 text-emerald-400";
   return (
-    <div className="btm-nav bg-zinc-900 z-20">
+    <div className="btm-nav z-20 bg-zinc-900">
       <button
         id="chapters"
         className={`${active === "chapters" ? `${activeClass}` : "z-50"}`}
         onClick={(event) => {
           setActive(event.currentTarget.id);
-        }}>
+        }}
+      >
         Chapters
       </button>
       <button
@@ -22,7 +23,8 @@ export default function BottomNavbar({
         className={`${active === "details" ? `${activeClass}` : "z-50"}`}
         onClick={(event) => {
           setActive(event.currentTarget.id);
-        }}>
+        }}
+      >
         Details
       </button>
       <button
@@ -30,7 +32,8 @@ export default function BottomNavbar({
         className={`${active === "recommended" ? `${activeClass}` : "z-50"}`}
         onClick={(event) => {
           setActive(event.currentTarget.id);
-        }}>
+        }}
+      >
         Recommended
       </button>
     </div>

@@ -35,9 +35,9 @@ export default function ReadMangaPage() {
     )
   ) {
     return (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="m-4">Chapter Not Found. Return Home</div>
-        <Link to="/" className="underline text-blue-600">
+        <Link to="/" className="text-blue-600 underline">
           Home
         </Link>
       </div>
@@ -48,9 +48,9 @@ export default function ReadMangaPage() {
 
   if (request?.status === 404) {
     return (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="m-4">Images For Chapter Not Found. Return Home</div>
-        <Link to="/" className="underline text-blue-600">
+        <Link to="/" className="text-blue-600 underline">
           Home
         </Link>
       </div>
@@ -58,19 +58,18 @@ export default function ReadMangaPage() {
   }
 
   return (
-    <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col items-center relative">
+    <div className="relative flex h-full flex-col items-center bg-zinc-800 text-slate-50">
       <TopInfoBar manga={manga} chapterData={chapterData} />
       <div className="min-h-9 md:min-h-10"></div>
       {chapterData?.chapter.md_images?.map((item) => (
         <LazyLoadImage
           src={convertToUrl(item.b2key)}
-          alt=""
+          alt="chaper cover"
           key={item.name}
-          className="md:max-w-md"
+          className="md:w-1/2"
         />
       ))}
       <BottomNavChaptersBar manga={manga} chapterData={chapterData} />
-      <div className="min-h-9 md:min-h-10min-h-10"></div>
     </div>
   );
 }

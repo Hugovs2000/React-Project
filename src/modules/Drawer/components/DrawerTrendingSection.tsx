@@ -8,7 +8,7 @@ export default function DrawerTrendingSection({
 }) {
   return (
     <>
-      <h2 className="font-bold text-emerald-600 mt-4 text-lg">Top Trending</h2>
+      <h2 className="mt-4 text-lg font-bold text-emerald-600">Top Trending</h2>
       <ul className="mb-2">
         {trendingData.slice(0, 5).map(
           (comic) =>
@@ -19,12 +19,13 @@ export default function DrawerTrendingSection({
                 params={{
                   manga: comic.slug,
                 }}
-                key={comic.slug}>
-                <li className="text-slate-50 ml-4 my-1 text-nowrap max-w-full text-ellipsis overflow-hidden text-sm">
+                key={comic.slug}
+              >
+                <li className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50">
                   {comic.title}
                 </li>
               </Link>
-            )
+            ),
         )}
       </ul>
     </>

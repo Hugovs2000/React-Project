@@ -28,11 +28,12 @@ export default function LatestUpdatesSection({
           to="/see-more/$section"
           params={{
             section: "latest-updates",
-          }}>
+          }}
+        >
           <div className="text-blue-400">See more</div>
         </Link>
       </div>
-      <div className="carousel carousel-center max-w-full p-8 space-x-12 rounded-box">
+      <div className="carousel carousel-center max-w-full space-x-12 rounded-box p-8">
         {filteredComics?.map(
           (item) =>
             item.md_comics?.slug &&
@@ -44,12 +45,13 @@ export default function LatestUpdatesSection({
                   chapter: item.hid,
                 }}
                 key={item.md_comics?.slug}
-                className="min-h-full">
-                <div className="carousel-item snap-center cursor-pointer h-full">
+                className="carousel-item min-h-full cursor-pointer snap-center"
+              >
+                <div className="h-full">
                   <NewUpdatedManga item={item} key={item.hid} />
                 </div>
               </Link>
-            )
+            ),
         )}
       </div>
     </div>
