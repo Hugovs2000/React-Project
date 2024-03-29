@@ -1,17 +1,18 @@
 import { formatDistance } from "date-fns";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
 export default function NewUpdatedManga({ item }: { item: Comic }) {
   return (
-    <div className="min-w-50 indicator">
+    <div className="indicator">
       <span className="badge indicator-item z-20 mx-2 translate-x-8 border-slate-50 bg-emerald-700 py-3">
         <span className="text-base text-slate-50">CH-{item.chap}</span>
       </span>
       <div className="grid place-items-center">
         {item.md_comics?.md_covers?.[0].b2key && (
           <div className="relative flex h-full flex-col items-center justify-start gap-4 overflow-hidden rounded-xl shadow-around">
-            <img
+            <LazyLoadImage
               src={convertToUrl(item.md_comics?.md_covers?.[0].b2key)}
               alt={item.md_comics.title}
               className="z-10 h-64 max-w-48 overflow-hidden"

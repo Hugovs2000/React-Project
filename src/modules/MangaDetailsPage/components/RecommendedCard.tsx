@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { MdCover, Recommendation } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
@@ -10,10 +11,10 @@ export default function RecommendedCard({
 }) {
   return (
     <div className="relative flex h-full min-w-28 flex-col items-center justify-start gap-4 overflow-hidden rounded-xl shadow-around">
-      <img
+      <LazyLoadImage
         src={convertToUrl(cover.b2key)}
         alt={recom.relates.title}
-        className="h-52 w-auto max-w-36 overflow-hidden object-cover object-top"
+        className="h-52 w-auto min-w-36 overflow-hidden object-cover object-top"
       />
       <div className="absolute bottom-0 z-10 flex flex-col  items-center">
         <span className="z-10 mx-3 my-1 line-clamp-2 text-center text-xl font-bold hover:line-clamp-5">

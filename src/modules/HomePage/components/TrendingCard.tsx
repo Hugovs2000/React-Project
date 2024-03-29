@@ -1,4 +1,5 @@
 import { UseQueryResult } from "@tanstack/react-query";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Comic } from "../../../models/Comic";
 import Genre from "../../../shared/Genre";
 import convertToUrl from "../../../utils/convert-image-string";
@@ -28,10 +29,10 @@ export default function TrendingCard({
       >
         <div className="absolute min-h-full min-w-full bg-black/60 backdrop-blur-sm md:min-w-full md:max-w-4xl"></div>
         <div className="z-10 flex h-full w-full">
-          <img
+          <LazyLoadImage
             src={convertToUrl(item.md_covers[0].b2key)}
             alt={item.title}
-            className="ml-4 mt-4 h-52 max-w-48 rounded-xl border-2 border-slate-50"
+            className="ml-4 mt-4 h-52 min-w-40 rounded-xl border-2 border-slate-50"
           />
           <div className="items-left flex min-h-full flex-col justify-around gap-4 p-4 text-left">
             <span className="flex flex-col text-xl font-bold">

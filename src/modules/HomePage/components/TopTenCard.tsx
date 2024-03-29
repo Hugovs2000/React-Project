@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Comic } from "../../../models/Comic";
 import convertToUrl from "../../../utils/convert-image-string";
 
@@ -9,7 +10,7 @@ export default function TopTenCard({
   index: number;
 }) {
   return (
-    <div className="indicator min-w-fit max-w-full cursor-pointer md:min-w-96 md:max-w-full">
+    <div className="indicator w-[350px] max-w-full cursor-pointer md:min-w-96 md:max-w-full">
       <span className="indicator-item pr-6 text-7xl font-bold text-slate-50 md:-translate-y-10 md:translate-x-12 md:text-8xl">
         {index + 1}
       </span>
@@ -21,7 +22,7 @@ export default function TopTenCard({
           }}
         >
           <div className="absolute min-h-full min-w-full rounded-xl bg-black/50 backdrop-blur-sm md:min-w-full md:max-w-4xl"></div>
-          <img
+          <LazyLoadImage
             src={convertToUrl(item.md_covers?.[0].b2key)}
             alt={item.title}
             key={item.md_covers?.[0].b2key}

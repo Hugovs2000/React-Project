@@ -47,7 +47,7 @@ export default function LatestUpdatesSection({
                 key={item.md_comics?.slug}
                 className="carousel-item min-h-full cursor-pointer snap-center"
               >
-                <div className="h-full">
+                <div className="h-full min-w-40">
                   <NewUpdatedManga item={item} key={item.hid} />
                 </div>
               </Link>

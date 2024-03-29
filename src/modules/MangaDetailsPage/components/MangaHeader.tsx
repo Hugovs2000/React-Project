@@ -1,6 +1,7 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Comic } from "../../../models/Comic";
 import { useMangaStore } from "../../../state/state-service";
 import convertToUrl from "../../../utils/convert-image-string";
@@ -77,7 +78,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
                   chapter: topData.firstChap?.hid,
                 }}
               >
-                <img
+                <LazyLoadImage
                   src={convertToUrl(topData.comic?.md_covers?.[0]?.b2key)}
                   alt="Cover"
                   className="m-8 mb-2 max-h-52 w-fit rounded-xl border-2 border-slate-50 md:max-h-96"
