@@ -18,17 +18,17 @@ export default function TrendingCard({
   );
 
   return (
-    item.md_covers?.[0].b2key && (
+    item.md_covers?.[0]?.b2key && (
       <div
         className="snap-center relative rounded-xl overflow-hidden flex flex-col min-w-fit max-w-lg md:max-w-full md:min-w-96 h-full bg-cover items-center cursor-pointer shadow-around"
         style={{
-          backgroundImage: `url(${convertToUrl(item.md_covers?.[0].b2key)})`,
+          backgroundImage: `url(${convertToUrl(item.md_covers[0].b2key)})`,
         }}
         key={item.slug}>
         <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>
         <div className="z-10 flex h-full">
           <img
-            src={convertToUrl(item.md_covers?.[0].b2key)}
+            src={convertToUrl(item.md_covers[0].b2key)}
             alt={item.title}
             className="rounded-xl border-2 max-w-48 border-slate-50 ml-4 mt-4 h-52"
           />

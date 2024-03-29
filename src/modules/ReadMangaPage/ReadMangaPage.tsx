@@ -57,7 +57,7 @@ export default function ReadMangaPage() {
   }
 
   return (
-    <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col items-center">
+    <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col items-center relative">
       <TopInfoBar manga={manga} chapterData={chapterData} />
       <div className="min-h-9 md:min-h-10"></div>
       {chapterData?.chapter.md_images?.map((item) => (
