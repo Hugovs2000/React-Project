@@ -12,7 +12,7 @@ interface MangaState {
   favourites: string[];
   currentlyReading: [string, string];
   b2key: string;
-  addToFavourites: (hid: string) => void;
+  addToFavourites: (slug: string) => void;
   removeFromFavourites: (hid: string) => void;
   setLastRead: (mangaSlug: string, mangaHid: string) => void;
   setB2key: (b2key: string) => void;
@@ -24,12 +24,12 @@ export const useMangaStore = create<MangaState>()(
       favourites: [] as string[],
       currentlyReading: ["", ""],
       b2key: "",
-      addToFavourites: (hid) =>
-        set((state) => ({ favourites: [...state.favourites, hid] })),
-      removeFromFavourites: (hid) =>
+      addToFavourites: (slug) =>
+        set((state) => ({ favourites: [...state.favourites, slug] })),
+      removeFromFavourites: (slug) =>
         set((state) => ({
           favourites: state.favourites.filter(
-            (favouriteHid) => hid != favouriteHid
+            (favouriteHid) => slug != favouriteHid
           ),
         })),
       setLastRead: (mangaSlug, mangaHid) =>
