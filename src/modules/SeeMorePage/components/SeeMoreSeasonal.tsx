@@ -15,16 +15,16 @@ export default function SeeMoreSeasonal({
         {resultingSeasonString} Manhwa
       </h2>
       <div className="flex flex-wrap gap-6 md:gap-10 justify-center md:justify-start">
-        {topData?.comicsByCurrentSeason.data
+        {topData?.comicsByCurrentSeason?.data
           ?.filter(
             (item) =>
               item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key
           )
           .map(
             (item) =>
-              item.slug &&
-              item.title &&
-              item?.md_covers?.[0].b2key && (
+              item?.slug &&
+              item?.title &&
+              item?.md_covers?.[0]?.b2key && (
                 <Link
                   to="/details/$manga"
                   params={{
@@ -33,7 +33,7 @@ export default function SeeMoreSeasonal({
                   key={item.slug}
                   className="h-50 w-24 flex flex-col justify-start items-center">
                   <SeeMoreCard
-                    b2key={item?.md_covers?.[0].b2key}
+                    b2key={item.md_covers[0].b2key}
                     title={item.title}
                   />
                 </Link>

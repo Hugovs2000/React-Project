@@ -33,7 +33,7 @@ function RootComponent() {
             <ScrollRestoration />
             <Outlet />
             {!isHidden &&
-              lastReadPage?.[0].length > 0 &&
+              lastReadPage?.[0]?.length > 0 &&
               !activeRouter.location.pathname.includes("search") && (
                 <Link
                   to="/read/$manga/$chapter"
