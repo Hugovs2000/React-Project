@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 // Create Virtual Routes
 
 const SearchLazyImport = createFileRoute('/search')()
+const FavouritesLazyImport = createFileRoute('/favourites')()
 const ReadIndexLazyImport = createFileRoute('/read/')()
 const DetailsIndexLazyImport = createFileRoute('/details/')()
 const SeeMoreSectionLazyImport = createFileRoute('/see-more/$section')()
@@ -31,6 +32,11 @@ const SearchLazyRoute = SearchLazyImport.update({
   path: '/search',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/search.lazy').then((d) => d.Route))
+
+const FavouritesLazyRoute = FavouritesLazyImport.update({
+  path: '/favourites',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/favourites.lazy').then((d) => d.Route))
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -83,6 +89,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/favourites': {
+      preLoaderRoute: typeof FavouritesLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/search': {
       preLoaderRoute: typeof SearchLazyImport
       parentRoute: typeof rootRoute
@@ -118,6 +128,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  FavouritesLazyRoute,
   SearchLazyRoute,
   DetailsMangaLazyRoute,
   SeeMoreSectionLazyRoute,

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Comic } from "../../../models/Comic";
 
-export default function DrawerTrendingSection({
+export default function DrawerSeasonalSection({
   seasonalData,
 }: {
   seasonalData: Comic;

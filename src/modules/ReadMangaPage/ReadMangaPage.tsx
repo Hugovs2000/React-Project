@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getChapterByHid } from "../../api/api-services";
 import { Route } from "../../routes/read.$manga.$chapter.lazy";
+import { useMangaStore } from "../../state/state-service";
 import checkImage from "../../utils/check-image-exists";
 import convertToUrl from "../../utils/convert-image-string";
 import BottomNavChaptersBar from "./components/BottomNavChaptersBar";
@@ -11,11 +13,16 @@ import TopInfoBar from "./components/TopInfoBar";
 
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
+  const setCurrentlyReading = useMangaStore((state) => state.setLastRead);
 
   const { data: chapterData, isLoading: loadingChapter } = useQuery({
     queryKey: [`getChapter`, chapter],
     queryFn: () => getChapterByHid(chapter),
   });
+
+  useEffect(() => {
+    setCurrentlyReading(manga, chapter);
+  }, [chapter]);
 
   if (loadingChapter) {
     return <ReadPageSkeleton manga={manga} />;
@@ -51,7 +58,7 @@ export default function ReadMangaPage() {
   }
 
   return (
-    <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col items-center">
+    <div className=" bg-zinc-800 h-full text-slate-50 flex flex-col items-center relative">
       <TopInfoBar manga={manga} chapterData={chapterData} />
       <div className="min-h-9 md:min-h-10"></div>
       {chapterData?.chapter.md_images?.map((item) => (

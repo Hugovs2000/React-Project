@@ -10,7 +10,7 @@ export default function TopInfoBar({
   chapterData: ChapterDetails;
 }) {
   return (
-    <div className="h-10 fixed top-16 p-2 w-full flex items-center bg-emerald-700 rounded-b-md">
+    <div className="h-10 fixed top-16 p-2 w-full flex items-center bg-emerald-700 rounded-b-md z-20">
       <div className="absolute left-0 mx-4 h-fit">
         <Link
           to="/details/$manga"

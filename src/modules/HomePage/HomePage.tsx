@@ -33,7 +33,7 @@ export default function HomePage() {
 
   if (topData && latestUpdatesData) {
     return (
-      <div className=" bg-zinc-800 h-auto text-slate-50">
+      <div className="bg-zinc-800 h-auto text-slate-50">
         <TrendingSection topData={topData} />
         <LatestUpdatesSection latestUpdatesData={latestUpdatesData} />
         <TopTenSection topTenData={topData} />

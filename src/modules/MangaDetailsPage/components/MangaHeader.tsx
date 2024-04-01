@@ -1,9 +1,31 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { Comic } from "../../../models/Comic";
+import { useMangaStore } from "../../../state/state-service";
 import convertToUrl from "../../../utils/convert-image-string";
 
 export default function MangaHeader({ topData }: { topData: Comic }) {
+  const router = useRouter();
+  const onBack = () => router.history.back();
+
+  const addFavourite = useMangaStore((state) => state.addToFavourites);
+  const removeFavourite = useMangaStore((state) => state.removeFromFavourites);
+  const existingFavs = useMangaStore((state) => state.favourites);
+
+  let isFav: boolean;
+
+  topData?.comic?.slug && existingFavs.includes(topData?.comic?.slug)
+    ? (isFav = true)
+    : (isFav = false);
+
+  const handleFavClick = () => {
+    topData?.comic?.slug &&
+      (isFav
+        ? removeFavourite(topData.comic.slug)
+        : addFavourite(topData.comic.slug));
+  };
+
   return (
     topData.comic?.md_covers?.[0]?.b2key && (
       <div
@@ -13,15 +35,22 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
         }}>
         <div className="z-10 p-2 w-full flex justify-center items-center bg-emerald-700 rounded-b-md relative">
           <div className="absolute left-0 mx-4 h-fit">
-            <Link to="/" className="h-full">
+            <button onClick={onBack} className="m-4 text-slate-50">
               <RiArrowGoBackLine className="scale-125" />
-            </Link>
+            </button>
           </div>
           <div className="w-1/3 mr-2 text-center">
             {topData.comic?.last_chapter} chapters
           </div>
           <div className="w-1/3 ml-2 text-center">
             {topData.comic?.user_follow_count} followers
+          </div>
+          <div onClick={handleFavClick} className="absolute right-0 mx-4 h-fit">
+            {isFav ? (
+              <MdFavorite className="scale-125" />
+            ) : (
+              <MdFavoriteBorder className="scale-125" />
+            )}
           </div>
         </div>
         <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>

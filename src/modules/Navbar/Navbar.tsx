@@ -1,10 +1,12 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { IoIosSearch } from "react-icons/io";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Navbar({ className }: { className: string }) {
   const activeRouter = useRouterState();
+  const router = useRouter();
+  const onBack = () => router.history.back();
 
   const isSearchHidden = activeRouter.location.pathname.includes("search");
 
@@ -32,9 +34,9 @@ export default function Navbar({ className }: { className: string }) {
             </Link>
           </div>
         ) : (
-          <Link to="/" className="m-4 text-slate-50">
+          <button onClick={onBack} className="m-4 text-slate-50">
             <RiArrowGoBackLine className="scale-125" />
-          </Link>
+          </button>
         )}
       </div>
     </>
