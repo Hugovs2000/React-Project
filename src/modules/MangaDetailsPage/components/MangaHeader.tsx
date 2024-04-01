@@ -20,13 +20,10 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
     : (isFav = false);
 
   const handleFavClick = () => {
-    if (topData?.comic?.slug) {
-      if (isFav) {
-        removeFavourite(topData.comic.slug);
-      } else {
-        addFavourite(topData.comic.slug);
-      }
-    }
+    topData?.comic?.slug &&
+      (isFav
+        ? removeFavourite(topData.comic.slug)
+        : addFavourite(topData.comic.slug));
   };
 
   return (
