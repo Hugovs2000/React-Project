@@ -1,4 +1,5 @@
 import { Link, useRouter } from "@tanstack/react-router";
+import { IoCaretForward, IoHome } from "react-icons/io5";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -11,6 +12,8 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
   const onBack = () => {
     router.history.back();
   };
+
+  const lastReadPage = useMangaStore((state) => state.currentlyReading);
 
   const addFavourite = useMangaStore((state) => state.addToFavourites);
   const removeFavourite = useMangaStore((state) => state.removeFromFavourites);
@@ -33,30 +36,65 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
     topData.comic?.md_covers?.[0]?.b2key && (
       <>
         <div className="fixed z-20 w-full">
-          <div className="relative flex h-10 items-center justify-center rounded-b-md bg-emerald-700">
-            <div className="absolute left-0 mx-4 h-fit">
-              <button
-                onClick={onBack}
-                className="flex items-center justify-center text-slate-50"
-              >
-                <RiArrowGoBackLine className="scale-125" />
-              </button>
+          <div className="flex h-10 w-full items-center justify-between rounded-b-md bg-emerald-700">
+            <div className="mx-4 flex h-fit gap-4 text-slate-50 md:gap-8">
+              <div className="tooltip tooltip-right" data-tip="Go Back">
+                <button
+                  onClick={onBack}
+                  className="flex items-center justify-center"
+                >
+                  <RiArrowGoBackLine className="scale-125" />
+                </button>
+              </div>
+              <div className="tooltip tooltip-bottom" data-tip="Go Home">
+                <Link to="/">
+                  <IoHome className="scale-125" />
+                </Link>
+              </div>
             </div>
-            <div className="mr-2 w-1/3 text-center">
+            <div className="mx-2 text-center">
               {topData.comic?.last_chapter} chapters
             </div>
-            <div className="ml-2 w-1/3 text-center">
+            <div className="mx-2 text-center">
               {topData.comic?.user_follow_count} followers
             </div>
-            <div
-              onClick={handleFavClick}
-              className="absolute right-0 mx-4 flex h-fit items-center justify-center"
-            >
-              {isFav ? (
-                <MdFavorite className="scale-125" />
-              ) : (
-                <MdFavoriteBorder className="scale-125" />
+            <div className="mx-4 flex items-center gap-4 md:gap-8">
+              {lastReadPage[0] === topData.comic?.slug && (
+                <div
+                  className="tooltip tooltip-bottom"
+                  data-tip="Continue Reading"
+                >
+                  <Link
+                    to="/read/$manga/$chapter"
+                    params={{
+                      manga: lastReadPage[0],
+                      chapter: lastReadPage[1],
+                    }}
+                  >
+                    <IoCaretForward className="scale-150" />
+                  </Link>
+                </div>
               )}
+              <div
+                onClick={handleFavClick}
+                className="flex h-fit items-center justify-center"
+              >
+                {isFav ? (
+                  <div
+                    className="tooltip tooltip-left"
+                    data-tip="Remove from Favourites"
+                  >
+                    <MdFavorite className="scale-125" />
+                  </div>
+                ) : (
+                  <div
+                    className="tooltip tooltip-left"
+                    data-tip="Add to Favourites"
+                  >
+                    <MdFavoriteBorder className="scale-125" />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
