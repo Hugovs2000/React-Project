@@ -16,17 +16,19 @@ export default function DrawerLatestUpdatesSection({
           (comic) =>
             comic?.md_comics?.slug &&
             comic?.md_comics?.title && (
-              <Link
-                to="/details/$manga"
-                params={{
-                  manga: comic.md_comics.slug,
-                }}
+              <li
+                className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
                 key={comic.md_comics.slug}
               >
-                <li className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50">
+                <Link
+                  to="/details/$manga"
+                  params={{
+                    manga: comic.md_comics.slug,
+                  }}
+                >
                   {comic.md_comics.title}
-                </li>
-              </Link>
+                </Link>
+              </li>
             ),
         )}
       </ul>

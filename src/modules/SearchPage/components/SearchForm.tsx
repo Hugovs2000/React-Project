@@ -75,6 +75,7 @@ export default function SearchForm({
         <input
           className="mr-4 w-full rounded-xl bg-zinc-700 px-4 py-2"
           {...register("mangaName")}
+          aria-label="Search Text Input"
         />
         <button type="submit" className="rounded-xl bg-emerald-700 px-4">
           Search
@@ -95,6 +96,7 @@ export default function SearchForm({
             <Space className="text-slate-50">{option.data.name}</Space>
           )}
           className="z-20 mt-4 min-h-10 w-full items-center"
+          aria-label="Select Genre Input"
         />
       </div>
       <div id="sort-by" className="flex w-full flex-col">
@@ -113,12 +115,14 @@ export default function SearchForm({
             )}
             labelRender={(options) => <span>Sort By: {options.label}</span>}
             className="z-20 min-h-10 min-w-[50%] items-center"
+            aria-label="Sort By Input"
           />
           <span className="flex w-full flex-col gap-2">
             <label className="flex items-center gap-4">
               Status:
               <input
                 defaultValue={0}
+                aria-label="Status Input"
                 className="h-10 w-full self-end rounded-xl bg-zinc-700 p-2 text-center"
                 {...register("status")}
               />

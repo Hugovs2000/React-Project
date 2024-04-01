@@ -14,17 +14,19 @@ export default function DrawerTrendingSection({
           (comic) =>
             comic?.slug &&
             comic?.title && (
-              <Link
-                to="/details/$manga"
-                params={{
-                  manga: comic.slug,
-                }}
+              <li
+                className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
                 key={comic.slug}
               >
-                <li className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50">
+                <Link
+                  to="/details/$manga"
+                  params={{
+                    manga: comic.slug,
+                  }}
+                >
                   {comic.title}
-                </li>
-              </Link>
+                </Link>
+              </li>
             ),
         )}
       </ul>

@@ -19,7 +19,7 @@ export default function BottomNavChaptersBar({
               manga: manga,
               chapter: chapterData.prev.hid,
             }}
-            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-600"
+            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
           >
             <GrPrevious className="scale-125" /> Prev
           </Link>
@@ -33,7 +33,7 @@ export default function BottomNavChaptersBar({
               manga: manga,
               chapter: chapterData.next.hid,
             }}
-            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-600"
+            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
           >
             Next <GrNext className="scale-125" />
           </Link>

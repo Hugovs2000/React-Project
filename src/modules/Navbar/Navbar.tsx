@@ -29,6 +29,7 @@ export default function Navbar({ className }: { className: string }) {
               <Link
                 to="/search"
                 className="btn btn-square btn-ghost text-slate-50"
+                aria-label="Search"
               >
                 <IoIosSearch size={25} />
               </Link>
@@ -36,7 +37,11 @@ export default function Navbar({ className }: { className: string }) {
           </div>
         ) : (
           <div className="tooltip tooltip-left" data-tip="Go Back">
-            <button onClick={onBack} className="m-4 text-slate-50">
+            <button
+              onClick={onBack}
+              className="m-4 text-slate-50"
+              aria-label="Go Back"
+            >
               <RiArrowGoBackLine className="scale-125" />
             </button>
           </div>

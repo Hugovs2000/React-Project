@@ -42,12 +42,13 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
                 <button
                   onClick={onBack}
                   className="flex items-center justify-center"
+                  aria-label="Go Back"
                 >
                   <RiArrowGoBackLine className="scale-125" />
                 </button>
               </div>
               <div className="tooltip tooltip-bottom" data-tip="Go Home">
-                <Link to="/">
+                <Link to="/" aria-label="Go Home">
                   <IoHome className="scale-125" />
                 </Link>
               </div>

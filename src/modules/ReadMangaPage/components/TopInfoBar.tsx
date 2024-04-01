@@ -18,6 +18,7 @@ export default function TopInfoBar({
             manga: manga,
           }}
           className="h-full"
+          aria-label="Go Back"
         >
           <RiArrowGoBackLine className="scale-125" />
         </Link>

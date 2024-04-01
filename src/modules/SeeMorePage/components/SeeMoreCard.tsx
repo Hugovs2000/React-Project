@@ -21,7 +21,7 @@ export default function SeeMoreCard({
           }}
         >
           {chapNum && (
-            <div className="h-fit w-fit rounded-md bg-emerald-600 px-2 ">
+            <div className="h-fit w-fit rounded-md bg-emerald-700 px-2 ">
               {chapNum}
             </div>
           )}
