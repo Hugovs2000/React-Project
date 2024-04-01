@@ -24,7 +24,7 @@ export default function SeasonalSection({
     ?.filter(
       (item) => item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key,
     )
-    .slice(0, 12);
+    .slice(0, 15);
 
   return (
     <div>
@@ -41,7 +41,7 @@ export default function SeasonalSection({
           <div className="text-blue-400">See more</div>
         </Link>
       </div>
-      <div className="carousel carousel-center max-w-full space-x-4 rounded-box p-4">
+      <div className="carousel carousel-center max-w-full space-x-8 rounded-box p-4">
         {filteredComics?.map(
           (item) =>
             item.slug && (
@@ -51,6 +51,7 @@ export default function SeasonalSection({
                   manga: item.slug,
                 }}
                 key={item.slug}
+                className="carousel-item"
               >
                 <SeasonalManga item={item} />
               </Link>

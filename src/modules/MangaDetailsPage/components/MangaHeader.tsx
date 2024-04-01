@@ -8,7 +8,9 @@ import convertToUrl from "../../../utils/convert-image-string";
 
 export default function MangaHeader({ topData }: { topData: Comic }) {
   const router = useRouter();
-  const onBack = () => router.history.back();
+  const onBack = () => {
+    router.history.back();
+  };
 
   const addFavourite = useMangaStore((state) => state.addToFavourites);
   const removeFavourite = useMangaStore((state) => state.removeFromFavourites);
