@@ -9,13 +9,14 @@ export default function FavouritesPage() {
   const existingFavs = useMangaStore((state) => state.favourites);
 
   const comicQueries = useQueries({
-    queries:
-      existingFavs.map((slug) => {
-        return {
-          queryKey: ["comic", slug],
-          queryFn: () => getComicBySlug(slug ?? ""),
-        };
-      }) ?? [],
+    queries: existingFavs
+      ? existingFavs.map((slug) => {
+          return {
+            queryKey: ["comic", slug],
+            queryFn: () => getComicBySlug(slug),
+          };
+        })
+      : [],
   });
 
   if (comicQueries.some((comic) => comic.isLoading)) {
