@@ -49,7 +49,7 @@ export default function SearchForm({
         selectedGenres,
         data.status ?? 0,
         selectedSort,
-        data.mangaName ?? ""
+        data.mangaName ?? "",
       );
       setSearchResult(result);
     } catch (error) {
@@ -69,13 +69,15 @@ export default function SearchForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="p-4 w-full md:w-2/3 z-10">
-      <div className="flex justify-between w-full">
+      className="z-10 w-full p-4 md:w-2/3"
+    >
+      <div className="flex w-full justify-between">
         <input
-          className="w-full mr-4 rounded-xl px-4 py-2 bg-zinc-700"
+          className="mr-4 w-full rounded-xl bg-zinc-700 px-4 py-2"
           {...register("mangaName")}
+          aria-label="Search Text Input"
         />
-        <button type="submit" className="bg-emerald-700 px-4 rounded-xl">
+        <button type="submit" className="rounded-xl bg-emerald-700 px-4">
           Search
         </button>
       </div>
@@ -93,11 +95,12 @@ export default function SearchForm({
           optionRender={(option) => (
             <Space className="text-slate-50">{option.data.name}</Space>
           )}
-          className="w-full mt-4 z-20 min-h-10 items-center"
+          className="z-20 mt-4 min-h-10 w-full items-center"
+          aria-label="Select Genre Input"
         />
       </div>
-      <div id="sort-by" className="flex flex-col w-full">
-        <span className="flex jusitify-between items-start gap-8 mt-4">
+      <div id="sort-by" className="flex w-full flex-col">
+        <span className="jusitify-between mt-4 flex items-start gap-8">
           <Select
             defaultValue={"None"}
             onChange={handleSortByChange}
@@ -111,25 +114,27 @@ export default function SearchForm({
               </Space>
             )}
             labelRender={(options) => <span>Sort By: {options.label}</span>}
-            className="min-w-[50%] z-20 min-h-10 items-center"
+            className="z-20 min-h-10 min-w-[50%] items-center"
+            aria-label="Sort By Input"
           />
-          <span className="flex flex-col gap-2 w-full">
+          <span className="flex w-full flex-col gap-2">
             <label className="flex items-center gap-4">
               Status:
               <input
                 defaultValue={0}
-                className="self-end w-full text-center rounded-xl h-10 bg-zinc-700 p-2"
+                aria-label="Status Input"
+                className="h-10 w-full self-end rounded-xl bg-zinc-700 p-2 text-center"
                 {...register("status")}
               />
             </label>
           </span>
         </span>
         {errors.status?.message ? (
-          <label className="text-xs text-red-600 self-end mt-2">
+          <label className="mt-2 self-end text-xs text-red-600">
             {errors.status.message}
           </label>
         ) : (
-          <label className="text-xs text-slate-100/50 self-end mt-2">
+          <label className="mt-2 self-end text-xs text-slate-100/50">
             Ongoing: 1, Completed: 2, Cancelled: 3, Hiatus: 4
           </label>
         )}

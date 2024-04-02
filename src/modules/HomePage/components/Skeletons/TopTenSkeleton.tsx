@@ -1,22 +1,22 @@
 export default function LatestUpdatesSkeleton() {
   return (
-    <div className="my-8 px-8 flex flex-col items-center">
-      <div className="skeleton bg-zinc-900 self-start rounded-lg w-1/2 h-10 text-xl  text-center"></div>
-      <div className="flex flex-nowrap py-12 gap-8 md:gap-16 overflow-x-hidden w-full">
-        <div className="skeleton bg-zinc-900 indicator rounded-xl min-w-72 h-52">
-          <span className="skeleton bg-zinc-900 -translate-y-7 indicator-item w-10 h-16 rounded-xl z-20"></span>
+    <div className="my-8 flex flex-col items-center px-8">
+      <div className="skeleton h-10 w-1/2 self-start rounded-lg bg-zinc-900 text-center  text-xl"></div>
+      <div className="flex w-full flex-nowrap gap-8 overflow-x-hidden py-12 md:gap-16">
+        <div className="indicator skeleton h-52 min-w-72 rounded-xl bg-zinc-900">
+          <span className="indicator-item skeleton z-20 h-16 w-10 -translate-y-7 rounded-xl bg-zinc-900"></span>
         </div>
-        <div className="skeleton bg-zinc-900 indicator rounded-xl min-w-72 h-52">
-          <span className="skeleton bg-zinc-900 -translate-y-7 indicator-item w-10 h-16 rounded-xl z-20"></span>
+        <div className="indicator skeleton h-52 min-w-72 rounded-xl bg-zinc-900">
+          <span className="indicator-item skeleton z-20 h-16 w-10 -translate-y-7 rounded-xl bg-zinc-900"></span>
         </div>
-        <div className="skeleton bg-zinc-900 indicator rounded-xl min-w-72 h-52">
-          <span className="skeleton bg-zinc-900 -translate-y-7 indicator-item w-10 h-16 rounded-xl z-20"></span>
+        <div className="indicator skeleton h-52 min-w-72 rounded-xl bg-zinc-900">
+          <span className="indicator-item skeleton z-20 h-16 w-10 -translate-y-7 rounded-xl bg-zinc-900"></span>
         </div>
-        <div className="skeleton bg-zinc-900 indicator rounded-xl min-w-72 h-52">
-          <span className="skeleton bg-zinc-900 -translate-y-7 indicator-item w-10 h-16 rounded-xl z-20"></span>
+        <div className="indicator skeleton h-52 min-w-72 rounded-xl bg-zinc-900">
+          <span className="indicator-item skeleton z-20 h-16 w-10 -translate-y-7 rounded-xl bg-zinc-900"></span>
         </div>
-        <div className="skeleton bg-zinc-900 indicator rounded-xl min-w-72 h-52">
-          <span className="skeleton bg-zinc-900 -translate-y-7 indicator-item w-10 h-16 rounded-xl z-20"></span>
+        <div className="indicator skeleton h-52 min-w-72 rounded-xl bg-zinc-900">
+          <span className="indicator-item skeleton z-20 h-16 w-10 -translate-y-7 rounded-xl bg-zinc-900"></span>
         </div>
       </div>
     </div>

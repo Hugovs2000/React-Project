@@ -12,31 +12,34 @@ export default function DrawerSeasonalSection({
 
   return (
     <>
-      <h2 className="font-bold text-emerald-600 mt-4 text-lg">
+      <h2 className="mt-4 text-lg font-bold text-emerald-600">
         {resultingSeasonString} Manwha
       </h2>
       <ul className="mb-2">
         {seasonalData.data
           ?.filter(
             (item) =>
-              item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key
+              item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key,
           )
           .slice(0, 5)
           .map(
             (comic) =>
               comic?.slug &&
               comic?.title && (
-                <Link
-                  to="/details/$manga"
-                  params={{
-                    manga: comic.slug,
-                  }}
-                  key={comic.slug}>
-                  <li className="text-slate-50 ml-4 my-1 text-nowrap max-w-full text-ellipsis overflow-hidden text-sm">
+                <li
+                  className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
+                  key={comic.slug}
+                >
+                  <Link
+                    to="/details/$manga"
+                    params={{
+                      manga: comic.slug,
+                    }}
+                  >
                     {comic.title}
-                  </li>
-                </Link>
-              )
+                  </Link>
+                </li>
+              ),
           )}
       </ul>
     </>

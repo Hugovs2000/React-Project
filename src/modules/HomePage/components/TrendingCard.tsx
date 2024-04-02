@@ -1,4 +1,5 @@
 import { UseQueryResult } from "@tanstack/react-query";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Comic } from "../../../models/Comic";
 import Genre from "../../../shared/Genre";
 import convertToUrl from "../../../utils/convert-image-string";
@@ -14,29 +15,30 @@ export default function TrendingCard({
 }) {
   const genres = comicQueries?.[index]?.data?.comic?.md_comic_md_genres?.slice(
     0,
-    5
+    5,
   );
 
   return (
     item.md_covers?.[0]?.b2key && (
       <div
-        className="snap-center relative rounded-xl overflow-hidden flex flex-col min-w-fit max-w-lg md:max-w-full md:min-w-96 h-full bg-cover items-center cursor-pointer shadow-around"
+        className="relative flex h-full min-w-fit max-w-lg cursor-pointer snap-center flex-col items-center overflow-hidden rounded-xl bg-cover shadow-around md:min-w-96 md:max-w-full"
         style={{
           backgroundImage: `url(${convertToUrl(item.md_covers[0].b2key)})`,
         }}
-        key={item.slug}>
-        <div className="backdrop-blur-sm min-h-full min-w-full md:max-w-4xl md:min-w-full absolute bg-black/60"></div>
-        <div className="z-10 flex h-full">
-          <img
+        key={item.slug}
+      >
+        <div className="absolute min-h-full min-w-full bg-black/60 backdrop-blur-sm md:min-w-full md:max-w-4xl"></div>
+        <div className="z-10 flex h-full w-full">
+          <LazyLoadImage
             src={convertToUrl(item.md_covers[0].b2key)}
             alt={item.title}
-            className="rounded-xl border-2 max-w-48 border-slate-50 ml-4 mt-4 h-52"
+            className="ml-4 mt-4 h-52 min-w-40 rounded-xl border-2 border-slate-50"
           />
-          <div className="flex flex-col p-4 gap-4 items-left justify-around text-left min-h-full">
-            <span className="text-xl flex flex-col font-bold">
+          <div className="items-left flex min-h-full flex-col justify-around gap-4 p-4 text-left">
+            <span className="flex flex-col text-xl font-bold">
               {item.title}
             </span>
-            <span className="text-sm flex flex-col gap-1">
+            <span className="flex flex-col gap-1 text-sm">
               Author:{" "}
               {!comicQueries[index]?.data?.authors?.[0]?.name
                 ? "Unknown"
@@ -47,7 +49,7 @@ export default function TrendingCard({
             </span>
           </div>
         </div>
-        <div className="z-10 my-4 mx-2 flex flex-wrap gap-2 justify-center">
+        <div className="z-10 mx-2 my-4 flex flex-wrap justify-center gap-2">
           {genres?.map((genre) => (
             <Genre
               genre={genre}

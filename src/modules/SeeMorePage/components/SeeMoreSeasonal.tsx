@@ -10,15 +10,15 @@ export default function SeeMoreSeasonal({
   topData: TopComics;
 }) {
   return (
-    <div className="text-slate-50 m-8">
-      <h2 className="text-xl text-slate-50 my-8">
+    <div className="m-8 text-slate-50">
+      <h2 className="my-8 text-xl text-slate-50">
         {resultingSeasonString} Manhwa
       </h2>
-      <div className="flex flex-wrap gap-6 md:gap-10 justify-center md:justify-start">
+      <div className="flex flex-wrap justify-center gap-6 md:justify-start md:gap-10">
         {topData?.comicsByCurrentSeason?.data
           ?.filter(
             (item) =>
-              item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key
+              item.content_rating === "safe" && !!item.md_covers?.[0]?.b2key,
           )
           .map(
             (item) =>
@@ -31,13 +31,14 @@ export default function SeeMoreSeasonal({
                     manga: item.slug,
                   }}
                   key={item.slug}
-                  className="h-50 w-24 flex flex-col justify-start items-center">
+                  className="h-50 flex w-24 flex-col items-center justify-start"
+                >
                   <SeeMoreCard
                     b2key={item.md_covers[0].b2key}
                     title={item.title}
                   />
                 </Link>
-              )
+              ),
           )}
       </div>
     </div>

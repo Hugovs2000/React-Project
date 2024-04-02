@@ -31,12 +31,12 @@ export default function Drawer() {
         aria-label="close sidebar"
         className="drawer-overlay"
       />
-      <div className="p-8 w-80 min-h-full text-slate-50 bg-zinc-900 flex flex-col justify-between">
+      <div className="flex min-h-full w-80 flex-col justify-between bg-zinc-900 p-8 text-slate-50">
         <div className="mb-8 text-xl font-bold">
           Chronical <span className="text-emerald-600">Frames</span>
         </div>
         <Link to="/">
-          <div className="bg-emerald-700 px-4 py-2 rounded-md flex items-center justify-center w-full gap-2">
+          <div className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-700 px-4 py-2">
             <IoIosHome />
             Home
           </div>
@@ -51,7 +51,7 @@ export default function Drawer() {
           <DrawerSeasonalSection seasonalData={topData.comicsByCurrentSeason} />
         )}
         <Link to="/favourites" className="my-4">
-          <div className="bg-emerald-700 px-4 py-2 rounded-md flex items-center justify-center w-full gap-2">
+          <div className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-700 px-4 py-2">
             <MdFavorite />
             Favourites
           </div>

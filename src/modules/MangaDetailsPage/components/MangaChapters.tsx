@@ -13,13 +13,14 @@ export default function MangaChapters({
   const twentyChapters = comicChaptersData.chapters
     ?.filter(
       (item) =>
-        item.group_name?.[0] === comicChaptersData.chapters?.[0].group_name?.[0]
+        item.group_name?.[0] ===
+        comicChaptersData.chapters?.[0].group_name?.[0],
     )
     .slice(0, 20);
 
   return (
     <>
-      <div className="w-full flex flex-col items-start md:items-center mb-4 px-4 space-y-6">
+      <div className="mb-4 flex w-full flex-col items-start space-y-6 px-4 md:items-center">
         {twentyChapters?.map(
           (chap) =>
             comic.slug &&
@@ -30,11 +31,12 @@ export default function MangaChapters({
                   manga: comic.slug,
                   chapter: chap.hid,
                 }}
-                className="gap-4 flex w-full md:w-4/5 justify-around items-center rounded-lg bg-zinc-700 py-2"
-                key={chap.hid}>
+                className="flex w-full items-center justify-around gap-4 rounded-lg bg-zinc-700 py-2 md:w-4/5"
+                key={chap.hid}
+              >
                 <Chapter chap={chap} />
               </Link>
-            )
+            ),
         )}
       </div>
     </>

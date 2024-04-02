@@ -10,8 +10,8 @@ export default function BottomNavChaptersBar({
   chapterData: ChapterDetails;
 }) {
   return (
-    <div className="h-10 fixed bottom-0 p-2 w-full flex gap-10 md:gap-28 items-center bg-emerald-700 rounded-t-md">
-      <div className="w-1/2 flex justify-end">
+    <div className="fixed bottom-2 flex w-full items-center gap-20 p-2 font-bold md:gap-28">
+      <div className="flex w-1/2 justify-end">
         {chapterData?.prev?.hid && (
           <Link
             to="/read/$manga/$chapter"
@@ -19,12 +19,13 @@ export default function BottomNavChaptersBar({
               manga: manga,
               chapter: chapterData.prev.hid,
             }}
-            className="max-w-1/2 flex justify-end items-center pr-8 gap-2">
-            <GrPrevious /> Prev
+            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
+          >
+            <GrPrevious className="scale-125" /> Prev
           </Link>
         )}
       </div>
-      <div className="w-1/2 flex justify-start">
+      <div className="flex w-1/2 justify-start">
         {chapterData?.next?.hid && (
           <Link
             to="/read/$manga/$chapter"
@@ -32,8 +33,9 @@ export default function BottomNavChaptersBar({
               manga: manga,
               chapter: chapterData.next.hid,
             }}
-            className="max-w-1/2 flex justify-start items-center pl-8 gap-2">
-            Next <GrNext />
+            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
+          >
+            Next <GrNext className="scale-125" />
           </Link>
         )}
       </div>

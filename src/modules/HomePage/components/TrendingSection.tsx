@@ -33,7 +33,7 @@ export default function TrendingSection({ topData }: { topData: TopComics }) {
   return (
     <div className="mb-8">
       <h2 className="px-6 pt-8 text-xl text-slate-50">Trending This Week</h2>
-      <div className="snap-mandatory snap-x flex px-4 py-8 gap-12 overflow-x-scroll overflow-y-hidden">
+      <div className="flex snap-x snap-mandatory gap-12 overflow-y-hidden overflow-x-scroll px-4 py-8">
         {filteredComics?.map(
           (item, index: number) =>
             item.slug && (
@@ -43,14 +43,15 @@ export default function TrendingSection({ topData }: { topData: TopComics }) {
                   manga: item.slug,
                 }}
                 key={item.slug}
-                className="min-w-fit md:min-w-96">
+                className="min-w-fit md:min-w-96"
+              >
                 <TrendingCard
                   item={item}
                   index={index}
                   comicQueries={comicQueries}
                 />
               </Link>
-            )
+            ),
         )}
       </div>
     </div>

@@ -13,30 +13,38 @@ export default function Navbar({ className }: { className: string }) {
   return (
     <>
       <div className={className}>
-        <div className="flex-none btn btn-square btn-ghost text-slate-50">
+        <div className="btn btn-square btn-ghost flex-none text-slate-50">
           <label htmlFor="my-drawer" className="drawer-button">
             <RxHamburgerMenu size={25} />
           </label>
         </div>
         <div className="flex-1 flex-wrap">
-          <div>
-            <Link to="/" className="btn btn-ghost text-2xl text-slate-50">
-              Chronical <span className="text-emerald-600">Frames</span>
-            </Link>
-          </div>
+          <Link to="/" className="btn btn-ghost px-2 text-2xl text-slate-50">
+            Chronical <span className="text-emerald-600">Frames</span>
+          </Link>
         </div>
         {!isSearchHidden ? (
           <div id="search" className="flex-none">
-            <Link
-              to="/search"
-              className="btn btn-square btn-ghost text-slate-50">
-              <IoIosSearch size={25} />
-            </Link>
+            <div className="tooltip tooltip-left" data-tip="Search">
+              <Link
+                to="/search"
+                className="btn btn-square btn-ghost text-slate-50"
+                aria-label="Search"
+              >
+                <IoIosSearch size={25} />
+              </Link>
+            </div>
           </div>
         ) : (
-          <button onClick={onBack} className="m-4 text-slate-50">
-            <RiArrowGoBackLine className="scale-125" />
-          </button>
+          <div className="tooltip tooltip-left" data-tip="Go Back">
+            <button
+              onClick={onBack}
+              className="m-4 text-slate-50"
+              aria-label="Go Back"
+            >
+              <RiArrowGoBackLine className="scale-125" />
+            </button>
+          </div>
         )}
       </div>
     </>

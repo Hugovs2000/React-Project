@@ -24,13 +24,13 @@ export default function FavouritesPage() {
   }
 
   return (
-    <div className="text-slate-50 m-8">
+    <div className="m-8 text-slate-50">
       {existingFavs.length > 0 ? (
-        <h2 className="text-xl text-slate-50 my-8">Favourites</h2>
+        <h2 className="my-8 text-xl text-slate-50">Favourites</h2>
       ) : (
-        <h2 className="text-xl text-slate-50 mb-4">No Favourites</h2>
+        <h2 className="mb-4 text-xl text-slate-50">No Favourites</h2>
       )}
-      <div className="flex flex-wrap gap-6 md:gap-10 justify-center md:justify-start">
+      <div className="flex flex-wrap justify-center gap-6 md:justify-start md:gap-10">
         {comicQueries.map(
           (comic) =>
             comic.data?.comic?.slug &&
@@ -42,13 +42,14 @@ export default function FavouritesPage() {
                   manga: comic.data.comic.slug,
                 }}
                 key={comic.data.comic.slug}
-                className="h-50 w-24 flex flex-col justify-start items-center">
+                className="h-50 flex w-24 flex-col items-center justify-start"
+              >
                 <SeeMoreCard
                   b2key={comic.data.comic.md_covers[0].b2key}
                   title={comic.data.comic.title}
                 />
               </Link>
-            )
+            ),
         )}
       </div>
     </div>

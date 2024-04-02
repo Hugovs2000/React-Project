@@ -10,19 +10,21 @@ export default function TopInfoBar({
   chapterData: ChapterDetails;
 }) {
   return (
-    <div className="h-10 fixed top-16 p-2 w-full flex items-center bg-emerald-700 rounded-b-md z-20">
+    <div className="fixed top-16 z-20 flex h-10 w-full items-center rounded-b-md bg-emerald-700 p-2">
       <div className="absolute left-0 mx-4 h-fit">
         <Link
           to="/details/$manga"
           params={{
             manga: manga,
           }}
-          className="h-full">
+          className="h-full"
+          aria-label="Go Back"
+        >
           <RiArrowGoBackLine className="scale-125" />
         </Link>
       </div>
-      <div className="w-full flex justify-center gap-8 items-center">
-        <div className="ml-2 text-ellipsis text-nowrap overflow-hidden max-w-40 md:max-w-96">
+      <div className="flex w-full items-center justify-center gap-8">
+        <div className="ml-2 max-w-40 overflow-hidden text-ellipsis text-nowrap md:max-w-96">
           {chapterData?.chapter?.md_comics?.title}
         </div>
         {chapterData?.chapter?.chap && (

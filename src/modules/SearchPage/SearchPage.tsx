@@ -22,16 +22,16 @@ export default function SearchPage() {
 
   if (!genresData)
     return (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <div className="m-4">Genres not found. Return Home</div>
-        <Link to="/" className="underline text-blue-600">
+        <Link to="/" className="text-blue-600 underline">
           Home
         </Link>
       </div>
     );
 
   return (
-    <div className="flex flex-col items-center text-slate-50 min-h-full">
+    <div className="flex min-h-full flex-col items-center text-slate-50">
       {genresData && (
         <SearchForm
           setSearchResult={setSearchResult}

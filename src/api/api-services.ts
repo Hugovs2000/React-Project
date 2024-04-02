@@ -7,7 +7,7 @@ const baseUrl = "https://api.comick.io/";
 
 export async function getTop(): Promise<TopComics> {
   const res = await fetch(
-    `${baseUrl}top?type=trending&comic_types=manhwa&accept_mature_content=false`
+    `${baseUrl}top?type=trending&comic_types=manhwa&accept_mature_content=false`,
   );
   return await res.json();
 }
@@ -24,7 +24,7 @@ export async function getChapterByHid(hid: string): Promise<ChapterDetails> {
 
 export async function getNewUpdates(): Promise<Comic[]> {
   const res = await fetch(
-    `${baseUrl}chapter/?page=1&order=new&type=manhwa&accept_erotic_content=false`
+    `${baseUrl}chapter/?page=1&order=new&type=manhwa&accept_erotic_content=false`,
   );
   return await res.json();
 }
@@ -36,7 +36,7 @@ export async function getCategories(): Promise<Comic[]> {
 
 export async function getComicChapters(
   hid: string,
-  page: number
+  page: number,
 ): Promise<ChapterDetails> {
   const res = await fetch(`${baseUrl}comic/${hid}/chapters?page=${page}`);
   return await res.json();
@@ -51,10 +51,10 @@ export async function getSearchQuery(
   genres: string[],
   status: number,
   sortBy: string,
-  query: string
+  query: string,
 ): Promise<Comic[]> {
   const res = await fetch(
-    `${baseUrl}v1.0/search/?genres=${genres}&type=comic&page=1&limit=15&status=${status}&sort=${sortBy}&showall=false&q=${query}&t=false`
+    `${baseUrl}v1.0/search/?genres=${genres}&type=comic&page=1&limit=15&status=${status}&sort=${sortBy}&showall=false&q=${query}&t=false`,
   );
   return await res.json();
 }
