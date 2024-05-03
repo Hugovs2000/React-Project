@@ -10,7 +10,7 @@ export default function Footer({ padding }: { padding: string }) {
       >
         <aside className="grid-flow-col items-center">
           <RiPagesLine className="size-10" />
-          <p>Copyright © 2024 - All right reserved</p>
+          <p>Copyright © 2024 - All rights reserved</p>
         </aside>
         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
           <IoLogoTwitter className="size-10" />

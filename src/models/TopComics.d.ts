@@ -1,4 +1,4 @@
-import { Comic } from "../models/Comic";
+import { Comic } from "./Comic";
 
 export interface TopComics {
   rank: Comic[];

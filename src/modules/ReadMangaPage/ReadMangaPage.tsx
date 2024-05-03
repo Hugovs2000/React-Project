@@ -22,7 +22,7 @@ export default function ReadMangaPage() {
 
   useEffect(() => {
     setCurrentlyReading(manga, chapter);
-  }, [chapter]);
+  }, [manga, chapter, setCurrentlyReading]);
 
   if (loadingChapter) {
     return <ReadPageSkeleton manga={manga} />;

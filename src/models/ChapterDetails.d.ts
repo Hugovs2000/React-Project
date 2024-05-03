@@ -1,4 +1,4 @@
-import { Comic, MdCover } from "../models/Comic";
+import { Comic, MdCover } from "./Comic";
 
 export interface ChapterDetails {
   chapter?: Chapter;

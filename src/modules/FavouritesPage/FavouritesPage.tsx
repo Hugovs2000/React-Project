@@ -34,7 +34,7 @@ export default function FavouritesPage() {
         {comicQueries.map(
           (comic) =>
             comic.data?.comic?.slug &&
-            comic.data?.comic?.md_covers?.[0].b2key &&
+            comic.data?.comic?.md_covers?.[0]?.b2key &&
             comic.data?.comic?.title && (
               <Link
                 to="/details/$manga"

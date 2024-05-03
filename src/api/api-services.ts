@@ -29,11 +29,6 @@ export async function getNewUpdates(): Promise<Comic[]> {
   return await res.json();
 }
 
-export async function getCategories(): Promise<Comic[]> {
-  const res = await fetch(`${baseUrl}category/`);
-  return await res.json();
-}
-
 export async function getComicChapters(
   hid: string,
   page: number,
