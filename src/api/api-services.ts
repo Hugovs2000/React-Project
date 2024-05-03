@@ -54,7 +54,7 @@ export async function getSearchQuery(
   query: string,
 ): Promise<Comic[]> {
   const res = await fetch(
-    `${baseUrl}v1.0/search/?genres=${genres}&type=comic&page=1&limit=15&status=${status}&sort=${sortBy}&showall=false&q=${query}&t=false`,
+    `${baseUrl}v1.0/search/?${genres.map((genre) => `genres=${genre}`).join("&")}&type=comic&page=1&limit=15&status=${status}&sort=${sortBy}&showall=false&q=${query}&t=false`,
   );
   return await res.json();
 }

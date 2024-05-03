@@ -8,6 +8,7 @@ import DrawerLatestUpdatesSection from "./components/DrawerLatestUpdatesSection"
 import DrawerSeasonalSection from "./components/DrawerSeasonalSection";
 import DrawerTrendingSection from "./components/DrawerTrendingSection";
 import DrawerSkeleton from "./components/Skeletons/DrawerSkeleton";
+import Logo from "../../shared/Logo.tsx";
 
 export default function Drawer() {
   const { data: topData, isLoading: loadingTopData } = useQuery({
@@ -33,7 +34,7 @@ export default function Drawer() {
       />
       <div className="flex min-h-full w-80 flex-col justify-between bg-zinc-900 p-8 text-slate-50">
         <div className="mb-8 text-xl font-bold">
-          Chronical <span className="text-emerald-600">Frames</span>
+          <Logo />
         </div>
         <Link to="/">
           <div className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-700 px-4 py-2">
