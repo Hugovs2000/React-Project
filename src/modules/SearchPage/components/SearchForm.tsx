@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { getSearchQuery } from "../../../api/api-services";
 import { Comic } from "../../../models/Comic";
 import { Genre } from "../../../models/Genre";
-import SortOptions from "../../../models/SortOptions";
+import { SortOptions, StatusOptions } from "../../../models/SortOptions";
 
 export default function SearchForm({
   setSearchResult,
@@ -13,6 +13,8 @@ export default function SearchForm({
   setSelectedGenres,
   selectedSort,
   setSelectedSort,
+  selectedStatus,
+  setSelectedStatus,
   genresData,
 }: {
   setSearchResult: React.Dispatch<React.SetStateAction<Comic[] | undefined>>;
@@ -20,6 +22,8 @@ export default function SearchForm({
   setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
   selectedSort: string;
   setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
+  selectedStatus: number;
+  setSelectedStatus: React.Dispatch<React.SetStateAction<number>>;
   genresData: Genre[];
 }) {
   const schema = yup.object().shape({
@@ -42,12 +46,11 @@ export default function SearchForm({
 
   const onSubmit: SubmitHandler<{
     mangaName?: string;
-    status?: number;
   }> = async (data) => {
     try {
       const result = await getSearchQuery(
         selectedGenres,
-        data.status ?? 0,
+        selectedStatus,
         selectedSort,
         data.mangaName ?? "",
       );
@@ -66,6 +69,11 @@ export default function SearchForm({
   const handleSortByChange = (value: string) => {
     setSelectedSort(value);
   };
+
+  const handleStatusChange = (value: number) => {
+    setSelectedStatus(value);
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -99,10 +107,10 @@ export default function SearchForm({
           aria-label="Select Genre Input"
         />
       </div>
-      <div id="sort-by" className="flex w-full flex-col">
-        <span className="jusitify-between mt-4 flex items-start gap-8">
+      <div id="sort-by" className="flex w-full gap-4">
+        <span className="mt-4 flex w-1/2 items-start justify-between gap-8">
           <Select
-            defaultValue={"None"}
+            defaultValue={""}
             onChange={handleSortByChange}
             dropdownStyle={{
               backgroundColor: "rgb(63 ,63 ,70)",
@@ -114,30 +122,28 @@ export default function SearchForm({
               </Space>
             )}
             labelRender={(options) => <span>Sort By: {options.label}</span>}
-            className="z-20 min-h-10 min-w-[50%] items-center"
+            className="z-20 min-h-10 w-full items-center"
             aria-label="Sort By Input"
           />
-          <span className="flex w-full flex-col gap-2">
-            <label className="flex items-center gap-4">
-              Status:
-              <input
-                defaultValue={0}
-                aria-label="Status Input"
-                className="h-10 w-full self-end rounded-xl bg-zinc-700 p-2 text-center"
-                {...register("status")}
-              />
-            </label>
-          </span>
         </span>
-        {errors.status?.message ? (
-          <label className="mt-2 self-end text-xs text-red-600">
-            {errors.status.message}
-          </label>
-        ) : (
-          <label className="mt-2 self-end text-xs text-slate-100/50">
-            Ongoing: 1, Completed: 2, Cancelled: 3, Hiatus: 4
-          </label>
-        )}
+        <span className="mt-4 flex w-1/2 items-start justify-between gap-8">
+          <Select
+            defaultValue={0}
+            onChange={handleStatusChange}
+            dropdownStyle={{
+              backgroundColor: "rgb(63 ,63 ,70)",
+            }}
+            options={StatusOptions()}
+            optionRender={(option) => (
+              <Space className="text-slate-50 visited:bg-black">
+                {option.data.label}
+              </Space>
+            )}
+            labelRender={(options) => <span>Status: {options.label}</span>}
+            className="z-20 min-h-10 w-full items-center"
+            aria-label="Status Input"
+          />
+        </span>
       </div>
     </form>
   );

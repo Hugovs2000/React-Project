@@ -1,6 +1,6 @@
 import { DefaultOptionType } from "antd/es/select";
 
-export default function SortOptions() {
+export function SortOptions() {
   const sortOptions: DefaultOptionType[] = [
     { value: "", label: "None" },
     { value: "view", label: "View count" },
@@ -11,4 +11,16 @@ export default function SortOptions() {
   ];
 
   return sortOptions;
+}
+
+export function StatusOptions() {
+  const statusOptions: DefaultOptionType[] = [
+    { value: 0, label: "None" },
+    { value: 1, label: "Ongoing" },
+    { value: 2, label: "Completed " },
+    { value: 3, label: "Cancelled" },
+    { value: 4, label: "Hiatus" },
+  ];
+
+  return statusOptions;
 }
