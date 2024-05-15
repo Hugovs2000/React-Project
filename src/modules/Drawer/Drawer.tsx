@@ -3,12 +3,11 @@ import { Link } from "@tanstack/react-router";
 import { IoIosHome } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
 import { getNewUpdates, getTop } from "../../api/api-services";
-import Footer from "../Footer/Footer";
-import DrawerLatestUpdatesSection from "./components/DrawerLatestUpdatesSection";
-import DrawerSeasonalSection from "./components/DrawerSeasonalSection";
-import DrawerTrendingSection from "./components/DrawerTrendingSection";
-import DrawerSkeleton from "./components/Skeletons/DrawerSkeleton";
 import Logo from "../../shared/Logo.tsx";
+import Footer from "../Footer/Footer";
+import DrawerLinksSection from "./components/DrawerLinksSection.tsx";
+import DrawerSeasonalSection from "./components/DrawerSeasonalSection";
+import DrawerSkeleton from "./components/Skeletons/DrawerSkeleton";
 
 export default function Drawer() {
   const { data: topData, isLoading: loadingTopData } = useQuery({
@@ -43,10 +42,10 @@ export default function Drawer() {
           </div>
         </Link>
         {topData?.trending?.[7] && (
-          <DrawerTrendingSection trendingData={topData.trending[7]} />
+          <DrawerLinksSection trendingData={topData.trending[7]} />
         )}
         {latestUpdatesData && (
-          <DrawerLatestUpdatesSection latestUpdatesData={latestUpdatesData} />
+          <DrawerLinksSection latestUpdatesData={latestUpdatesData} />
         )}
         {topData?.comicsByCurrentSeason && (
           <DrawerSeasonalSection seasonalData={topData.comicsByCurrentSeason} />

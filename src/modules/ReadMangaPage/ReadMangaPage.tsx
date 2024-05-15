@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getChapterByHid } from "../../api/api-services";
 import { Route } from "../../routes/read.$manga.$chapter.lazy";
@@ -14,15 +14,30 @@ import TopInfoBar from "./components/TopInfoBar";
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
   const setCurrentlyReading = useMangaStore((state) => state.setLastRead);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const { data: chapterData, isLoading: loadingChapter } = useQuery({
     queryKey: [`getChapter`, chapter],
     queryFn: () => getChapterByHid(chapter),
   });
 
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
   useEffect(() => {
     setCurrentlyReading(manga, chapter);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [manga, chapter, setCurrentlyReading]);
+
+  const imgContainerHeight =
+    document.getElementById("img-container")?.clientHeight;
 
   if (loadingChapter) {
     return <ReadPageSkeleton manga={manga} />;
@@ -58,18 +73,32 @@ export default function ReadMangaPage() {
   }
 
   return (
-    <div className="relative flex h-full flex-col items-center bg-zinc-800 text-slate-50">
+    <div
+      className="relative flex h-full flex-col items-center bg-zinc-800 text-slate-50"
+      id="img-container"
+    >
       <TopInfoBar manga={manga} chapterData={chapterData} />
       <div className="min-h-9 md:min-h-10"></div>
       {chapterData?.chapter.md_images?.map((item) => (
         <LazyLoadImage
           src={convertToUrl(item.b2key)}
-          alt="chaper cover"
+          alt="chapter cover"
           key={item.name}
           className="md:w-1/2"
         />
       ))}
-      <BottomNavChaptersBar manga={manga} chapterData={chapterData} />
+      (
+      <BottomNavChaptersBar
+        manga={manga}
+        chapterData={chapterData}
+        isHidden={
+          scrollPosition <= 100 ||
+          scrollPosition >= (imgContainerHeight ?? 0) - 1000
+            ? false
+            : true
+        }
+      />
+      )
     </div>
   );
 }

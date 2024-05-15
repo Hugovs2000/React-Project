@@ -20,9 +20,39 @@
   #sort-by span {
     @apply text-slate-50;
   }
+
+  .fade-in-move-up {
+    animation: fade-in 0.5s;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(50%);
+    }
+    to {
+      opacity: 100;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-out-move-down {
+    animation: fade-out 0.5s;
+  }
+  
+  @keyframes fade-out {
+    from {
+      opacity: 100;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
 }
 
-/* Needed to style multi select dropdwon on Search Page */
+/* Needed to style multi select dropdown on Search Page */
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
   background-color: rgba(4, 120, 87, 0.45);
