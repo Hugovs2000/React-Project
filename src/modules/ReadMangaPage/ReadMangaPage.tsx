@@ -15,6 +15,8 @@ export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
   const setCurrentlyReading = useMangaStore((state) => state.setLastRead);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isShown, setIsShown] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   const { data: chapterData, isLoading: loadingChapter } = useQuery({
     queryKey: [`getChapter`, chapter],
@@ -26,15 +28,32 @@ export default function ReadMangaPage() {
     setScrollPosition(position);
   };
 
+  const handleClick = () => {
+    if (!isShown) {
+      setIsShown(true);
+      const id = setTimeout(() => {
+        setIsShown(false);
+      }, 3000);
+      setTimeoutId(id);
+    } else {
+      setIsShown(false);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    }
+  };
+
   useEffect(() => {
     setCurrentlyReading(manga, chapter);
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("click", handleClick, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClick);
     };
-  }, [manga, chapter, setCurrentlyReading]);
+  }, [manga, chapter, setCurrentlyReading, isShown, timeoutId]);
 
   const imgContainerHeight =
     document.getElementById("img-container")?.clientHeight;
@@ -87,18 +106,21 @@ export default function ReadMangaPage() {
           className="md:w-1/2"
         />
       ))}
-      (
-      <BottomNavChaptersBar
-        manga={manga}
-        chapterData={chapterData}
-        isHidden={
-          scrollPosition <= 100 ||
-          scrollPosition >= (imgContainerHeight ?? 0) - 1000
-            ? false
-            : true
-        }
-      />
-      )
+      {scrollPosition <= 100 ||
+      scrollPosition >= (imgContainerHeight ?? 0) - 1000 ||
+      isShown ? (
+        <BottomNavChaptersBar
+          manga={manga}
+          chapterData={chapterData}
+          isHidden={false}
+        />
+      ) : (
+        <BottomNavChaptersBar
+          manga={manga}
+          chapterData={chapterData}
+          isHidden={true}
+        />
+      )}
     </div>
   );
 }
