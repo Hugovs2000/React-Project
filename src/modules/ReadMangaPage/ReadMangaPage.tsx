@@ -106,21 +106,17 @@ export default function ReadMangaPage() {
           className="md:w-1/2"
         />
       ))}
-      {scrollPosition <= 100 ||
-      scrollPosition >= (imgContainerHeight ?? 0) - 1000 ||
-      isShown ? (
-        <BottomNavChaptersBar
-          manga={manga}
-          chapterData={chapterData}
-          isHidden={false}
-        />
-      ) : (
-        <BottomNavChaptersBar
-          manga={manga}
-          chapterData={chapterData}
-          isHidden={true}
-        />
-      )}
+      <BottomNavChaptersBar
+        manga={manga}
+        chapterData={chapterData}
+        isHidden={
+          scrollPosition <= 100 ||
+          scrollPosition >= (imgContainerHeight ?? 0) - 1000 ||
+          isShown
+            ? false
+            : true
+        }
+      />
     </div>
   );
 }

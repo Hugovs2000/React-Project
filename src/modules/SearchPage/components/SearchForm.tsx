@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { getSearchQuery } from "../../../api/api-services";
 import { Comic } from "../../../models/Comic";
 import { Genre } from "../../../models/Genre";
-import { SortOptions, StatusOptions } from "../../../models/SortOptions";
+import { SortOptions, StatusOptions } from "../../../models/Options";
 
 export default function SearchForm({
   setSearchResult,
