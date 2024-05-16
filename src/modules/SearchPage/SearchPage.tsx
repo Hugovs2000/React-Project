@@ -10,6 +10,7 @@ export default function SearchPage() {
   const [searchResult, setSearchResult] = useState<Comic[]>();
   const [selectedGenres, setSelectedGenres] = useState<string[]>([""]);
   const [selectedSort, setSelectedSort] = useState<string>("");
+  const [selectedStatus, setSelectedStatus] = useState<number>(0);
 
   const { data: genresData, isLoading: loadingGenres } = useQuery({
     queryKey: [`getGenres`],
@@ -39,6 +40,8 @@ export default function SearchPage() {
           setSelectedGenres={setSelectedGenres}
           selectedSort={selectedSort}
           setSelectedSort={setSelectedSort}
+          selectedStatus={selectedStatus}
+          setSelectedStatus={setSelectedStatus}
           genresData={genresData}
         />
       )}

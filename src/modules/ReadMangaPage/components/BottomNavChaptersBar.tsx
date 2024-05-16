@@ -5,12 +5,20 @@ import { ChapterDetails } from "../../../models/ChapterDetails";
 export default function BottomNavChaptersBar({
   manga,
   chapterData,
+  isHidden,
 }: {
   manga: string;
   chapterData: ChapterDetails;
+  isHidden: boolean;
 }) {
   return (
-    <div className="fixed bottom-2 flex w-full items-center gap-20 p-2 font-bold md:gap-28">
+    <div
+      className={
+        isHidden
+          ? "fade-out-move-down fixed -bottom-12 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
+          : "fade-in-move-up fixed bottom-2 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
+      }
+    >
       <div className="flex w-1/2 justify-end">
         {chapterData?.prev?.hid && (
           <Link

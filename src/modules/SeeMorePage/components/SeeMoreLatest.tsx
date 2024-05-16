@@ -17,7 +17,7 @@ export default function SeeMoreLatest({
             (item) =>
               item.hid &&
               item.md_comics?.slug &&
-              item.md_comics?.md_covers?.[0].b2key &&
+              item.md_comics?.md_covers?.[0]?.b2key &&
               item.md_comics?.title && (
                 <Link
                   to="/read/$manga/$chapter"

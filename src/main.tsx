@@ -13,12 +13,6 @@ const router = createRouter({
   defaultNotFoundComponent: NotFoundComponent,
 });
 
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
-
 initializeApp(firebaseConfig);
 
 const queryClient = new QueryClient();

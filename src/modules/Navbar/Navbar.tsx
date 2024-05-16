@@ -2,6 +2,7 @@ import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { IoIosSearch } from "react-icons/io";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
+import Logo from "../../shared/Logo.tsx";
 
 export default function Navbar({ className }: { className: string }) {
   const activeRouter = useRouterState();
@@ -20,7 +21,7 @@ export default function Navbar({ className }: { className: string }) {
         </div>
         <div className="flex-1 flex-wrap">
           <Link to="/" className="btn btn-ghost px-2 text-2xl text-slate-50">
-            Chronical <span className="text-emerald-600">Frames</span>
+            <Logo/>
           </Link>
         </div>
         {!isSearchHidden ? (
