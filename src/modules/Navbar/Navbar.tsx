@@ -16,12 +16,12 @@ export default function Navbar({ className }: { className: string }) {
       <div className={className}>
         <div className="btn btn-square btn-ghost flex-none text-slate-50">
           <label htmlFor="my-drawer" className="drawer-button">
-            <RxHamburgerMenu size={25} />
+            <RxHamburgerMenu size={25} cursor={"pointer"} />
           </label>
         </div>
         <div className="flex-1 flex-wrap">
           <Link to="/" className="btn btn-ghost px-2 text-2xl text-slate-50">
-            <Logo/>
+            <Logo />
           </Link>
         </div>
         {!isSearchHidden ? (
