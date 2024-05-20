@@ -2,6 +2,8 @@
 Chronical Frames is a web application designed to provide a seamless manga reading experience. 
 With a sleek interface and intuitive navigation, users can easily discover, browse, and read their favorite manga, manhwa, and manhua titles.
 
+**Hosted at:** [Chronical Frames](https://chronical-frames.web.app)
+
 ## Features
 - Home Page:
 Discover top trending manga, top 10 series, seasonal picks, and latest updates.
@@ -14,6 +16,9 @@ Dive into your selected manga with a clean and distraction-free reader interface
 
 - Search Functionality:
 Easily search for manga, manhwa, or manhua titles by title, genre, and status. Sort it to your liking.
+
+- PWA:
+The web app can be downloaded onto your device for you to use any time, any place.
 
 ## Technologies Used
 - React - JavaScript library for building user interfaces.
