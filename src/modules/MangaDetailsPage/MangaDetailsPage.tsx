@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { getComicBySlug, getComicChapters } from "../../api/api-services";
+import { getComicBySlug } from "../../api/api-services";
 import { Route } from "../../routes/details.$manga.lazy";
 import BottomNavigationSection from "./components/BottomNavigationSection";
 import MangaHeader from "./components/MangaHeader";
@@ -14,15 +14,7 @@ export default function MangaDetailsPage() {
     queryFn: () => getComicBySlug(manga),
   });
 
-  const pages = 1;
-
-  const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
-    queryKey: [`getComicChapters`, topData?.comic?.hid],
-    queryFn: () => getComicChapters(topData?.comic?.hid ?? "", pages),
-    enabled: !!topData,
-  });
-
-  if (loadingComic || loadingChapters) {
+  if (loadingComic) {
     return <MangaDetailsSkeleton />;
   }
 
@@ -37,10 +29,6 @@ export default function MangaDetailsPage() {
       topData?.comic?.md_covers?.[0]?.b2key ||
       topData?.comic?.desc ||
       topData?.comic?.user_follow_count
-    ) ||
-    !(
-      comicChaptersData?.chapters?.[0]?.chap ||
-      comicChaptersData?.chapters?.[0]?.group_name?.[0]
     )
   ) {
     return (
@@ -56,7 +44,6 @@ export default function MangaDetailsPage() {
     <div className="flex h-fit flex-col bg-zinc-800 text-slate-50">
       <MangaHeader topData={topData} />
       <BottomNavigationSection
-        comicChaptersData={comicChaptersData}
         topData={topData}
       />
       <div className="bottom-0 min-h-16 w-full"></div>
