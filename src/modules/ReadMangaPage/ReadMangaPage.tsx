@@ -14,9 +14,10 @@ import TopInfoBar from "./components/TopInfoBar";
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
   const setCurrentlyReading = useMangaStore((state) => state.setLastRead);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const imgContainerHeight =
+    document.getElementById("img-container")?.clientHeight;
 
   const { data: chapterData, isLoading: loadingChapter } = useQuery({
     queryKey: [`getChapter`, chapter],
@@ -25,7 +26,18 @@ export default function ReadMangaPage() {
 
   const handleScroll = () => {
     const position = window.scrollY;
-    setScrollPosition(position);
+    if (
+      imgContainerHeight &&
+      (position < 1000 || position >= imgContainerHeight - 1000)
+    ) {
+      if (!isShown) {
+        setIsShown(true);
+      }
+    } else {
+      if (isShown) {
+        setIsShown(false);
+      }
+    }
   };
 
   const handleClick = () => {
@@ -54,9 +66,6 @@ export default function ReadMangaPage() {
       window.removeEventListener("click", handleClick);
     };
   }, [manga, chapter, setCurrentlyReading, isShown, timeoutId]);
-
-  const imgContainerHeight =
-    document.getElementById("img-container")?.clientHeight;
 
   if (loadingChapter) {
     return <ReadPageSkeleton manga={manga} />;
@@ -109,13 +118,7 @@ export default function ReadMangaPage() {
       <BottomNavChaptersBar
         manga={manga}
         chapterData={chapterData}
-        isHidden={
-          scrollPosition <= 100 ||
-          scrollPosition >= (imgContainerHeight ?? 0) - 1000 ||
-          isShown
-            ? false
-            : true
-        }
+        isHidden={!isShown}
       />
     </div>
   );
