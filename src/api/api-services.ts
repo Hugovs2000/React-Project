@@ -13,12 +13,12 @@ export async function getTop(): Promise<TopComics> {
 }
 
 export async function getComicBySlug(slug: string): Promise<Comic> {
-  const res = await fetch(`${baseUrl}comic/${slug}/`);
+  const res = await fetch(`${baseUrl}comic/${slug}`);
   return await res.json();
 }
 
 export async function getChapterByHid(hid: string): Promise<ChapterDetails> {
-  const res = await fetch(`${baseUrl}chapter/${hid}/`);
+  const res = await fetch(`${baseUrl}chapter/${hid}`);
   return await res.json();
 }
 
@@ -38,7 +38,7 @@ export async function getComicChapters(
 }
 
 export async function getGenres(): Promise<Genre[]> {
-  const res = await fetch(`${baseUrl}genre/`);
+  const res = await fetch(`${baseUrl}genre`);
   return await res.json();
 }
 
