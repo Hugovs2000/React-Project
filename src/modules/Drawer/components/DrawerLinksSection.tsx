@@ -10,7 +10,7 @@ export default function DrawerLinksSection({
 }) {
   return (
     <>
-      <h2 className="mt-4 text-lg font-bold text-emerald-600">Top Trending</h2>
+      <h2 className="mt-4 text-lg font-bold text-emerald-600">{trendingData ? 'Top Trending' : 'Latest Updates'}</h2>
       <ul className="mb-2">
         {trendingData &&
           trendingData.slice(0, 5).map(

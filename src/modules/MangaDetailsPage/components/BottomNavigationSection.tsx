@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { GiRead } from "react-icons/gi";
-import { ChapterDetails } from "../../../models/ChapterDetails";
 import { Comic } from "../../../models/Comic";
 import BottomNavbar from "./BottomNavbar";
 import MangaChapters from "./MangaChapters";
@@ -10,10 +9,8 @@ import RecommendedMangas from "./RecommendedMangas";
 
 export default function BottomNavigationSection({
   topData,
-  comicChaptersData,
 }: {
   topData: Comic;
-  comicChaptersData: ChapterDetails;
 }) {
   const [active, setActive] = useState("details");
 
@@ -39,10 +36,10 @@ export default function BottomNavigationSection({
       {active === "details" && topData && (
         <MangaDetailsSection topData={topData} />
       )}
-      {active === "chapters" && topData?.comic && (
+      {active === "chapters" && topData?.comic?.hid && (
         <MangaChapters
           comic={topData.comic}
-          comicChaptersData={comicChaptersData}
+          hid={topData.comic.hid}
         />
       )}
       {active === "recommended" && topData?.comic && (
