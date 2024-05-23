@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getComicChapters } from "../../../api/api-services";
 import { Comic } from "../../../models/Comic";
 import Chapter from "./Chapter";
+import MangaChaptersSkeleton from "./Skeletons/MangaChaptersSkeleton";
 
 export default function MangaChapters({
   comic,
@@ -13,6 +14,7 @@ export default function MangaChapters({
   hid: string;
 }) {
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(0);
 
   const { data: comicChaptersData, isLoading: loadingChapters } = useQuery({
     queryKey: [`getComicChapters`, hid, page],
@@ -20,11 +22,19 @@ export default function MangaChapters({
     enabled: !!hid,
   });
 
-  let limit: number;
-
-  if (comicChaptersData?.total && comicChaptersData.total > 0) {
-    limit = Math.floor(comicChaptersData.total / 60 - 1);
-  }
+  useEffect(() => {
+    if (
+      comicChaptersData?.total &&
+      comicChaptersData?.limit &&
+      comicChaptersData.total > 0
+    ) {
+      setLimit(
+        comicChaptersData.total < comicChaptersData.limit
+          ? 1
+          : Math.floor(comicChaptersData.total / 60 - 1),
+      );
+    }
+  }, [comicChaptersData?.total]);
 
   const filteredChapters = comicChaptersData?.chapters?.filter(
     (item) => item.lang === "en",
@@ -55,28 +65,7 @@ export default function MangaChapters({
   };
 
   if (loadingChapters) {
-    return (
-      <div className="mb-4 flex w-full flex-col items-start space-y-6 px-4 md:items-center">
-        <div className="join self-center">
-          <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
-            ◀︎◀︎
-          </button>
-          <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
-            ◀︎
-          </button>
-          <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
-            Page {page}
-          </button>
-          <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
-            ▶︎
-          </button>
-          <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
-            ▶︎▶︎
-          </button>
-        </div>
-        <div>Loading...</div>
-      </div>
-    );
+    return <MangaChaptersSkeleton page={page} />;
   }
 
   return (
@@ -85,12 +74,16 @@ export default function MangaChapters({
         <div className="join self-center">
           <button
             className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onSkipToStartClick}>
+            onClick={onSkipToStartClick}
+            disabled={page === 1}
+          >
             ◀︎◀︎
           </button>
           <button
             className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onPrevClick}>
+            onClick={onPrevClick}
+            disabled={page === 1}
+          >
             ◀︎
           </button>
           <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
@@ -98,33 +91,41 @@ export default function MangaChapters({
           </button>
           <button
             className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onNextClick}>
+            onClick={onNextClick}
+            disabled={page === limit}
+          >
             ▶︎
           </button>
           <button
             className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onSkipToEndClick}>
+            onClick={onSkipToEndClick}
+            disabled={page === limit}
+          >
             ▶︎▶︎
           </button>
         </div>
 
-        {filteredChapters ? filteredChapters.map(
-          (chap) =>
-            comic.slug &&
-            chap.hid && (
-              <Link
-                to="/read/$manga/$chapter"
-                params={{
-                  manga: comic.slug,
-                  chapter: chap.hid,
-                }}
-                className="flex w-full items-center justify-around gap-4 rounded-lg bg-zinc-700 py-2 md:w-4/5"
-                key={chap.hid}
-              >
-                <Chapter chap={chap} />
-              </Link>
-            ),
-        ) : <p className="self-center">No chapters were found!</p>}
+        {filteredChapters ? (
+          filteredChapters.map(
+            (chap) =>
+              comic.slug &&
+              chap.hid && (
+                <Link
+                  to="/read/$manga/$chapter"
+                  params={{
+                    manga: comic.slug,
+                    chapter: chap.hid,
+                  }}
+                  className="flex w-full items-center justify-around gap-4 rounded-lg bg-zinc-700 py-2 md:w-4/5"
+                  key={chap.hid}
+                >
+                  <Chapter chap={chap} />
+                </Link>
+              ),
+          )
+        ) : (
+          <p className="self-center">No chapters were found!</p>
+        )}
       </div>
     </>
   );
