@@ -82,7 +82,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
           </div>
         </div>
         <div
-          className="relative flex flex-col items-center justify-center bg-cover shadow-lg shadow-slate-50/30"
+          className="relative flex flex-col items-center justify-center bg-cover shadow-lg shadow-slate-50/10"
           style={{
             backgroundImage: `url(${convertToUrl(topData.comic?.md_covers?.[0]?.b2key)})`,
           }}

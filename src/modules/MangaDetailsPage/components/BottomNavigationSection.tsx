@@ -36,7 +36,7 @@ export default function BottomNavigationSection({
               }}
               className="w-fit"
             >
-              <div className="mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
+              <div className="shadow-fab mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
                 Continue Reading
                 <IoCaretForward className="scale-150" />
               </div>
@@ -53,7 +53,7 @@ export default function BottomNavigationSection({
               }}
               className="w-fit"
             >
-              <div className="mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
+              <div className="shadow-fab mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
                 Start Reading <GiRead />
               </div>
             </Link>

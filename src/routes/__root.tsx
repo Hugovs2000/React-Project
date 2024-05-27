@@ -41,7 +41,7 @@ function RootComponent() {
                     manga: lastReadPage[0],
                     chapter: lastReadPage[1],
                   }}
-                  className="toast toast-end bottom-auto top-[72px] z-50 m-4 rounded-lg bg-emerald-700 p-2 px-3 font-bold text-slate-50"
+                  className="shadow-fab toast toast-end bottom-auto top-[72px] z-50 m-4 rounded-lg bg-emerald-700 p-2 px-3 font-bold text-slate-50"
                 >
                   <span className="flex items-center justify-center gap-2">
                     Continue
