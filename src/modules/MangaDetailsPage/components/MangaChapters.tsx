@@ -31,7 +31,7 @@ export default function MangaChapters({
       setLimit(
         comicChaptersData.total < comicChaptersData.limit
           ? 1
-          : Math.floor(comicChaptersData.total / 60 - 1),
+          : Math.ceil(comicChaptersData.total / comicChaptersData.limit),
       );
     }
   }, [comicChaptersData?.total]);
