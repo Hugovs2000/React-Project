@@ -6,7 +6,8 @@ export const useMangaStore = create<MangaState>()(
   persist(
     (set) => ({
       favourites: [] as string[],
-      currentlyReading: ["", ""],
+      currentlyReading: [],
+      lastReadManga: ["", ""],
       addToFavourites: (slug) =>
         set((state) => ({ favourites: [...state.favourites, slug] })),
       removeFromFavourites: (slug) =>
@@ -16,7 +17,21 @@ export const useMangaStore = create<MangaState>()(
           ),
         })),
       setLastRead: (mangaSlug, mangaHid) =>
-        set(() => ({ currentlyReading: [mangaSlug, mangaHid] })),
+        set(() => ({ lastReadManga: [mangaSlug, mangaHid] })),
+      addCurrentlyReading: (mangaSlug, mangaHid) =>
+      set((state) => {
+        const existingIndex = state.currentlyReading.findIndex(
+          ([existingMangaSlug]) => existingMangaSlug === mangaSlug
+        );
+        if (existingIndex !== -1) {
+          const updatedCurrentlyReading = [...state.currentlyReading];
+          updatedCurrentlyReading[existingIndex] = [mangaSlug, mangaHid];
+          return { currentlyReading: updatedCurrentlyReading };
+        }
+        return {
+          currentlyReading: [...state.currentlyReading, [mangaSlug, mangaHid]],
+        };
+      }),
     }),
     { name: "MangaState", storage: createJSONStorage(() => localStorage) },
   ),
