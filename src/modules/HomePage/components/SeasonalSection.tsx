@@ -38,7 +38,7 @@ export default function SeasonalSection({
             section: "seasonal",
           }}
         >
-          <div className="text-blue-400">See more</div>
+          <div className="text-emerald-500">See more</div>
         </Link>
       </div>
       <div className="carousel carousel-center max-w-full space-x-8 rounded-box p-4">

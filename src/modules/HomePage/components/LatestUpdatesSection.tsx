@@ -30,7 +30,7 @@ export default function LatestUpdatesSection({
             section: "latest-updates",
           }}
         >
-          <div className="text-blue-400">See more</div>
+          <div className="text-emerald-500">See more</div>
         </Link>
       </div>
       <div className="carousel carousel-center max-w-full space-x-12 rounded-box p-8">
