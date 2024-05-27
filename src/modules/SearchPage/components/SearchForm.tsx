@@ -39,6 +39,7 @@ export default function SearchForm({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -74,19 +75,33 @@ export default function SearchForm({
     setSelectedStatus(value);
   };
 
+  const handleReset = () => {
+    reset();
+    setSelectedGenres([]);
+    setSelectedSort("");
+    setSelectedStatus(0);
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="z-10 w-full p-4 md:w-2/3"
     >
-      <div className="flex w-full justify-between">
+      <div className="flex w-full justify-between gap-4">
         <input
-          className="mr-4 w-full rounded-xl bg-zinc-700 px-4 py-2"
+          className="w-full rounded-xl bg-zinc-700 px-4 py-2"
           {...register("mangaName")}
           aria-label="Search Text Input"
         />
-        <button type="submit" className="rounded-xl bg-emerald-700 px-4">
+        <button type="submit" className="w-32 rounded-xl bg-emerald-700">
           Search
+        </button>
+        <button
+          type="button"
+          onClick={handleReset}
+          className="w-32 rounded-xl bg-red-700 "
+        >
+          Reset
         </button>
       </div>
       <p className="text-red-600">{errors.mangaName?.message}</p>
@@ -96,6 +111,7 @@ export default function SearchForm({
           mode="multiple"
           placeholder="Select genres"
           onChange={handleMultiSelectChange}
+          value={selectedGenres}
           options={options}
           dropdownStyle={{
             backgroundColor: "rgb(63 ,63 ,70)",
@@ -105,12 +121,13 @@ export default function SearchForm({
           )}
           className="z-20 mt-4 min-h-10 w-full items-center"
           aria-label="Select Genre Input"
+          style={{ height: "40px" }}
         />
       </div>
       <div id="sort-by" className="flex w-full gap-4">
         <span className="mt-4 flex w-1/2 items-start justify-between gap-8">
           <Select
-            defaultValue={""}
+            value={selectedSort}
             onChange={handleSortByChange}
             dropdownStyle={{
               backgroundColor: "rgb(63 ,63 ,70)",
@@ -128,7 +145,7 @@ export default function SearchForm({
         </span>
         <span className="mt-4 flex w-1/2 items-start justify-between gap-8">
           <Select
-            defaultValue={0}
+            value={selectedStatus}
             onChange={handleStatusChange}
             dropdownStyle={{
               backgroundColor: "rgb(63 ,63 ,70)",

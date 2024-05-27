@@ -55,18 +55,14 @@
 /* Needed to style multi select dropdown on Search Page */
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
-  background-color: rgba(4, 120, 87, 0.45);
+  background-color: rgba(4, 120, 87, 0.45) !important;
 }
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: rgb(4, 120, 87);
+  background-color: rgb(4, 120, 87) !important;
 }
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
   .ant-select-item-option-state {
-  color: whitesmoke;
-}
-:where(.css-dev-only-do-not-override-djtmh8).ant-select-multiple
-  .ant-select-selector {
-  height: 40px;
+  color: whitesmoke !important;
 }
