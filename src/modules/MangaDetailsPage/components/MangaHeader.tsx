@@ -64,22 +64,24 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
               {topData.comic?.user_follow_count} followers
             </div>
             <div className="mx-4 flex items-center gap-4 md:gap-8">
-              {currentReadingEntry && (
-                <div
-                  className="tooltip tooltip-bottom"
-                  data-tip="Continue Reading"
-                >
-                  <Link
-                    to="/read/$manga/$chapter"
-                    params={{
-                      manga: currentReadingEntry[0],
-                      chapter: currentReadingEntry[1],
-                    }}
+              {currentReadingEntry &&
+                currentReadingEntry?.[0] !== "" &&
+                currentReadingEntry?.[1] !== "" && (
+                  <div
+                    className="tooltip tooltip-bottom"
+                    data-tip="Continue Reading"
                   >
-                    <IoCaretForward className="scale-150" />
-                  </Link>
-                </div>
-              )}
+                    <Link
+                      to="/read/$manga/$chapter"
+                      params={{
+                        manga: currentReadingEntry[0],
+                        chapter: currentReadingEntry[1],
+                      }}
+                    >
+                      <IoCaretForward className="scale-150" />
+                    </Link>
+                  </div>
+                )}
               <div
                 onClick={handleFavClick}
                 className="flex h-fit items-center justify-center"
