@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Select, SelectProps, Space } from "antd";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { getSearchQuery } from "../../../api/api-services";
@@ -26,6 +27,8 @@ export default function SearchForm({
   setSelectedStatus: React.Dispatch<React.SetStateAction<number>>;
   genresData: Genre[];
 }) {
+  const [mangaName, setMangaName] = useState("");
+
   const schema = yup.object().shape({
     mangaName: yup.string().optional(),
     status: yup
@@ -80,7 +83,30 @@ export default function SearchForm({
     setSelectedGenres([]);
     setSelectedSort("");
     setSelectedStatus(0);
+    setMangaName("");
+    handleSubmit((formData) => onSubmit({ ...formData, mangaName: "" }))();
   };
+
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleDebouncedChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setMangaName(value);
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+    debounceRef.current = setTimeout(() => {
+      handleSubmit((formData) => onSubmit({ ...formData, mangaName: value }))();
+    }, 500);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
+  }, []);
 
   return (
     <form
@@ -92,6 +118,8 @@ export default function SearchForm({
           className="w-full rounded-xl bg-zinc-700 px-4 py-2"
           {...register("mangaName")}
           aria-label="Search Text Input"
+          value={mangaName}
+          onChange={handleDebouncedChange}
         />
         <button type="submit" className="w-32 rounded-xl bg-emerald-700">
           Search
