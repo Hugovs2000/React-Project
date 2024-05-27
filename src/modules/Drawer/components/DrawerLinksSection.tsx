@@ -3,14 +3,16 @@ import { Comic } from "../../../models/Comic";
 
 export default function DrawerLinksSection({
   trendingData,
-  latestUpdatesData,
+  continueReadingData,
 }: {
   trendingData?: Comic[];
-  latestUpdatesData?: Comic[];
+  continueReadingData?: [string, string, string][];
 }) {
   return (
-    <>
-      <h2 className="mt-4 text-lg font-bold text-emerald-600">{trendingData ? 'Top Trending' : 'Latest Updates'}</h2>
+    <div>
+      <h2 className="mt-4 text-lg font-bold text-emerald-600">
+        {continueReadingData ? "Continue Reading" : "Top Trending"}
+      </h2>
       <ul className="mb-2">
         {trendingData &&
           trendingData.slice(0, 5).map(
@@ -32,27 +34,31 @@ export default function DrawerLinksSection({
                 </li>
               ),
           )}
-        {latestUpdatesData &&
-          latestUpdatesData.slice(0, 5).map(
-            (comic) =>
-              comic?.md_comics?.slug &&
-              comic?.md_comics?.title && (
-                <li
-                  className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
-                  key={comic.md_comics.slug}
-                >
-                  <Link
-                    to="/details/$manga"
-                    params={{
-                      manga: comic.md_comics.slug,
-                    }}
+        {continueReadingData &&
+          continueReadingData
+            .map(
+              (comic) =>
+                comic?.[0] &&
+                comic?.[1] &&
+                comic?.[2] && (
+                  <li
+                    className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
+                    key={comic[0]}
                   >
-                    {comic.md_comics.title}
-                  </Link>
-                </li>
-              ),
-          )}
+                    <Link
+                      to="/details/$manga"
+                      params={{
+                        manga: comic[0],
+                      }}
+                    >
+                      {comic[2]}
+                    </Link>
+                  </li>
+                ),
+            )
+            .reverse()
+            .slice(0, 10)}
       </ul>
-    </>
+    </div>
   );
 }

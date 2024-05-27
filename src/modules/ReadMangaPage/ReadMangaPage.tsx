@@ -59,9 +59,13 @@ export default function ReadMangaPage() {
   };
 
   useEffect(() => {
-    if (manga !== "" && chapter !== "") {
+    if (
+      manga !== "" &&
+      chapter !== "" &&
+      chapterData?.chapter?.md_comics?.title
+    ) {
       setLastReadManga(manga, chapter);
-      addCurrentlyReading(manga, chapter);
+      addCurrentlyReading(manga, chapter, chapterData.chapter.md_comics.title);
     }
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });

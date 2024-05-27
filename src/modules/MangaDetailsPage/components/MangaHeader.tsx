@@ -34,7 +34,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
     topData.comic?.md_covers?.[0]?.b2key && (
       <>
         <div className="fixed z-20 w-full">
-          <div className="flex h-10 w-full items-center justify-between rounded-b-md bg-emerald-700">
+          <div className="flex min-h-10 w-full items-center justify-between rounded-b-md bg-emerald-700">
             <div className="mx-4 flex h-fit gap-4 text-slate-50 md:gap-8">
               <div className="tooltip tooltip-right" data-tip="Go Back">
                 <button
