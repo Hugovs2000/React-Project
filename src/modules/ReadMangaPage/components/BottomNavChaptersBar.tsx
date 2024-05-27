@@ -15,8 +15,8 @@ export default function BottomNavChaptersBar({
     <div
       className={
         isHidden
-          ? "fade-out-move-down fixed -bottom-12 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
-          : "fade-in-move-up fixed bottom-2 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
+          ? "fade-out-move-down fixed -bottom-20 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
+          : "fade-in-move-up fixed bottom-20 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
       }
     >
       <div className="flex w-1/2 justify-end">
