@@ -28,8 +28,8 @@ export default function Drawer() {
         aria-label="close sidebar"
         className="drawer-overlay"
       />
-      <div className="flex min-h-full w-72 flex-col justify-start bg-zinc-900 p-8 pb-12 text-slate-50">
-        <div className="mb-8 text-xl font-bold">
+      <div className="flex min-h-full w-72 flex-col justify-start bg-zinc-900 p-8 pb-16 text-slate-50">
+        <div className="mb-6 text-xl font-bold">
           <Logo />
         </div>
         <Link to="/">
@@ -50,7 +50,7 @@ export default function Drawer() {
         {topData?.trending?.[7] && (
           <DrawerLinksSection trendingData={topData.trending[7]} />
         )}
-        <div className="absolute bottom-0 left-0 w-full p-4">
+        <div className="absolute bottom-0 left-0 w-full px-8 py-4">
           <Footer padding="p-0" />
         </div>
       </div>

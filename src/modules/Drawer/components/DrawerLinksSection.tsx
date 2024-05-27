@@ -10,8 +10,10 @@ export default function DrawerLinksSection({
 }) {
   return (
     <div>
-      <h2 className="mt-4 text-lg font-bold text-emerald-600">
-        {continueReadingData ? "Continue Reading" : "Top Trending"}
+      <h2 className="mt-2 text-lg font-bold text-emerald-600">
+        {continueReadingData?.length
+          ? "Continue Reading"
+          : trendingData && "Top Trending"}
       </h2>
       <ul className="mb-2">
         {trendingData &&
@@ -20,7 +22,7 @@ export default function DrawerLinksSection({
               comic?.slug &&
               comic?.title && (
                 <li
-                  className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
+                  className="my-2 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
                   key={comic.slug}
                 >
                   <Link
@@ -42,7 +44,7 @@ export default function DrawerLinksSection({
                 comic?.[1] &&
                 comic?.[2] && (
                   <li
-                    className="my-1 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
+                    className="my-2 ml-4 max-w-full overflow-hidden text-ellipsis text-nowrap text-sm text-slate-50"
                     key={comic[0]}
                   >
                     <Link
