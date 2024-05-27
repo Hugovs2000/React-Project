@@ -15,8 +15,8 @@ export default function BottomNavChaptersBar({
     <div
       className={
         isHidden
-          ? "fade-out-move-down fixed -bottom-12 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
-          : "fade-in-move-up fixed bottom-2 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
+          ? "fade-out-move-down fixed -bottom-20 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
+          : "fade-in-move-up fixed bottom-20 flex w-full items-center gap-20 p-2 font-bold md:gap-28"
       }
     >
       <div className="flex w-1/2 justify-end">
@@ -27,7 +27,7 @@ export default function BottomNavChaptersBar({
               manga: manga,
               chapter: chapterData.prev.hid,
             }}
-            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
+            className="shadow-fab flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
           >
             <GrPrevious className="scale-125" /> Prev
           </Link>
@@ -41,7 +41,7 @@ export default function BottomNavChaptersBar({
               manga: manga,
               chapter: chapterData.next.hid,
             }}
-            className="flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
+            className="shadow-fab flex h-10 w-20 items-center justify-center gap-2 rounded-md bg-emerald-700"
           >
             Next <GrNext className="scale-125" />
           </Link>

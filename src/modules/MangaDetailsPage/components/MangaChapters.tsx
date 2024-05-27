@@ -31,7 +31,7 @@ export default function MangaChapters({
       setLimit(
         comicChaptersData.total < comicChaptersData.limit
           ? 1
-          : Math.floor(comicChaptersData.total / 60 - 1),
+          : Math.ceil(comicChaptersData.total / comicChaptersData.limit),
       );
     }
   }, [comicChaptersData?.total]);
@@ -65,46 +65,49 @@ export default function MangaChapters({
   };
 
   if (loadingChapters) {
-    return <MangaChaptersSkeleton page={page} />;
+    return (
+      <MangaChaptersSkeleton isHidden={limit <= 1 ? true : false} page={page} />
+    );
   }
 
   return (
     <>
       <div className="mb-4 flex w-full flex-col items-start space-y-6 px-4 md:items-center">
-        <div className="join self-center">
-          <button
-            className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onSkipToStartClick}
-            disabled={page === 1}
-          >
-            ◀︎◀︎
-          </button>
-          <button
-            className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onPrevClick}
-            disabled={page === 1}
-          >
-            ◀︎
-          </button>
-          <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
-            Page {page}
-          </button>
-          <button
-            className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onNextClick}
-            disabled={page === limit}
-          >
-            ▶︎
-          </button>
-          <button
-            className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
-            onClick={onSkipToEndClick}
-            disabled={page === limit}
-          >
-            ▶︎▶︎
-          </button>
-        </div>
-
+        {limit > 1 && (
+          <div className="join self-center">
+            <button
+              className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
+              onClick={onSkipToStartClick}
+              disabled={page === 1}
+            >
+              ◀︎◀︎
+            </button>
+            <button
+              className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
+              onClick={onPrevClick}
+              disabled={page === 1}
+            >
+              ◀︎
+            </button>
+            <button className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none">
+              Page {page}
+            </button>
+            <button
+              className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
+              onClick={onNextClick}
+              disabled={page === limit}
+            >
+              ▶︎
+            </button>
+            <button
+              className="btn join-item border-0 bg-zinc-800 text-slate-50 shadow-none"
+              onClick={onSkipToEndClick}
+              disabled={page === limit}
+            >
+              ▶︎▶︎
+            </button>
+          </div>
+        )}
         {filteredChapters ? (
           filteredChapters.map(
             (chap) =>

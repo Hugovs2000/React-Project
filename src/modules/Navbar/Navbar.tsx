@@ -20,7 +20,10 @@ export default function Navbar({ className }: { className: string }) {
           </label>
         </div>
         <div className="flex-1 flex-wrap">
-          <Link to="/" className="btn btn-ghost px-2 text-2xl text-slate-50">
+          <Link
+            to="/"
+            className="btn btn-ghost gap-0 px-2 text-2xl text-slate-50"
+          >
             <Logo />
           </Link>
         </div>

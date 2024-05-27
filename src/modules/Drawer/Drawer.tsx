@@ -2,25 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { IoIosHome } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
-import { getNewUpdates, getTop } from "../../api/api-services";
+import { getTop } from "../../api/api-services";
 import Logo from "../../shared/Logo.tsx";
+import { useMangaStore } from "../../state/state-service.ts";
 import Footer from "../Footer/Footer";
 import DrawerLinksSection from "./components/DrawerLinksSection.tsx";
-import DrawerSeasonalSection from "./components/DrawerSeasonalSection";
 import DrawerSkeleton from "./components/Skeletons/DrawerSkeleton";
 
 export default function Drawer() {
+  const currentlyReading = useMangaStore((state) => state.currentlyReading);
+
   const { data: topData, isLoading: loadingTopData } = useQuery({
     queryKey: [`getTopTrendingData`],
     queryFn: () => getTop(),
   });
-  const { data: latestUpdatesData, isLoading: loadingLatestsUpdates } =
-    useQuery({
-      queryKey: [`getLatestUpdates`],
-      queryFn: () => getNewUpdates(),
-    });
 
-  if (loadingTopData || loadingLatestsUpdates) {
+  if (loadingTopData) {
     return <DrawerSkeleton />;
   }
 
@@ -31,8 +28,8 @@ export default function Drawer() {
         aria-label="close sidebar"
         className="drawer-overlay"
       />
-      <div className="flex min-h-full w-80 flex-col justify-between bg-zinc-900 p-8 text-slate-50">
-        <div className="mb-8 text-xl font-bold">
+      <div className="flex min-h-full w-72 flex-col justify-start bg-zinc-900 p-8 pb-16 text-slate-50">
+        <div className="mb-6 text-xl font-bold">
           <Logo />
         </div>
         <Link to="/">
@@ -41,22 +38,19 @@ export default function Drawer() {
             Home
           </div>
         </Link>
-        {topData?.trending?.[7] && (
-          <DrawerLinksSection trendingData={topData.trending[7]} />
-        )}
-        {latestUpdatesData && (
-          <DrawerLinksSection latestUpdatesData={latestUpdatesData} />
-        )}
-        {topData?.comicsByCurrentSeason && (
-          <DrawerSeasonalSection seasonalData={topData.comicsByCurrentSeason} />
-        )}
         <Link to="/favourites" className="my-4">
           <div className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-700 px-4 py-2">
             <MdFavorite />
             Favourites
           </div>
         </Link>
-        <div className="w-full">
+        {currentlyReading && (
+          <DrawerLinksSection continueReadingData={currentlyReading} />
+        )}
+        {topData?.trending?.[7] && (
+          <DrawerLinksSection trendingData={topData.trending[7]} />
+        )}
+        <div className="absolute bottom-0 left-0 w-full px-8 py-4">
           <Footer padding="p-0" />
         </div>
       </div>

@@ -8,7 +8,7 @@ import SearchForm from "./components/SearchForm";
 
 export default function SearchPage() {
   const [searchResult, setSearchResult] = useState<Comic[]>();
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([""]);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>("");
   const [selectedStatus, setSelectedStatus] = useState<number>(0);
 

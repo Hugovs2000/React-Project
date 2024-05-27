@@ -24,11 +24,11 @@
   .fade-in-move-up {
     animation: fade-in 0.5s;
   }
-  
+
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(50%);
+      transform: translateY(100%);
     }
     to {
       opacity: 100;
@@ -39,11 +39,11 @@
   .fade-out-move-down {
     animation: fade-out 0.5s;
   }
-  
+
   @keyframes fade-out {
     from {
       opacity: 100;
-      transform: translateY(-100%);
+      transform: translateY(-250%);
     }
     to {
       opacity: 0;
@@ -55,18 +55,14 @@
 /* Needed to style multi select dropdown on Search Page */
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
-  background-color: rgba(4, 120, 87, 0.45);
+  background-color: rgba(4, 120, 87, 0.45) !important;
 }
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: rgb(4, 120, 87);
+  background-color: rgb(4, 120, 87) !important;
 }
 :where(.css-dev-only-do-not-override-djtmh8).ant-select-dropdown
   .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
   .ant-select-item-option-state {
-  color: whitesmoke;
-}
-:where(.css-dev-only-do-not-override-djtmh8).ant-select-multiple
-  .ant-select-selector {
-  height: 40px;
+  color: whitesmoke !important;
 }
