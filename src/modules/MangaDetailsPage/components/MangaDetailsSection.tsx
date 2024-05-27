@@ -10,7 +10,7 @@ export default function MangaDetailsSection({ topData }: { topData: Comic }) {
         {topData?.comic?.md_comic_md_genres?.map((genre) => (
           <Genre
             genre={genre}
-            className="p-1 text-sm md:p-2"
+            className="bg-emerald-700/40 p-1 text-sm md:p-2"
             key={genre.md_genres.name}
           />
         ))}

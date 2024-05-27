@@ -8,7 +8,7 @@ export default function Genre({
   className: string;
 }) {
   return (
-    <span className={`rounded-md bg-emerald-700 p-1 ${className}`}>
+    <span className={`rounded-md p-1 ${className}`}>
       {genre?.md_genres.name}
     </span>
   );

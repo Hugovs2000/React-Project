@@ -53,7 +53,7 @@ export default function TrendingCard({
           {genres?.map((genre) => (
             <Genre
               genre={genre}
-              className="text-xs"
+              className="bg-emerald-700 text-xs"
               key={genre.md_genres.name}
             />
           ))}
