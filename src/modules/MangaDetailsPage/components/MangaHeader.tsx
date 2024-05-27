@@ -13,11 +13,15 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
     router.history.back();
   };
 
-  const lastReadPage = useMangaStore((state) => state.currentlyReading);
+  const currentlyReading = useMangaStore((state) => state.currentlyReading);
 
   const addFavourite = useMangaStore((state) => state.addToFavourites);
   const removeFavourite = useMangaStore((state) => state.removeFromFavourites);
   const existingFavs = useMangaStore((state) => state.favourites);
+
+  const currentReadingEntry = currentlyReading.find(
+    ([mangaSlug]) => mangaSlug === topData?.comic?.slug,
+  );
 
   let isFav: boolean;
 
@@ -60,7 +64,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
               {topData.comic?.user_follow_count} followers
             </div>
             <div className="mx-4 flex items-center gap-4 md:gap-8">
-              {lastReadPage[0] === topData.comic?.slug && (
+              {currentReadingEntry && (
                 <div
                   className="tooltip tooltip-bottom"
                   data-tip="Continue Reading"
@@ -68,8 +72,8 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
                   <Link
                     to="/read/$manga/$chapter"
                     params={{
-                      manga: lastReadPage[0],
-                      chapter: lastReadPage[1],
+                      manga: currentReadingEntry[0],
+                      chapter: currentReadingEntry[1],
                     }}
                   >
                     <IoCaretForward className="scale-150" />

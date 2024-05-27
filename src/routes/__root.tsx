@@ -16,7 +16,7 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const lastReadPage = useMangaStore((state) => state.currentlyReading);
+  const lastReadPage = useMangaStore((state) => state.lastReadManga);
   const activeRouter = useRouterState();
 
   const isHidden =

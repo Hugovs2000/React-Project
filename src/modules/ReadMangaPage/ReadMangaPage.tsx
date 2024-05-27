@@ -13,7 +13,10 @@ import TopInfoBar from "./components/TopInfoBar";
 
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
-  const setCurrentlyReading = useMangaStore((state) => state.setLastRead);
+  const setLastReadManga = useMangaStore((state) => state.setLastRead);
+  const addCurrentlyReading = useMangaStore(
+    (state) => state.addCurrentlyReading,
+  );
   const [isShown, setIsShown] = useState(true);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const imgContainerHeight =
@@ -56,8 +59,10 @@ export default function ReadMangaPage() {
   };
 
   useEffect(() => {
-    setCurrentlyReading(manga, chapter);
-
+    if (manga !== "" && chapter !== "") {
+      setLastReadManga(manga, chapter);
+      addCurrentlyReading(manga, chapter);
+    }
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });
 
@@ -65,7 +70,7 @@ export default function ReadMangaPage() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("click", handleClick);
     };
-  }, [manga, chapter, setCurrentlyReading, isShown, timeoutId]);
+  }, [manga, chapter, setLastReadManga, isShown, timeoutId]);
 
   if (loadingChapter) {
     return <ReadPageSkeleton manga={manga} />;
