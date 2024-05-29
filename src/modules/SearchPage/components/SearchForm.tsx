@@ -50,12 +50,15 @@ export default function SearchForm({
 
   const onSubmit: SubmitHandler<{
     mangaName?: string;
+    onChangeGenre?: string[];
+    onChangeSortBy?: string;
+    onChangeStatus?: number;
   }> = async (data) => {
     try {
       const result = await getSearchQuery(
-        selectedGenres,
-        selectedStatus,
-        selectedSort,
+        data.onChangeGenre ?? selectedGenres,
+        data.onChangeStatus ?? selectedStatus,
+        data.onChangeSortBy ?? selectedSort,
         data.mangaName ?? "",
       );
       setSearchResult(result);
@@ -68,14 +71,23 @@ export default function SearchForm({
 
   const handleMultiSelectChange = (value: string[]) => {
     setSelectedGenres(value);
+    handleSubmit((formData) =>
+      onSubmit({ ...formData, onChangeGenre: value }),
+    )();
   };
 
   const handleSortByChange = (value: string) => {
     setSelectedSort(value);
+    handleSubmit((formData) =>
+      onSubmit({ ...formData, onChangeSortBy: value }),
+    )();
   };
 
   const handleStatusChange = (value: number) => {
     setSelectedStatus(value);
+    handleSubmit((formData) =>
+      onSubmit({ ...formData, onChangeStatus: value }),
+    )();
   };
 
   const handleReset = () => {
@@ -111,7 +123,7 @@ export default function SearchForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="z-10 w-full p-4 md:w-2/3"
+      className="z-10 w-full p-4 md:w-[500px]"
     >
       <div className="flex w-full justify-between gap-4">
         <input

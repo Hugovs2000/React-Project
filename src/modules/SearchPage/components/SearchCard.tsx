@@ -6,7 +6,7 @@ export default function SearchCard({ comic }: { comic: Comic }) {
   return (
     comic?.md_covers?.[0]?.b2key && (
       <div
-        className="relative my-4 flex min-h-fit w-80 cursor-pointer flex-col items-start rounded-xl bg-cover shadow-around md:w-full md:max-w-full"
+        className="relative my-4 flex min-h-fit w-full cursor-pointer flex-col items-start rounded-xl bg-cover shadow-around md:w-full md:max-w-full"
         style={{
           backgroundImage: `url(${convertToUrl(comic.md_covers[0].b2key)})`,
         }}

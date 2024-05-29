@@ -8,9 +8,9 @@ export default function QueryResults({
   searchResult: Comic[];
 }) {
   return (
-    <div className="z-0 w-full md:w-2/3">
+    <div className="z-0 h-full w-full md:w-[500px]">
       <h2 className="mx-8 mt-4 text-lg md:mt-8">Top Results</h2>
-      <div className="carousel carousel-vertical mt-2 h-96 w-full gap-4 px-6 md:mt-6">
+      <div className="carousel carousel-vertical mt-2 max-h-[calc(100svh-23rem)] w-full gap-4 px-6 md:mt-6 md:max-h-[calc(100svh-25rem)]">
         {searchResult
           .filter((comic) => comic.content_rating === "safe")
           .map(
