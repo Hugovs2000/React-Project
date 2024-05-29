@@ -32,7 +32,7 @@ export default function SearchPage() {
     );
 
   return (
-    <div className="flex min-h-full flex-col items-center text-slate-50">
+    <div className="flex h-full flex-col items-center text-slate-50">
       {genresData && (
         <SearchForm
           setSearchResult={setSearchResult}

@@ -10,7 +10,7 @@ export default function RecommendedCard({
   cover: MdCover;
 }) {
   return (
-    <div className="relative flex h-full min-w-28 flex-col items-center justify-start gap-4 overflow-hidden rounded-xl shadow-around">
+    <div className="relative flex h-full w-[8.5rem] flex-col items-center justify-start gap-4 overflow-hidden rounded-xl shadow-around">
       <LazyLoadImage
         src={convertToUrl(cover.b2key)}
         alt={recom.relates.title}

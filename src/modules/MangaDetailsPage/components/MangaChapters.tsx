@@ -72,7 +72,7 @@ export default function MangaChapters({
 
   return (
     <>
-      <div className="mb-4 flex w-full flex-col items-start space-y-6 px-4 md:items-center">
+      <div className="m-auto mb-4 flex w-full max-w-md flex-col items-start space-y-6 px-4 md:items-center">
         {limit > 1 && (
           <div className="join self-center">
             <button
@@ -119,7 +119,7 @@ export default function MangaChapters({
                     manga: comic.slug,
                     chapter: chap.hid,
                   }}
-                  className="flex w-full items-center justify-around gap-4 rounded-lg bg-zinc-700 py-2 md:w-4/5"
+                  className="flex w-full items-center justify-around gap-4 rounded-lg bg-zinc-700 py-2"
                   key={chap.hid}
                 >
                   <Chapter chap={chap} />
