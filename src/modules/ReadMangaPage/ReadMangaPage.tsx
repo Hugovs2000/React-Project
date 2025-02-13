@@ -5,11 +5,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getChapterByHid } from "../../api/api-services";
 import { Route } from "../../routes/read.$manga.$chapter.lazy";
 import { useMangaStore } from "../../state/state-service";
-import checkImage from "../../utils/check-image-exists";
 import convertToUrl from "../../utils/convert-image-string";
 import BottomNavChaptersBar from "./components/BottomNavChaptersBar";
 import ReadPageSkeleton from "./components/Skeletons/ReadPageSkeleton";
 import TopInfoBar from "./components/TopInfoBar";
+import checkIfImageExists from "../../utils/check-image-exists";
 
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
@@ -19,6 +19,7 @@ export default function ReadMangaPage() {
   );
   const [isShown, setIsShown] = useState(true);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [imgValid, setImgValid] = useState(false);
   const imgContainerHeight =
     document.getElementById("img-container")?.clientHeight;
 
@@ -96,9 +97,13 @@ export default function ReadMangaPage() {
     );
   }
 
-  const request = checkImage(chapterData.chapter?.md_images?.[0]?.b2key ?? "");
+  checkIfImageExists(chapterData.chapter?.md_images?.[0]?.b2key ?? "").then(
+    (imageExists) => {
+      imageExists ? setImgValid(true) : setImgValid(false);
+    },
+  );
 
-  if (request?.status === 404) {
+  if (!imgValid) {
     return (
       <div className="flex flex-col items-center justify-center">
         <div className="m-4">Images For Chapter Not Found. Return Home</div>
