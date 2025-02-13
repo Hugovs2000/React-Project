@@ -89,7 +89,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
         >
           <div className="absolute min-h-full min-w-full bg-black/60 backdrop-blur-sm md:min-w-full md:max-w-4xl"></div>
           <div className="absolute h-full w-full bg-gradient-to-t from-black/95 to-60%"></div>
-          <div className="z-10 mt-12 flex w-full flex-col items-center justify-center">
+          <div className="z-10 mt-12 flex w-fit flex-col items-center justify-center">
             {topData.comic?.slug && topData.firstChap?.hid && (
               <Link
                 to="/read/$manga/$chapter"
@@ -101,7 +101,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
                 <LazyLoadImage
                   src={convertToUrl(topData.comic?.md_covers?.[0]?.b2key)}
                   alt="Cover"
-                  className="m-8 mb-2 max-h-52 w-fit rounded-xl border-2 border-slate-50 md:max-h-96"
+                  className="m-8 mb-2 max-h-52 max-w-48 rounded-xl border-2 border-slate-50 md:max-h-96"
                 />
               </Link>
             )}
