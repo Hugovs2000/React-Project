@@ -8,6 +8,7 @@ import "./index.css";
 import { routeTree } from "./routeTree.gen";
 import NotFoundComponent from "./shared/NotFoundComponents";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const router = createRouter({
   routeTree,
@@ -16,6 +17,7 @@ const router = createRouter({
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const firestore = getFirestore(app);
 
 const queryClient = new QueryClient();
 
