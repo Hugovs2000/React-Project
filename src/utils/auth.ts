@@ -11,7 +11,7 @@ import { auth } from "../main";
 import { MouseEvent } from "react";
 import { Router } from "@tanstack/react-router";
 import { GoogleAuthProvider } from "firebase/auth";
-import { useAuthenticationStore } from "../state/state-service";
+import { useAuthenticationStore, useMangaStore } from "../state/state-service";
 import { addUser, getUser } from "../firestore/firestore";
 
 const googleProvider = new GoogleAuthProvider();
@@ -144,11 +144,14 @@ export const logInWithGoogle = (router: Router) => {
 };
 
 export const logOut = (router: Router) => {
-  const { lastRoute, setLastRoute, setDocRef } =
+  const { lastRoute, setLastRoute, setDocRef, removeUser } =
     useAuthenticationStore.getState();
+  const { clearStore } = useMangaStore.getState();
   signOut(auth)
     .then(() => {
       setDocRef("");
+      removeUser();
+      clearStore();
       lastRoute !== "/" && setLastRoute("/");
       router.navigate({ to: "/" });
     })
@@ -166,6 +169,7 @@ export const onAuthChange = () => {
     removeUser,
     user: storeUser,
   } = useAuthenticationStore.getState();
+  const { clearStore } = useMangaStore.getState();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       if (!storeUser || storeUser?.email !== user.email) {
@@ -179,6 +183,7 @@ export const onAuthChange = () => {
     } else {
       if (storeUser && storeUser.email !== "") {
         removeUser();
+        clearStore();
       }
     }
   });

@@ -10,7 +10,13 @@ export const useMangaStore = create<MangaState>()(
       currentlyReading: [],
       lastReadManga: ["", ""],
       addToFavourites: (slug) =>
-        set((state) => ({ favourites: [...state.favourites, slug] })),
+        set((state) =>
+          !state.favourites.includes(slug)
+            ? {
+                favourites: [...state.favourites, slug],
+              }
+            : { favourites: [...state.favourites] },
+        ),
       removeFromFavourites: (slug) =>
         set((state) => ({
           favourites: state.favourites.filter(
@@ -38,6 +44,14 @@ export const useMangaStore = create<MangaState>()(
               ...state.currentlyReading,
               [mangaSlug, mangaHid, mangaTitle],
             ],
+          };
+        }),
+      clearStore: () =>
+        set(() => {
+          return {
+            favourites: [],
+            currentlyReading: [],
+            lastReadManga: ["", ""],
           };
         }),
     }),

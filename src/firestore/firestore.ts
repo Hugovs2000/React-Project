@@ -41,8 +41,31 @@ export const updateUser = async (): Promise<void> => {
 };
 
 export const getUser = async (uid: string): Promise<string> => {
+  const { setLastRead, addCurrentlyReading, addToFavourites } =
+    useMangaStore.getState();
+
   const q = query(collection(firestore, "users"), where("uid", "==", uid));
 
   const querySnapshot = await getDocs(q);
+
+  const lastReadManga: [string, string] = JSON.parse(
+    querySnapshot?.docs?.[0]?.get("lastReadManga") ?? "[]",
+  );
+  const currentlyReading: [string, string, string][] = JSON.parse(
+    querySnapshot?.docs?.[0]?.get("currentlyReading") ?? "[]",
+  );
+  const favourites: string[] = JSON.parse(
+    querySnapshot?.docs?.[0]?.get("favourites") ?? "[]",
+  );
+
+  setLastRead(lastReadManga?.[0], lastReadManga?.[1]);
+  currentlyReading.map((manga) => {
+    addCurrentlyReading(manga?.[0], manga?.[1], manga?.[2]);
+  });
+
+  favourites?.map((fav) => {
+    addToFavourites(fav);
+  });
+
   return querySnapshot?.docs?.[0]?.id ?? "";
 };

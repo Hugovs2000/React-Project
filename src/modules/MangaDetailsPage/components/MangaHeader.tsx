@@ -12,6 +12,7 @@ import convertToUrl from "../../../utils/convert-image-string";
 import { RefObject, useRef } from "react";
 import LogInPage from "../../LogIn/LogInPage";
 import { isAuthenticated } from "../../../utils/auth";
+import { updateUser } from "../../../firestore/firestore";
 
 export default function MangaHeader({ topData }: { topData: Comic }) {
   const router = useRouter();
@@ -38,7 +39,8 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
       topData?.comic?.slug &&
         (isFav
           ? removeFavourite(topData.comic.slug)
-          : addFavourite(topData.comic.slug));
+          : addFavourite(topData.comic.slug),
+        updateUser());
     }
   };
 
