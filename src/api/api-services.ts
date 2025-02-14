@@ -3,7 +3,11 @@ import { Comic } from "../models/Comic";
 import { Genre } from "../models/Genre";
 import { TopComics } from "../models/TopComics";
 
-const baseUrl = "https://react-server-g0y4.onrender.com/api/";
+const comickBase = "https://api.comick.fun/";
+const serverBase = "https://react-server-g0y4.onrender.com/api/";
+
+const baseUrl =
+  process.env.NODE_ENV === "development" ? comickBase : serverBase;
 
 export async function getTop(): Promise<TopComics> {
   const res = await fetch(
