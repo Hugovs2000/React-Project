@@ -10,6 +10,7 @@ import BottomNavChaptersBar from "./components/BottomNavChaptersBar";
 import ReadPageSkeleton from "./components/Skeletons/ReadPageSkeleton";
 import TopInfoBar from "./components/TopInfoBar";
 import checkIfImageExists from "../../utils/check-image-exists";
+import { updateUser } from "../../firestore/firestore";
 
 export default function ReadMangaPage() {
   const { manga, chapter } = Route.useParams();
@@ -67,6 +68,7 @@ export default function ReadMangaPage() {
     ) {
       setLastReadManga(manga, chapter);
       addCurrentlyReading(manga, chapter, chapterData.chapter.md_comics.title);
+      updateUser();
     }
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });

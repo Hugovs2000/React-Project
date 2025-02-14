@@ -9,16 +9,15 @@ import {
 } from "firebase/firestore";
 import { firestore } from "../main";
 import { FirestoreUser } from "../models/Firestore";
-import UserState from "../models/UserState";
-import MangaState from "../models/MangaState";
+import { useAuthenticationStore, useMangaStore } from "../state/state-service";
 
 export const addUser = async (user: FirestoreUser): Promise<string> => {
   const docRef = await addDoc(collection(firestore, "users"), {
     uid: user.uid,
     email: user.email,
-    favourites: user.favourites,
-    lastReadManga: user.lastReadManga,
-    currentlyReading: user.currentlyReading,
+    favourites: JSON.stringify(user.favourites),
+    lastReadManga: JSON.stringify(user.lastReadManga),
+    currentlyReading: JSON.stringify(user.currentlyReading),
   });
   if (docRef) {
     return docRef.id;
@@ -27,16 +26,17 @@ export const addUser = async (user: FirestoreUser): Promise<string> => {
   }
 };
 
-export const updateUser = async (
-  user: UserState,
-  mangaState: MangaState,
-): Promise<void> => {
-  await updateDoc(doc(firestore, "users", user.docRef ?? ""), {
-    uid: user.uid,
-    email: user.email,
-    favourites: mangaState.favourites,
-    lastReadManga: mangaState.lastReadManga,
-    currentlyReading: mangaState.currentlyReading,
+export const updateUser = async (): Promise<void> => {
+  const { user, docRef } = useAuthenticationStore.getState();
+  const mangaStore = useMangaStore.getState();
+  await updateDoc(doc(firestore, "users", docRef ?? ""), {
+    uid: user?.uid,
+    email: user?.email,
+    favourites: JSON.stringify(mangaStore?.favourites ?? {}),
+    lastReadManga: JSON.stringify(mangaStore?.lastReadManga ?? ["", ""]),
+    currentlyReading: JSON.stringify(
+      mangaStore?.currentlyReading ?? [["", "", ""]],
+    ),
   });
 };
 
