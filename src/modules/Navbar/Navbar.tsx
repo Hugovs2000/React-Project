@@ -36,8 +36,8 @@ export default function Navbar({ className }: { className: string }) {
         </div>
         <div className="flex items-center gap-2">
           {isAuthenticated() ? (
-            <div>
-              <h3 className="invisible gap-0 px-2 text-slate-50 sm:visible">
+            <div className="flex items-center gap-2">
+              <h3 className="hidden gap-0 px-2 text-slate-50 sm:block">
                 {!user?.displayName
                   ? "Welcome, Reader"
                   : `Welcome, ${user.displayName}`}
