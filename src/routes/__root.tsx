@@ -3,25 +3,44 @@ import {
   Link,
   Outlet,
   ScrollRestoration,
+  useRouter,
   useRouterState,
 } from "@tanstack/react-router";
 import { IoCaretForward } from "react-icons/io5";
 import Drawer from "../modules/Drawer/Drawer";
 import Footer from "../modules/Footer/Footer";
 import Navbar from "../modules/Navbar/Navbar";
-import { useMangaStore } from "../state/state-service";
+import { useAuthenticationStore, useMangaStore } from "../state/state-service";
+import { useEffect } from "react";
+import { isAuthenticated, onAuthChange } from "../utils/auth";
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
 
 function RootComponent() {
+  const {
+    setUser,
+    removeUser,
+    user: storeUser,
+  } = useAuthenticationStore((state) => state);
   const lastReadPage = useMangaStore((state) => state.lastReadManga);
   const activeRouter = useRouterState();
+  const router = useRouter();
+  const protectedRoutes = ["favourites"].some((route) =>
+    activeRouter.location.pathname.includes(route),
+  );
 
-  const isHidden =
-    activeRouter.location.pathname.includes("details") ||
-    activeRouter.location.pathname.includes("read");
+  const isHidden = ["details", "read", "sign-up", "log-in"].some((route) =>
+    activeRouter.location.pathname.includes(route),
+  );
+
+  useEffect(() => {
+    onAuthChange(setUser, removeUser, storeUser);
+    if (!storeUser && protectedRoutes) {
+      router.navigate({ to: "/log-in" });
+    }
+  }, [activeRouter.location.pathname]);
 
   return (
     <div id="root" className="flex h-full flex-col">
@@ -33,6 +52,7 @@ function RootComponent() {
             <ScrollRestoration />
             <Outlet />
             {!isHidden &&
+              isAuthenticated() &&
               lastReadPage?.[0]?.length > 0 &&
               !activeRouter.location.pathname.includes("search") && (
                 <Link
@@ -41,7 +61,7 @@ function RootComponent() {
                     manga: lastReadPage[0],
                     chapter: lastReadPage[1],
                   }}
-                  className="shadow-fab toast toast-end bottom-auto top-[72px] z-50 m-4 rounded-lg bg-emerald-700 p-2 px-3 font-bold text-slate-50"
+                  className="toast toast-end bottom-auto top-[72px] z-50 m-4 rounded-lg bg-emerald-700 p-2 px-3 font-bold text-slate-50 shadow-fab"
                 >
                   <span className="flex items-center justify-center gap-2">
                     Continue

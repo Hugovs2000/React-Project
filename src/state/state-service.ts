@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import MangaState from "../models/StoreState";
+import MangaState from "../models/MangaState";
+import UserState from "../models/UserState";
 
 export const useMangaStore = create<MangaState>()(
   persist(
@@ -19,20 +20,43 @@ export const useMangaStore = create<MangaState>()(
       setLastRead: (mangaSlug, mangaHid) =>
         set(() => ({ lastReadManga: [mangaSlug, mangaHid] })),
       addCurrentlyReading: (mangaSlug, mangaHid, mangaTitle) =>
-      set((state) => {
-        const existingIndex = state.currentlyReading.findIndex(
-          ([existingMangaSlug]) => existingMangaSlug === mangaSlug
-        );
-        if (existingIndex !== -1) {
-          const updatedCurrentlyReading = [...state.currentlyReading];
-          updatedCurrentlyReading[existingIndex] = [mangaSlug, mangaHid, mangaTitle];
-          return { currentlyReading: updatedCurrentlyReading };
-        }
-        return {
-          currentlyReading: [...state.currentlyReading, [mangaSlug, mangaHid, mangaTitle]],
-        };
-      }),
+        set((state) => {
+          const existingIndex = state.currentlyReading.findIndex(
+            ([existingMangaSlug]) => existingMangaSlug === mangaSlug,
+          );
+          if (existingIndex !== -1) {
+            const updatedCurrentlyReading = [...state.currentlyReading];
+            updatedCurrentlyReading[existingIndex] = [
+              mangaSlug,
+              mangaHid,
+              mangaTitle,
+            ];
+            return { currentlyReading: updatedCurrentlyReading };
+          }
+          return {
+            currentlyReading: [
+              ...state.currentlyReading,
+              [mangaSlug, mangaHid, mangaTitle],
+            ],
+          };
+        }),
     }),
     { name: "MangaState", storage: createJSONStorage(() => localStorage) },
+  ),
+);
+
+export const useAuthenticationStore = create<UserState>()(
+  persist(
+    (set) => ({
+      user: null,
+      uid: "",
+      email: "",
+      lastRoute: "",
+      setLastRoute: (route) => set(() => ({ lastRoute: route })),
+      setUser: (user) =>
+        set(() => ({ user, uid: user.uid, email: user.email ?? "" })),
+      removeUser: () => set(() => ({ user: null, uid: "", email: "" })),
+    }),
+    { name: "UserState", storage: createJSONStorage(() => localStorage) },
   ),
 );

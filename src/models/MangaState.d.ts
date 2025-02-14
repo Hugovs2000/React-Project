@@ -5,5 +5,9 @@ export default interface MangaState {
   addToFavourites: (slug: string) => void;
   removeFromFavourites: (hid: string) => void;
   setLastRead: (mangaSlug: string, mangaHid: string) => void;
-  addCurrentlyReading: (mangaSlug: string, mangaHid: string, mangaTitle: string) => void;
+  addCurrentlyReading: (
+    mangaSlug: string,
+    mangaHid: string,
+    mangaTitle: string,
+  ) => void;
 }

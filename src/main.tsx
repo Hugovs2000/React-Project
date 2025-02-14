@@ -7,13 +7,15 @@ import { firebaseConfig } from "./firebase/firebase";
 import "./index.css";
 import { routeTree } from "./routeTree.gen";
 import NotFoundComponent from "./shared/NotFoundComponents";
+import { getAuth } from "firebase/auth";
 
 const router = createRouter({
   routeTree,
   defaultNotFoundComponent: NotFoundComponent,
 });
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
 const queryClient = new QueryClient();
 
