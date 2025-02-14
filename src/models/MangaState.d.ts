@@ -10,4 +10,5 @@ export default interface MangaState {
     mangaHid: string,
     mangaTitle: string,
   ) => void;
+  clearStore: () => void;
 }

@@ -13,6 +13,7 @@ import Navbar from "../modules/Navbar/Navbar";
 import { useAuthenticationStore, useMangaStore } from "../state/state-service";
 import { useEffect } from "react";
 import { isAuthenticated, onAuthChange } from "../utils/auth";
+import { getUser } from "../firestore/firestore";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -20,9 +21,9 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   const {
-    setUser,
-    removeUser,
     user: storeUser,
+    docRef,
+    setDocRef,
   } = useAuthenticationStore((state) => state);
   const lastReadPage = useMangaStore((state) => state.lastReadManga);
   const activeRouter = useRouterState();
@@ -36,10 +37,15 @@ function RootComponent() {
   );
 
   useEffect(() => {
-    onAuthChange(setUser, removeUser, storeUser);
+    onAuthChange();
     if (!storeUser && protectedRoutes) {
       router.navigate({ to: "/log-in" });
     }
+    !docRef &&
+      storeUser &&
+      getUser(storeUser?.uid ?? "").then((docRef) => {
+        docRef && setDocRef(docRef);
+      });
   }, [activeRouter.location.pathname]);
 
   return (

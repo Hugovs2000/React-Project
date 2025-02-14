@@ -1,11 +1,9 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
-import { useAuthenticationStore } from "../../state/state-service";
 import { logIn, logInWithGoogle } from "../../utils/auth";
 import { Link, useRouter } from "@tanstack/react-router";
 import { FcGoogle } from "react-icons/fc";
 
 export default function LogInPage() {
-  const { setUser } = useAuthenticationStore();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -21,11 +19,11 @@ export default function LogInPage() {
 
   const onSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     if (email === "" || password === "") return;
-    logIn(event, email, password, setUser, router);
+    logIn(event, email, password, router);
   };
 
   const onSubmitGoogle = () => {
-    logInWithGoogle(setUser, router);
+    logInWithGoogle(router);
   };
 
   return (

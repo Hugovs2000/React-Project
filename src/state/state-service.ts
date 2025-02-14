@@ -10,7 +10,13 @@ export const useMangaStore = create<MangaState>()(
       currentlyReading: [],
       lastReadManga: ["", ""],
       addToFavourites: (slug) =>
-        set((state) => ({ favourites: [...state.favourites, slug] })),
+        set((state) =>
+          !state.favourites.includes(slug)
+            ? {
+                favourites: [...state.favourites, slug],
+              }
+            : { favourites: [...state.favourites] },
+        ),
       removeFromFavourites: (slug) =>
         set((state) => ({
           favourites: state.favourites.filter(
@@ -40,6 +46,14 @@ export const useMangaStore = create<MangaState>()(
             ],
           };
         }),
+      clearStore: () =>
+        set(() => {
+          return {
+            favourites: [],
+            currentlyReading: [],
+            lastReadManga: ["", ""],
+          };
+        }),
     }),
     { name: "MangaState", storage: createJSONStorage(() => localStorage) },
   ),
@@ -52,9 +66,11 @@ export const useAuthenticationStore = create<UserState>()(
       uid: "",
       email: "",
       lastRoute: "",
+      docRef: "",
       setLastRoute: (route) => set(() => ({ lastRoute: route })),
       setUser: (user) =>
         set(() => ({ user, uid: user.uid, email: user.email ?? "" })),
+      setDocRef: (docRef) => set(() => ({ docRef })),
       removeUser: () => set(() => ({ user: null, uid: "", email: "" })),
     }),
     { name: "UserState", storage: createJSONStorage(() => localStorage) },
