@@ -8,6 +8,7 @@ import { useMangaStore } from "../../state/state-service.ts";
 import Footer from "../Footer/Footer";
 import DrawerLinksSection from "./components/DrawerLinksSection.tsx";
 import DrawerSkeleton from "./components/Skeletons/DrawerSkeleton";
+import { isAuthenticated } from "../../utils/auth.ts";
 
 export default function Drawer() {
   const currentlyReading = useMangaStore((state) => state.currentlyReading);
@@ -44,7 +45,7 @@ export default function Drawer() {
             Favourites
           </div>
         </Link>
-        {currentlyReading && (
+        {isAuthenticated() && currentlyReading && (
           <DrawerLinksSection continueReadingData={currentlyReading} />
         )}
         {topData?.trending?.[7] && (

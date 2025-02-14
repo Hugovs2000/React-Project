@@ -7,7 +7,7 @@ import { useAuthenticationStore } from "../../state/state-service.ts";
 import { isAuthenticated, logOut } from "../../utils/auth.ts";
 
 export default function Navbar({ className }: { className: string }) {
-  const user = useAuthenticationStore((state) => state.user);
+  const { user } = useAuthenticationStore();
   const activeRouter = useRouterState();
   const router = useRouter();
   const onBack = () => router.history.back();

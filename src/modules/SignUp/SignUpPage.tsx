@@ -1,13 +1,11 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { logInWithGoogle, signUp } from "../../utils/auth";
-import { useAuthenticationStore } from "../../state/state-service";
 import { Link, useRouter } from "@tanstack/react-router";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const setUser = useAuthenticationStore((state) => state.setUser);
   const router = useRouter();
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -20,12 +18,12 @@ export default function SignUpPage() {
 
   const onSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     if (email !== "" && password !== "") {
-      signUp(e, email, password, setUser, router);
+      signUp(e, email, password, router);
     }
   };
 
   const onSubmitGoogle = async () => {
-    logInWithGoogle(setUser, router);
+    logInWithGoogle(router);
   };
 
   return (

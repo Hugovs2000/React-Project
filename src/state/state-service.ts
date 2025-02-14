@@ -52,9 +52,11 @@ export const useAuthenticationStore = create<UserState>()(
       uid: "",
       email: "",
       lastRoute: "",
+      docRef: "",
       setLastRoute: (route) => set(() => ({ lastRoute: route })),
       setUser: (user) =>
         set(() => ({ user, uid: user.uid, email: user.email ?? "" })),
+      setDocRef: (docRef) => set(() => ({ docRef })),
       removeUser: () => set(() => ({ user: null, uid: "", email: "" })),
     }),
     { name: "UserState", storage: createJSONStorage(() => localStorage) },

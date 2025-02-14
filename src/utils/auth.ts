@@ -6,13 +6,13 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  UserInfo,
 } from "firebase/auth";
 import { auth } from "../main";
 import { MouseEvent } from "react";
 import { Router } from "@tanstack/react-router";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useAuthenticationStore } from "../state/state-service";
+import { addUser, getUser } from "../firestore/firestore";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -20,21 +20,42 @@ export const logIn = (
   e: MouseEvent<HTMLButtonElement>,
   email: string,
   password: string,
-  setUser: (user: UserInfo) => void,
   router: Router,
 ) => {
-  const { lastRoute, setLastRoute } = useAuthenticationStore.getState();
+  const { lastRoute, setLastRoute, setDocRef, setUser } =
+    useAuthenticationStore.getState();
 
   e.preventDefault();
   setPersistence(auth, browserSessionPersistence).then(() => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential?.user;
-        user && setUser(user);
-        lastRoute !== "/"
-          ? router.navigate({ to: lastRoute })
-          : router.navigate({ to: "/" });
-        setLastRoute("/");
+        if (userCredential) {
+          const user = userCredential?.user;
+          getUser(user.uid).then((docRef) => {
+            if (!docRef) {
+              addUser({
+                uid: user.uid,
+                email: user.email ?? "",
+                favourites: [],
+                lastReadManga: ["", ""],
+                currentlyReading: [],
+              }).then((docRef) => {
+                if (docRef) {
+                  setUser(user);
+                  setDocRef(docRef);
+                  lastRoute !== "/"
+                    ? (router.navigate({ to: lastRoute }), setLastRoute("/"))
+                    : router.navigate({ to: "/" });
+                }
+              });
+            }
+            setUser(user);
+            setDocRef(docRef ?? "");
+            lastRoute !== "/"
+              ? (router.navigate({ to: lastRoute }), setLastRoute("/"))
+              : router.navigate({ to: "/" });
+          });
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -48,16 +69,33 @@ export const signUp = async (
   e: MouseEvent<HTMLButtonElement>,
   email: string,
   password: string,
-  setUser: (user: UserInfo) => void,
   router: Router,
 ) => {
+  const { lastRoute, setLastRoute, setDocRef, setUser } =
+    useAuthenticationStore.getState();
   e.preventDefault();
 
   await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      user && setUser(user);
-      router.navigate({ to: "/" });
+      if (user) {
+        setUser(user);
+        addUser({
+          uid: user.uid,
+          email: user.email ?? "",
+          favourites: [],
+          lastReadManga: ["", ""],
+          currentlyReading: [],
+        }).then((docRef) => {
+          if (docRef) {
+            setUser(user);
+            setDocRef(docRef);
+            lastRoute !== "/"
+              ? (router.navigate({ to: lastRoute }), setLastRoute("/"))
+              : router.navigate({ to: "/" });
+          }
+        });
+      }
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -66,18 +104,37 @@ export const signUp = async (
     });
 };
 
-export const logInWithGoogle = (
-  setUser: (user: UserInfo) => void,
-  router: Router,
-) => {
-  const { lastRoute, setLastRoute } = useAuthenticationStore.getState();
+export const logInWithGoogle = (router: Router) => {
+  const { lastRoute, setLastRoute, setDocRef, setUser } =
+    useAuthenticationStore.getState();
   signInWithPopup(auth, googleProvider)
     .then((result) => {
       const user = result.user;
-      user && setUser(user);
-      lastRoute !== "/"
-        ? (router.navigate({ to: lastRoute }), setLastRoute("/"))
-        : router.navigate({ to: "/" });
+      if (!user) return;
+      getUser(user.uid).then((docRef) => {
+        if (!docRef) {
+          addUser({
+            uid: user.uid,
+            email: user.email ?? "",
+            favourites: [],
+            lastReadManga: ["", ""],
+            currentlyReading: [],
+          }).then((docRef) => {
+            if (docRef) {
+              setUser(user);
+              setDocRef(docRef);
+              lastRoute !== "/"
+                ? (router.navigate({ to: lastRoute }), setLastRoute("/"))
+                : router.navigate({ to: "/" });
+            }
+          });
+        }
+        setUser(user);
+        setDocRef(docRef ?? "");
+        lastRoute !== "/"
+          ? (router.navigate({ to: lastRoute }), setLastRoute("/"))
+          : router.navigate({ to: "/" });
+      });
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -87,9 +144,11 @@ export const logInWithGoogle = (
 };
 
 export const logOut = (router: Router) => {
-  const { lastRoute, setLastRoute } = useAuthenticationStore.getState();
+  const { lastRoute, setLastRoute, setDocRef } =
+    useAuthenticationStore.getState();
   signOut(auth)
     .then(() => {
+      setDocRef("");
       lastRoute !== "/" && setLastRoute("/");
       router.navigate({ to: "/" });
     })
@@ -100,15 +159,22 @@ export const logOut = (router: Router) => {
     });
 };
 
-export const onAuthChange = (
-  setUser: (user: UserInfo) => void,
-  removeUser: () => void,
-  storeUser?: UserInfo | null,
-) => {
+export const onAuthChange = () => {
+  const {
+    setDocRef,
+    setUser,
+    removeUser,
+    user: storeUser,
+  } = useAuthenticationStore.getState();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       if (!storeUser || storeUser?.email !== user.email) {
-        setUser(user);
+        getUser(user.uid ?? "").then((docRef) => {
+          if (docRef) {
+            setDocRef(docRef);
+            setUser(user);
+          }
+        });
       }
     } else {
       if (storeUser && storeUser.email !== "") {
