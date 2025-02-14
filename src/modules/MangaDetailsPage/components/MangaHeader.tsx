@@ -4,8 +4,14 @@ import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Comic } from "../../../models/Comic";
-import { useMangaStore } from "../../../state/state-service";
+import {
+  useAuthenticationStore,
+  useMangaStore,
+} from "../../../state/state-service";
 import convertToUrl from "../../../utils/convert-image-string";
+import { RefObject, useRef } from "react";
+import LogInPage from "../../LogIn/LogInPage";
+import { isAuthenticated } from "../../../utils/auth";
 
 export default function MangaHeader({ topData }: { topData: Comic }) {
   const router = useRouter();
@@ -16,6 +22,7 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
   const addFavourite = useMangaStore((state) => state.addToFavourites);
   const removeFavourite = useMangaStore((state) => state.removeFromFavourites);
   const existingFavs = useMangaStore((state) => state.favourites);
+  const { user, setLastRoute } = useAuthenticationStore();
 
   let isFav: boolean;
 
@@ -24,10 +31,21 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
     : (isFav = false);
 
   const handleFavClick = () => {
-    topData?.comic?.slug &&
-      (isFav
-        ? removeFavourite(topData.comic.slug)
-        : addFavourite(topData.comic.slug));
+    if (!user) {
+      setLastRoute(location.pathname);
+      openModal(modalRef);
+    } else {
+      topData?.comic?.slug &&
+        (isFav
+          ? removeFavourite(topData.comic.slug)
+          : addFavourite(topData.comic.slug));
+    }
+  };
+
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  const openModal = (modal: RefObject<HTMLDialogElement>) => {
+    modal.current?.showModal();
   };
 
   return (
@@ -117,6 +135,27 @@ export default function MangaHeader({ topData }: { topData: Comic }) {
             </div>
           </div>
         </div>
+        {!isAuthenticated() && (
+          <dialog
+            className="modal modal-bottom sm:modal-middle "
+            ref={modalRef}
+          >
+            <div className="modal-box bg-zinc-800">
+              <h3 className="text-lg font-bold">Want to add to favourites?</h3>
+              <p className="py-4">
+                You need to be logged in in order to add to favourites.
+              </p>
+              <div className="modal-action m-0 flex flex-col justify-center p-0">
+                <LogInPage />
+                <form method="dialog" className="flex justify-end pt-4">
+                  <button className="btn self-end bg-zinc-900 text-slate-50">
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        )}
       </>
     )
   );

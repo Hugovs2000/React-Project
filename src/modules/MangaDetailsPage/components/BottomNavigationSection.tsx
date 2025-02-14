@@ -8,6 +8,7 @@ import BottomNavbar from "./BottomNavbar";
 import MangaChapters from "./MangaChapters";
 import MangaDetailsSection from "./MangaDetailsSection";
 import RecommendedMangas from "./RecommendedMangas";
+import { isAuthenticated } from "../../../utils/auth";
 
 export default function BottomNavigationSection({
   topData,
@@ -26,7 +27,8 @@ export default function BottomNavigationSection({
       <div className="flex w-full justify-between">
         {currentReadingEntry &&
         currentReadingEntry?.[0] !== "" &&
-        currentReadingEntry?.[1] !== "" ? (
+        currentReadingEntry?.[1] !== "" &&
+        isAuthenticated() ? (
           <div className="tooltip tooltip-bottom" data-tip="Continue Reading">
             <Link
               to="/read/$manga/$chapter"
@@ -36,7 +38,7 @@ export default function BottomNavigationSection({
               }}
               className="w-fit"
             >
-              <div className="shadow-fab mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
+              <div className="mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2 shadow-fab">
                 Continue Reading
                 <IoCaretForward className="scale-150" />
               </div>
@@ -53,7 +55,7 @@ export default function BottomNavigationSection({
               }}
               className="w-fit"
             >
-              <div className="shadow-fab mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2">
+              <div className="mx-4 my-8 flex flex-nowrap items-center justify-around gap-1 self-start rounded-md bg-emerald-700 p-2 shadow-fab">
                 Start Reading <GiRead />
               </div>
             </Link>

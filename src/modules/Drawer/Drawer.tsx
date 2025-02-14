@@ -30,7 +30,7 @@ export default function Drawer() {
       />
       <div className="flex min-h-full w-72 flex-col justify-start bg-zinc-900 p-8 pb-16 text-slate-50">
         <div className="mb-6 text-xl font-bold">
-          <Logo />
+          <Logo overrideSize={true} />
         </div>
         <Link to="/">
           <div className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-700 px-4 py-2">
